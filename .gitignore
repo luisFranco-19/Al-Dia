@@ -1,0 +1,41 @@
+## Visual Studio / .NET / C#
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.sln.docstates
+
+## Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Ll]og/
+[Ll]ogs/
+apphost.exe
+
+## Package / dependency cache
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+## SQL Server / SSMS
+UpgradeLog*.htm
+UpgradeLog*.XML
+*.ssmssln
+*.ssmsuser
+
+## OS Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

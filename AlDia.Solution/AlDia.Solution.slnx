@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AlDia.BLL/AlDia.BLL.csproj" />
+  <Project Path="AlDia.DAL/AlDia.DAL.csproj" />
+  <Project Path="AlDia.Entity/AlDia.Entity.csproj" />
+  <Project Path="AlDia.UI/AlDia.UI.csproj" />
+</Solution>

@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="AlDia.DataBase">
+  <Items>
+    <LogicalFolder Name="Conexiones" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="LAPTOP-1FRB462E:LAPTOP-1FRB462E\Usuario">
+          <Created>2026-09-23T18:48:21.6528558-06:00</Created>
+          <Type>SQL</Type>
+          <Server>LAPTOP-1FRB462E</Server>
+          <UserName />
+          <Authentication>Autenticación de Windows</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <TrustServerCertificate>True</TrustServerCertificate>
+          <EncryptionOption>True</EncryptionOption>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Consulta</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Consultas" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Base de datos.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Base de datos.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_AjustarExistencias.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_AjustarExistencias.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_AnularOrden.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_AnularOrden.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_AnularPago.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_AnularPago.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_ConsumirRepuesto.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_ConsumirRepuesto.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_CorregirConsumoRepuesto.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_CorregirConsumoRepuesto.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_CorregirDecisionCliente.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_CorregirDecisionCliente.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_CorregirDiagnostico.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_CorregirDiagnostico.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_CorregirPago.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_CorregirPago.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_CorregirRecepcion.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_CorregirRecepcion.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_CorregirServicio.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_CorregirServicio.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_EntregarEquipo.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_EntregarEquipo.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_FinalizarReparacion.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_FinalizarReparacion.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_IniciarReparacion.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_IniciarReparacion.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_Interno_BloquearOrden.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_Interno_BloquearOrden.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_Interno_Estado.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_Interno_Estado.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_Interno_RecalcularTotal.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_Interno_RecalcularTotal.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_Interno_ValidarUsuario.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>usp_Interno_ValidarUsuario.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_LiberarOrden.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_LiberarOrden.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RegistrarDecisionCliente.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RegistrarDecisionCliente.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RegistrarDiagnostico.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RegistrarDiagnostico.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RegistrarPago.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RegistrarPago.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RegistrarRecepcion.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RegistrarRecepcion.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RegistrarServicio.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RegistrarServicio.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RetirarConsumoRepuesto.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RetirarConsumoRepuesto.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RetirarDecisionCliente.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RetirarDecisionCliente.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RetirarDiagnostico.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RetirarDiagnostico.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_RetirarServicio.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_RetirarServicio.sql</FullPath>
+        </FileNode>
+        <FileNode Name="usp_TomarOrden.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FRB462E:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FRB462E</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>usp_TomarOrden.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Varios" Type="3" Sorted="true">
+      <Items>
+        <FileNode Name="LEEME.md">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>LEEME.md</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
