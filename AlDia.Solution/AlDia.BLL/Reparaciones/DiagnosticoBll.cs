@@ -50,4 +50,35 @@ public sealed class DiagnosticoBll(IDiagnosticoDal datos, SesionUsuario sesion)
         int actor = sesion.Exigir(RolUsuario.Recepcionista);
         return datos.RetirarDecisionAsync(actor, Validacion.Id(idConfirmacion, "IdConfirmacion"), ct);
     }
+    public async Task<int> RegistrarEntidadAsync(DiagnosticoEntity diagnostico, CancellationToken ct = default)
+    {
+        int actor = sesion.Exigir(RolUsuario.Tecnico);
+        ArgumentNullException.ThrowIfNull(diagnostico);
+        if (diagnostico.IdDiagnostico != 0) throw new ValidacionException("El diagnostico ya fue registrado.");
+        if (diagnostico.IdTecnico != actor) throw new PermisoException("El diagnostico debe corresponder al tecnico autenticado.");
+        int id = await RegistrarAsync(diagnostico.CrearSolicitud(), ct);
+        diagnostico.AsignarId(id);
+        return id;
+    }
+    public Task CorregirEntidadAsync(DiagnosticoEntity diagnostico, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(diagnostico);
+        return CorregirAsync(diagnostico.CrearCorreccion(), ct);
+    }
+    public async Task<int> RegistrarDecisionEntidadAsync(ConfirmacionEntity confirmacion, CancellationToken ct = default)
+    {
+        int actor = sesion.Exigir(RolUsuario.Recepcionista);
+        ArgumentNullException.ThrowIfNull(confirmacion);
+        if (confirmacion.IdConfirmacion != 0) throw new ValidacionException("La decision ya fue registrada.");
+        if (confirmacion.IdUsuario != actor) throw new PermisoException("La decision debe corresponder al usuario autenticado.");
+        int id = await RegistrarDecisionAsync(confirmacion.CrearSolicitud(), ct);
+        confirmacion.AsignarId(id);
+        return id;
+    }
+    public Task CorregirDecisionEntidadAsync(ConfirmacionEntity confirmacion, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(confirmacion);
+        return CorregirDecisionAsync(confirmacion.CrearCorreccion(), ct);
+    }
+
 }

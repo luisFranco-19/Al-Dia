@@ -1,4 +1,4 @@
-﻿USE [master];
+USE [master];
 GO
 
 
@@ -18,25 +18,38 @@ GO
 
 
 /* =========================================================
-   1. USUARIOS
+   1. ROLES
+   ========================================================= */
+
+CREATE TABLE dbo.Roles
+(
+    IdRol INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL UNIQUE,
+    Descripcion VARCHAR(200),
+    Estado BIT NOT NULL DEFAULT 1
+);
+
+/* =========================================================
+   2. USUARIOS
    ========================================================= */
 
 CREATE TABLE dbo.Usuarios
 (
     IdUsuario INT IDENTITY(1,1) PRIMARY KEY,
+    IdRol INT NOT NULL,
     Nombre VARCHAR(100) NOT NULL,
     Apellido VARCHAR(100) NOT NULL,
     Cedula VARCHAR(20) NOT NULL UNIQUE,
     Telefono VARCHAR(20),
     Correo VARCHAR(100),
     Usuario VARCHAR(50) NOT NULL UNIQUE,
-    Contrasena VARCHAR(255) NOT NULL,
-    Rol VARCHAR(20) NOT NULL,
+    ContrasenaHash VARCHAR(255) NOT NULL,
     Estado BIT NOT NULL DEFAULT 1,
     FechaRegistro DATETIME NOT NULL DEFAULT GETDATE(),
 
-    CONSTRAINT CK_Usuarios_Rol
-        CHECK (Rol IN ('Administrador', 'Recepcionista', 'Tecnico'))
+    CONSTRAINT FK_Usuarios_Roles
+        FOREIGN KEY (IdRol)
+        REFERENCES dbo.Roles(IdRol)
 );
 
 /* =========================================================
@@ -245,7 +258,6 @@ CREATE TABLE dbo.DetalleServicios
 
     IdOrden INT NOT NULL,
     IdServicio INT NOT NULL,
-    IdTecnico INT NOT NULL,
 
     Cantidad INT NOT NULL DEFAULT 1,
     Precio DECIMAL(10,2) NOT NULL,
@@ -259,10 +271,6 @@ CREATE TABLE dbo.DetalleServicios
     CONSTRAINT FK_DetalleServicios_Servicios
         FOREIGN KEY (IdServicio)
         REFERENCES Servicios(IdServicio),
-
-    CONSTRAINT FK_DetalleServicios_Tecnicos
-        FOREIGN KEY (IdTecnico)
-        REFERENCES Usuarios(IdUsuario),
 
     CONSTRAINT CK_DetalleServicios_Cantidad
         CHECK (Cantidad > 0),
@@ -311,7 +319,6 @@ CREATE TABLE dbo.DetalleRepuestos
 
     IdOrden INT NOT NULL,
     IdRepuesto INT NOT NULL,
-    IdTecnico INT NOT NULL,
 
     Cantidad INT NOT NULL,
     Precio DECIMAL(10,2) NOT NULL,
@@ -323,10 +330,6 @@ CREATE TABLE dbo.DetalleRepuestos
     CONSTRAINT FK_DetalleRepuestos_Repuestos
         FOREIGN KEY (IdRepuesto)
         REFERENCES Repuestos(IdRepuesto),
-
-    CONSTRAINT FK_DetalleRepuestos_Tecnicos
-        FOREIGN KEY (IdTecnico)
-        REFERENCES Usuarios(IdUsuario),
 
     CONSTRAINT CK_DetalleRepuestos_Cantidad
         CHECK (Cantidad > 0),
@@ -427,7 +430,12 @@ CREATE TABLE tblLogErrores(
 );
 GO
 
--- Estados iniciales e indices de consulta.
+-- Roles y Estados iniciales, e indices de consulta.
+INSERT dbo.Roles(Nombre, Descripcion) VALUES
+ ('Administrador','Control total y administracion del sistema'),
+ ('Recepcionista','Recepcion de equipos y atencion al cliente'),
+ ('Tecnico','Diagnostico y reparacion de equipos');
+
 INSERT dbo.EstadosReparacion(Nombre, Descripcion) VALUES
  ('En Revisión','Orden disponible para diagnostico'),
  ('Pendiente de Confirmación','Espera la decision del cliente'),
@@ -438,6 +446,7 @@ INSERT dbo.EstadosReparacion(Nombre, Descripcion) VALUES
  ('Rechazada','El cliente rechazo la propuesta'),
  ('Entregada','Equipo devuelto al cliente');
 
+CREATE INDEX IX_Usuarios_IdRol ON dbo.Usuarios(IdRol);
 CREATE INDEX IX_Equipos_IdCliente ON dbo.Equipos(IdCliente);
 CREATE INDEX IX_Equipos_IdTipoEquipo ON dbo.Equipos(IdTipoEquipo);
 CREATE INDEX IX_OrdenesReparacion_IdEquipo ON dbo.OrdenesReparacion(IdEquipo);
@@ -448,3 +457,10 @@ CREATE INDEX IX_DetalleRepuestos_IdOrden ON dbo.DetalleRepuestos(IdOrden);
 CREATE INDEX IX_Pagos_IdOrden ON dbo.Pagos(IdOrden);
 CREATE INDEX IX_HistorialEstados_IdOrden ON dbo.HistorialEstados(IdOrden);
 
+
+
+/*
+  REVISAR LA DB,
+  TRAER AVANCES DEL PROYECTO EN C#
+
+*/

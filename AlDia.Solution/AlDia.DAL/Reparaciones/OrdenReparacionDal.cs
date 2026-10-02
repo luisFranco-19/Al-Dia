@@ -1,4 +1,5 @@
 using AlDia.DAL.Common;
+using AlDia.Entity.Common;
 using AlDia.Entity.Reparaciones;
 namespace AlDia.DAL.Reparaciones;
 public sealed class OrdenReparacionDal(EjecutorSql sql) : IOrdenReparacionDal
@@ -54,18 +55,23 @@ public sealed class OrdenReparacionDal(EjecutorSql sql) : IOrdenReparacionDal
                 Enum.Parse<DecisionCliente>(x.Texto("Decision"), true), x.DineroOpcional("CostoAprobado"), x.Fecha("FechaConfirmacion"), x.TextoOpcional("Observaciones")), token);
             await r.NextResultAsync(token);
             var servicios = await LeerListaAsync(r, x => new DetalleServicioEntity(x.Entero("IdDetalleServicio"), x.Entero("IdOrden"), x.Entero("IdServicio"),
-                x.Entero("IdTecnico"), x.Entero("Cantidad"), x.Dinero("Precio"), x.TextoOpcional("Observaciones")), token);
+                x.Entero("Cantidad"), x.Dinero("Precio"), x.TextoOpcional("Observaciones"), x.EnteroOpcional("IdTecnico")), token);
             await r.NextResultAsync(token);
             var repuestos = await LeerListaAsync(r, x => new DetalleRepuestoEntity(x.Entero("IdDetalleRepuesto"), x.Entero("IdOrden"), x.Entero("IdRepuesto"),
-                x.Entero("IdTecnico"), x.Entero("Cantidad"), x.Dinero("Precio")), token);
+                x.Entero("Cantidad"), x.Dinero("Precio"), x.EnteroOpcional("IdTecnico")), token);
             await r.NextResultAsync(token);
-            var pagos = await LeerListaAsync(r, x => new AlDia.Entity.Pagos.PagoEntity(x.Entero("IdPago"), x.Entero("IdOrden"), x.Entero("IdUsuario"),
-                x.Dinero("Monto"), Enum.Parse<AlDia.Entity.Pagos.MetodoPago>(x.Texto("MetodoPago")), x.Fecha("FechaPago"), x.TextoOpcional("Observaciones"),
-                x.Bit("Anulado"), x.FechaOpcional("FechaAnulacion"), x.EnteroOpcional("IdUsuarioAnulacion"), x.TextoOpcional("MotivoAnulacion")), token);
+            var pagos = await LeerListaAsync(r, AlDia.DAL.Pagos.PagoDal.Mapear, token);
             await r.NextResultAsync(token);
             var historial = await LeerListaAsync(r, x => new HistorialEstadoEntity(x.Entero("IdHistorial"), x.Entero("IdOrden"), x.EnteroOpcional("IdEstadoAnterior"),
                 x.Entero("IdEstadoNuevo"), x.Entero("IdUsuario"), x.Fecha("FechaCambio"), x.TextoOpcional("Observacion")), token);
             return new ExpedienteOrdenEntity(orden, diagnosticos.SingleOrDefault(), confirmaciones.SingleOrDefault(), servicios, repuestos, pagos, historial);
         }, idActor, ct);
+
+    public Task<PaginacionEntity<OrdenReparacionEntity>> ConsultarPaginaAsync(int idActor, FiltroOrdenes f,
+        int pagina, int tamPagina, string? buscar, CancellationToken ct = default) =>
+        sql.ConsultarPaginaAsync("dbo.usp_ConsultarOrdenes", [ParametrosSql.Entero("@IdUsuarioActor", idActor),
+            ParametrosSql.Entero("@IdOrden", f.IdOrden), ParametrosSql.Entero("@IdEstado", f.IdEstado),
+            ParametrosSql.Entero("@IdCliente", f.IdCliente), ParametrosSql.Bit("@SoloDisponibles", f.SoloDisponibles),
+            ParametrosSql.Bit("@IncluirAnuladas", f.IncluirAnuladas)], MapearOrden, idActor, pagina, tamPagina, buscar, ct);
 
 }

@@ -53,4 +53,18 @@ public sealed class EjecutorSql
             while (await reader.ReadAsync(token)) lista.Add(mapear(reader));
             return lista.AsReadOnly();
         }, idActor, ct);
+
+    // La consulta SQL obtiene una pagina y devuelve su total con el mismo filtro.
+    public Task<PaginacionEntity<T>> ConsultarPaginaAsync<T>(string procedimiento, SqlParameter[] parametros,
+        Func<SqlDataReader, T> mapear, int idActor, int pagina, int tamPagina, string? buscar, CancellationToken ct) =>
+        EjecutarAsync(procedimiento, [..parametros, ParametrosSql.Entero("@Pagina", pagina),
+            ParametrosSql.Entero("@TamPagina", tamPagina), ParametrosSql.Texto("@Buscar", buscar, 100, true),
+            ParametrosSql.Salida("@TotalRegistros")], async (cmd, token) =>
+        {
+            var registros = new List<T>();
+            using (var reader = await cmd.ExecuteReaderAsync(token))
+                while (await reader.ReadAsync(token)) registros.Add(mapear(reader));
+            // Los parametros OUTPUT se leen despues de cerrar el reader.
+            return new PaginacionEntity<T>(registros, Convert.ToInt32(cmd.Parameters["@TotalRegistros"].Value), pagina, tamPagina);
+        }, idActor, ct);
 }

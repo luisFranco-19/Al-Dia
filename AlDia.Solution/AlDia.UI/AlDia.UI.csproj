@@ -18,4 +18,9 @@
     <ProjectReference Include="..\AlDia.Entity\AlDia.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Formularios\Base\" />
+    <Folder Include="Formularios\Hijos\" />
+  </ItemGroup>
+
 </Project>

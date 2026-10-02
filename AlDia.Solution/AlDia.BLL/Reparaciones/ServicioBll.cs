@@ -46,4 +46,33 @@ public sealed class ServicioBll(IServicioDal datos, SesionUsuario sesion)
         int actor = sesion.Exigir(RolUsuario.Tecnico);
         return datos.RetirarDeOrdenAsync(actor, Validacion.Id(idDetalleServicio, "IdDetalleServicio"), ct);
     }
+
+    public Task<PaginacionEntity<ServicioEntity>> ConsultarPaginaAsync(int pagina = 1, int tamPagina = 10,
+        string? buscar = null, bool soloActivos = false, CancellationToken ct = default) =>
+        datos.ConsultarPaginaAsync(sesion.Exigir(), pagina, tamPagina,
+            ConsultaListado.Validar(pagina, tamPagina, buscar), soloActivos, ct);
+    public async Task<ServicioEntity?> ObtenerPorIdAsync(int id, CancellationToken ct = default) =>
+        (await ConsultarAsync(Validacion.Id(id, "IdServicio"), false, ct)).SingleOrDefault();
+    public async Task CambiarEstadoAsync(int id, bool estado, CancellationToken ct = default)
+    {
+        sesion.Exigir(RolUsuario.Administrador);
+        var entidad = await ObtenerPorIdAsync(id, ct) ?? throw new ValidacionException("Registro inexistente.");
+        entidad.CambiarEstado(estado);
+        await GuardarEntidadAsync(entidad, ct);
+    }
+    public async Task<int> RegistrarEntidadEnOrdenAsync(DetalleServicioEntity detalle, CancellationToken ct = default)
+    {
+        sesion.Exigir(RolUsuario.Tecnico);
+        ArgumentNullException.ThrowIfNull(detalle);
+        if (detalle.IdDetalleServicio != 0) throw new ValidacionException("El servicio ya fue registrado en la orden.");
+        int id = await RegistrarEnOrdenAsync(detalle.CrearSolicitud(), ct);
+        detalle.AsignarId(id);
+        return id;
+    }
+    public Task CorregirEntidadEnOrdenAsync(DetalleServicioEntity detalle, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(detalle);
+        return CorregirEnOrdenAsync(detalle.CrearCorreccion(), ct);
+    }
+
 }

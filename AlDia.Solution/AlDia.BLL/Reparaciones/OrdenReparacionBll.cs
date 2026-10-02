@@ -65,4 +65,33 @@ public sealed class OrdenReparacionBll(IOrdenReparacionDal datos, SesionUsuario 
     public Task<ExpedienteOrdenEntity?> ConsultarExpedienteAsync(int idOrden, CancellationToken ct = default) =>
         datos.ConsultarExpedienteAsync(sesion.Exigir(), Validacion.Id(idOrden, "Orden"), ct);
 
+    public Task<PaginacionEntity<OrdenReparacionEntity>> ConsultarPaginaAsync(int pagina = 1, int tamPagina = 10,
+        string? buscar = null, FiltroOrdenes? filtro = null, CancellationToken ct = default)
+    {
+        int actor = sesion.Exigir();
+        string? texto = ConsultaListado.Validar(pagina, tamPagina, buscar);
+        filtro ??= new FiltroOrdenes();
+        if (filtro.IdOrden.HasValue) Validacion.Id(filtro.IdOrden.Value, "Orden");
+        if (filtro.IdEstado.HasValue) Validacion.Id(filtro.IdEstado.Value, "Estado");
+        if (filtro.IdCliente.HasValue) Validacion.Id(filtro.IdCliente.Value, "Cliente");
+        return datos.ConsultarPaginaAsync(actor, filtro, pagina, tamPagina, texto, ct);
+    }
+    public async Task<OrdenReparacionEntity?> ObtenerPorIdAsync(int id, CancellationToken ct = default) =>
+        (await ConsultarAsync(new FiltroOrdenes(IdOrden: Validacion.Id(id, "Orden"), IncluirAnuladas: true), ct)).SingleOrDefault();
+    public async Task<int> RegistrarEntidadAsync(OrdenReparacionEntity orden, CancellationToken ct = default)
+    {
+        int actor = sesion.Exigir(RolUsuario.Recepcionista);
+        ArgumentNullException.ThrowIfNull(orden);
+        if (orden.IdOrden != 0) throw new ValidacionException("La orden ya fue registrada.");
+        if (orden.IdRecepcionista != actor) throw new PermisoException("La recepcion debe corresponder al usuario autenticado.");
+        int id = await RegistrarRecepcionAsync(orden.CrearSolicitud(), ct);
+        orden.AsignarId(id);
+        return id;
+    }
+    public Task CorregirEntidadAsync(OrdenReparacionEntity orden, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(orden);
+        return CorregirRecepcionAsync(orden.CrearCorreccion(), ct);
+    }
+
 }

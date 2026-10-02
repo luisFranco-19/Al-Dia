@@ -11,6 +11,8 @@ namespace AlDia.BLL.Common;
 public sealed class AplicacionBll
 {
     public SesionUsuario Sesion { get; } = new();
+    public RolBll Roles { get; }
+    public LogErrorBll Errores { get; }
     public UsuarioBll Usuarios { get; }
     public ClienteBll Clientes { get; }
     public EquipoBll Equipos { get; }
@@ -24,6 +26,8 @@ public sealed class AplicacionBll
     public AplicacionBll(IConexionFactory conexiones)
     {
         var sql = new EjecutorSql(conexiones);
+        Roles = new(new AlDia.DAL.Seguridad.RolDal(sql), Sesion);
+        Errores = new(new LogErrorDal(sql), Sesion);
         Usuarios = new(new AlDia.DAL.Seguridad.UsuarioDal(sql), Sesion);
         Clientes = new(new AlDia.DAL.Clientes.ClienteDal(sql), Sesion);
         Equipos = new(new AlDia.DAL.Equipos.EquipoDal(sql), Sesion);

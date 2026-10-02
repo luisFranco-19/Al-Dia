@@ -3,6 +3,7 @@ using AlDia.BLL.Seguridad;
 using AlDia.Entity.Common;
 using AlDia.Entity.Seguridad;
 using AlDia.Entity.Inventario;
+using AlDia.Entity.Reparaciones;
 namespace AlDia.BLL.Inventario;
 public sealed class RepuestoBll(IRepuestoDal datos, SesionUsuario sesion)
 {
@@ -53,4 +54,33 @@ public sealed class RepuestoBll(IRepuestoDal datos, SesionUsuario sesion)
         if (variacion == 0) throw new ValidacionException("La variacion de existencias debe ser distinta de cero.");
         return datos.AjustarExistenciasAsync(actor, Validacion.Id(idRepuesto, "IdRepuesto"), variacion, ct);
     }
+
+    public Task<PaginacionEntity<RepuestoEntity>> ConsultarPaginaAsync(int pagina = 1, int tamPagina = 10,
+        string? buscar = null, bool soloActivos = false, CancellationToken ct = default) =>
+        datos.ConsultarPaginaAsync(sesion.Exigir(), pagina, tamPagina,
+            ConsultaListado.Validar(pagina, tamPagina, buscar), soloActivos, ct);
+    public async Task<RepuestoEntity?> ObtenerPorIdAsync(int id, CancellationToken ct = default) =>
+        (await ConsultarAsync(Validacion.Id(id, "IdRepuesto"), false, ct)).SingleOrDefault();
+    public async Task CambiarEstadoAsync(int id, bool estado, CancellationToken ct = default)
+    {
+        sesion.Exigir(RolUsuario.Administrador);
+        var entidad = await ObtenerPorIdAsync(id, ct) ?? throw new ValidacionException("Registro inexistente.");
+        entidad.CambiarEstado(estado);
+        await GuardarEntidadAsync(entidad, ct);
+    }
+    public async Task<int> ConsumirEntidadAsync(DetalleRepuestoEntity detalle, CancellationToken ct = default)
+    {
+        sesion.Exigir(RolUsuario.Tecnico);
+        ArgumentNullException.ThrowIfNull(detalle);
+        if (detalle.IdDetalleRepuesto != 0) throw new ValidacionException("El consumo ya fue registrado.");
+        int id = await ConsumirAsync(detalle.CrearSolicitud(), ct);
+        detalle.AsignarId(id);
+        return id;
+    }
+    public Task CorregirConsumoEntidadAsync(DetalleRepuestoEntity detalle, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(detalle);
+        return CorregirConsumoAsync(detalle.CrearCorreccion(), ct);
+    }
+
 }

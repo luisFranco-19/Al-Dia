@@ -4,7 +4,7 @@ La implementación está organizada en `Common`, `Seguridad`, `Clientes`, `Equip
 
 ## Responsabilidades y POO
 
-- **Entity:** entidades y solicitudes con tipos explícitos, enumeraciones e interfaces de acceso a datos. Clientes, usuarios, tipos de equipo, servicios y repuestos son clases con propiedades encapsuladas y métodos que validan sus cambios. Las solicitudes y los resultados del expediente conservan records.
+- **Entity:** clases encapsuladas para las 16 tablas del sistema, solicitudes con tipos explícitos, enumeraciones e interfaces de acceso a datos. Las entidades del flujo tienen constructores y métodos con validación; los pagos, el historial y los errores protegen los datos de auditoría. Las solicitudes conservan records. El detalle y la correspondencia con todas las tablas se encuentran en [AlDia.Entity/LEEME.md](AlDia.Entity/LEEME.md).
 - **DAL:** implementa las interfaces y ejecuta exclusivamente procedimientos almacenados con parámetros tipados. Centraliza conexiones, lectura de resultados y registro de errores.
 - **BLL:** valida entradas, exige una sesión y un rol, y expone operaciones del negocio. Recibe interfaces por constructor; no ejecuta SQL.
 - **AplicacionBll:** compone los servicios y una sesión compartida. Se crea una instancia por sesión de la aplicación.
@@ -21,9 +21,16 @@ PersonaEntity (abstracta)
 └── UsuarioEntity
 
 CatalogoEntity (abstracta)
+├── RolEntity
 ├── TipoEquipoEntity
 ├── ServicioEntity
 └── RepuestoEntity
+
+EquipoEntity (características y relaciones propias)
+
+DetalleOrdenEntity (abstracta)
+├── DetalleServicioEntity
+└── DetalleRepuestoEntity
 ```
 
 `PersonaEntity` reúne nombre, apellido, cédula, teléfono, estado y los métodos comunes. `ClienteEntity` sobrescribe `CambiarTelefono` con `override`: el teléfono es obligatorio para un cliente y opcional para un usuario. La regla se conserva incluso al acceder al cliente mediante una referencia `PersonaEntity`.
@@ -34,21 +41,33 @@ Los constructores de DAL recuperan datos existentes; los constructores sin ident
 
 La sesión mantiene una copia privada del usuario y devuelve copias al consultarlo. Editar una entidad o cambiar su rol en memoria no altera los permisos del actor autenticado.
 
+`RolEntity` representa la nueva tabla `Roles`, reutiliza `CatalogoEntity` y valida nombre de 50 y descripción de 200 caracteres. `EquipoEntity` valida las relaciones con cliente y tipo de equipo y permite editar sus características mediante métodos. Ambas tienen constructores de alta y reconstrucción y generan solicitudes para el guardado posterior. `CambiarEstado` y `EstadoNombre` permiten utilizar el patrón del maestro conservando `Estado` como booleano.
+
+`UsuarioEntity.IdRol` representa la FK real. DAL la carga junto con el nombre de Roles y BLL guarda mediante UsuarioRolSolicitud. El valor nullable se conserva para constructores de compatibilidad que reciben solo el enum; no se inventan IDs. `Copiar` conserva el ID y cambiar solamente el enum a otro rol limpia el ID anterior. RolUsuario representa los tres permisos existentes; un nombre adicional no recibe permisos automaticamente.
+
+`PaginacionEntity<T>` devuelve registros, total, pagina y tamaño. DAL pagina en SQL con OFFSET/FETCH, búsqueda y conteo del mismo filtro. Los listados de roles, usuarios, clientes, tipos, equipos, servicios, repuestos, órdenes, pagos y errores tienen consultas paginadas. IdTecnico en los detalles del expediente se deriva del responsable de la orden.
+
+Entity cubre también EstadoReparacionEntity, OrdenReparacionEntity, DiagnosticoEntity, ConfirmacionEntity, PagoEntity, HistorialEstadoEntity y LogErrorEntity, cada una en su archivo. ExpedienteOrdenEntity compone los datos y comprueba sus relaciones. Las correcciones validan todos sus valores antes de asignar; los subtotales y saldos son calculados. PagoEntity genera solicitudes de corrección o anulación conservando el pago histórico. El usuario pidió completar esta capa de todo el sistema antes de pasar a DAL/BLL.
+
+UsuarioEntity admite el constructor con FK y NombreRol y el alta desde RolEntity. UsuarioRolSolicitud conserva IdRol para el guardado en DAL/BLL. PermisoRol solo reconoce los tres permisos existentes; un rol nuevo se representa sin concederle un permiso automáticamente. IRolDal es implementada por RolDal y utilizada por RolBll. ConexionEntity valida la construcción y los cambios, conservando los inicializadores y el JSON de los formularios existentes.
+
 ## Operaciones disponibles
 
 | Servicio | Responsabilidad |
 |---|---|
-| Usuarios | Administrador inicial, autenticación, mantenimiento y consultas de usuarios |
+| Roles | Mantenimiento, cambio de estado, activos, ID, búsqueda y paginación |
+| Usuarios | Administrador inicial, autenticación, mantenimiento por FK, estados y consultas |
 | Clientes / Equipos / TiposEquipo | Mantenimiento y consultas de catálogos |
 | Ordenes | Recepción, toma, liberación, reparación, entrega, anulación y expediente |
 | Diagnosticos | Diagnóstico y decisión del cliente, con correcciones y retiros |
 | Servicios | Catálogo y servicios realizados en una orden |
 | Repuestos | Catálogo, existencias y consumo en reparaciones |
-| Pagos | Registro, corrección y anulación de pagos |
+| Pagos | Registro, corrección, anulación, consulta por orden o ID y paginación |
+| Errores | Consulta paginada de la auditoría técnica para administrador |
 
 `GuardarAsync` crea cuando el identificador es cero y actualiza cuando existe. Para las bajas de catálogos se envía `Estado = false`; el consumo de stock se modifica únicamente mediante las operaciones de inventario. Las altas devuelven el identificador generado.
 
-`GuardarEntidadAsync` permite guardar las cinco clases derivadas desde su servicio correspondiente y asigna el identificador devuelto a la entidad. `GuardarAsync` conserva el contrato de solicitudes existente y utiliza las validaciones de las entidades. El stock del repuesto es de solo lectura y no se incluye en el guardado del catálogo.
+`GuardarEntidadAsync` permite guardar los siete catálogos y entidades de mantenimiento desde su servicio correspondiente y asigna el identificador devuelto a la entidad. `GuardarAsync` conserva el contrato de solicitudes existente y utiliza las validaciones de las entidades. El stock del repuesto es de solo lectura y no se incluye en el guardado del catálogo.
 
 ## Uso al integrar los formularios
 
@@ -114,10 +133,18 @@ La UI ya usa el flujo de login en lugar de la llamada antigua sin argumentos a `
 
 ## Base de datos y verificación
 
-Los 28 procedimientos existentes se reutilizan. Se agregan 19 procedimientos de soporte para autenticación, catálogos, consultas y errores: cada uno tiene su propio archivo SQL en el proyecto de base de datos. Una base existente requiere esos procedimientos adicionales, sin volver a ejecutar el script que recrea la base.
+El archivo consolidado `AlDia.DataBase/AlDia.DataBase/Procedimientos_Almacenados.sql` contiene 51 procedimientos: 47 públicos llamados desde DAL y 4 auxiliares internos. El esquema incluye Roles, Usuarios.IdRol y ContrasenaHash; los detalles derivan el técnico de la orden. Las consultas de usuarios y credenciales cargan IdRol; el login exige rol activo y permisos configurados.
 
-La solución compila sin errores ni advertencias. Tras incorporar la herencia, las pruebas de integración superaron 67 comprobaciones en una base temporal: constructores y métodos heredados, especialización del teléfono, guardado y actualización de entidades, aislamiento de la sesión, permisos, autenticación, flujo de reparación y entrega, pagos, reversión de stock y concurrencia de técnicos y consumos. La base temporal se eliminó al terminar y no se sembraron usuarios ni datos de prueba en la base real.
+La implementación de DAL y BLL de todo el sistema se documenta en [DAL_BLL.md](DAL_BLL.md), con el alcance por tabla, métodos, permisos, paginación y requisitos de instalación. Esta etapa actualizó el archivo de procedimientos. Posteriormente el usuario lo ejecutó en AlDiaDB; se verificó mediante consultas de solo lectura que los 51 procedimientos instalados coinciden con las definiciones actuales del proyecto. La instalación de procedimientos ya está verificada. Una base existente debe tener el esquema actualizado y estos procedimientos. Base de datos.sql recrea la base y no se usa para actualizar datos existentes.
 
-La incorporación del login superó 37 comprobaciones adicionales de campos, mensajes, contraseña exacta, cancelación, bloqueo de envíos duplicados, registro inicial, apertura del principal y cierre de sesión. El registro y la autenticación se probaron contra otra base SQL temporal; se verificó el hash almacenado y se eliminaron los datos al terminar. Se revisó la distribución visual de los formularios a partir de vistas renderizadas. La corrección del login también se comprobó con controles WinForms creados: foco inicial, clic en los márgenes de los campos y alternancia del ojo conservando la posición del cursor y la selección. Estas pruebas de UI usan datos simulados y no modifican SQL Server.
+Verificación final: solución completa con cero errores y cero advertencias; 556 comprobaciones de Entity en 17 escenarios; 157 comprobaciones DAL/BLL contra SQL Server en una base temporal. Se probaron mantenimiento, estados, búsqueda y paginación, FK de roles, autenticación, permisos, flujo de recepción hasta entrega, rechazo y resultado no reparado, correcciones y anulaciones, auditoría, cancelación, transacciones fallidas y concurrencia de técnicos y stock. La base temporal fue eliminada; AlDiaDB no se modificó.
 
-Los 19 procedimientos de soporte se instalaron en la base real `AlDiaDB` con la conexión `Developer`, sin recrear tablas. Se verificaron las dependencias de los 47 procedimientos y que los conteos de datos se conservaran. Los 43 procedimientos públicos tienen llamadas desde DAL; los cuatro auxiliares se usan internamente en SQL. La comprobación actual indica que aún no hay un administrador activo del negocio registrado.
+Desde la raíz:
+
+```powershell
+dotnet build AlDia.Solution/AlDia.Solution.slnx --no-restore
+dotnet run --project tests/AlDia.Entity.Tests/AlDia.Entity.Tests.csproj
+dotnet run --project tests/AlDia.Capas.Tests/AlDia.Capas.Tests.csproj
+```
+
+Las pruebas de capas necesitan SQL Server local y permisos de autenticación integrada para crear su base temporal. Se conservan el login, el registro inicial y el dashboard actuales; los formularios de los módulos pertenecen a la siguiente etapa UI.

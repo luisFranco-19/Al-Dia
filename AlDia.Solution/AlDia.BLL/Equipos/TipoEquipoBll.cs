@@ -26,4 +26,18 @@ public sealed class TipoEquipoBll(ITipoEquipoDal datos, SesionUsuario sesion)
         if (id.HasValue) Validacion.Id(id.Value, "Identificador");
         return datos.ConsultarAsync(actor, id, soloActivos, ct);
     }
+
+    public Task<PaginacionEntity<TipoEquipoEntity>> ConsultarPaginaAsync(int pagina = 1, int tamPagina = 10,
+        string? buscar = null, bool soloActivos = false, CancellationToken ct = default) =>
+        datos.ConsultarPaginaAsync(sesion.Exigir(), pagina, tamPagina,
+            ConsultaListado.Validar(pagina, tamPagina, buscar), soloActivos, ct);
+    public async Task<TipoEquipoEntity?> ObtenerPorIdAsync(int id, CancellationToken ct = default) =>
+        (await ConsultarAsync(Validacion.Id(id, "IdTipoEquipo"), false, ct)).SingleOrDefault();
+    public async Task CambiarEstadoAsync(int id, bool estado, CancellationToken ct = default)
+    {
+        sesion.Exigir(RolUsuario.Administrador);
+        var entidad = await ObtenerPorIdAsync(id, ct) ?? throw new ValidacionException("Registro inexistente.");
+        entidad.CambiarEstado(estado);
+        await GuardarEntidadAsync(entidad, ct);
+    }
 }

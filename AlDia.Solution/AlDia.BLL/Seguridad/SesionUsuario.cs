@@ -12,7 +12,7 @@ public sealed class SesionUsuario
     internal int Exigir(params RolUsuario[] roles)
     {
         var usuario = _usuario ?? throw new PermisoException("Debe iniciar sesion en el sistema.");
-        if (!usuario.Estado || (roles.Length > 0 && !roles.Contains(usuario.Rol)))
+        if (!usuario.Estado || !usuario.PermisoRol.HasValue || (roles.Length > 0 && !roles.Contains(usuario.Rol)))
             throw new PermisoException("Su usuario no tiene permiso para esta operacion.");
         return usuario.IdUsuario;
     }

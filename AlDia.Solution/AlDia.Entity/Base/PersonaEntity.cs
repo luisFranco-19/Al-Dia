@@ -10,6 +10,7 @@ public abstract class PersonaEntity
     public string Cedula { get; private set; }
     public string? Telefono { get; private set; }
     public bool Estado { get; private set; }
+    public string EstadoNombre => Estado ? "Activo" : "Inactivo";
     public string NombreCompleto => $"{Nombre} {Apellido}";
     #endregion
 
@@ -32,7 +33,8 @@ public abstract class PersonaEntity
     public virtual void CambiarTelefono(string? telefono) =>
         Telefono = Validacion.Opcional(telefono, "Telefono", 20);
 
-    public void Activar() => Estado = true;
-    public void Desactivar() => Estado = false;
+    public void CambiarEstado(bool estado) => Estado = estado;
+    public void Activar() => CambiarEstado(true);
+    public void Desactivar() => CambiarEstado(false);
     #endregion
 }

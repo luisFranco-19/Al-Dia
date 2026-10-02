@@ -1,14 +1,15 @@
 # Lógica del negocio de Al Día
 
-Los procedimientos representan operaciones del taller: recibir equipos, diagnosticar, registrar la decisión del cliente, reparar, consumir repuestos, cobrar y entregar. El proyecto contiene **47 archivos SQL independientes**: 24 operaciones del flujo, 4 auxiliares internos y 19 procedimientos de soporte para las capas Entity, DAL y BLL. Cada procedimiento tiene su propio archivo.
+Los procedimientos representan operaciones del taller: recibir equipos, diagnosticar, registrar la decisión del cliente, reparar, consumir repuestos, cobrar y entregar. `Procedimientos_Almacenados.sql` contiene **51 procedimientos consolidados**: 24 operaciones del flujo, 4 auxiliares internos y 23 de soporte para las capas Entity, DAL y BLL. Los 47 públicos tienen llamadas desde DAL.
 
 ## Archivos y orden de ejecución
 
-1. Solo para una instalación nueva, ejecutar `Base de datos.sql`. La versión actual elimina `AlDiaDB` si existe y la crea de nuevo; no debe ejecutarse para actualizar una base con datos. Crea las tablas del negocio, el registro de errores, los índices y los ocho estados iniciales.
-2. Ejecutar los cuatro archivos `usp_Interno_*.sql`.
-3. Ejecutar los otros 43 archivos `usp_*.sql`.
+1. Solo para una instalación nueva, ejecutar `Base de datos.sql`. La versión actual elimina AlDiaDB si existe y la crea de nuevo; no se ejecuta para actualizar una base con datos. Crea las 16 tablas, los índices, los tres roles y los ocho estados iniciales.
+2. Ejecutar `Procedimientos_Almacenados.sql` sobre el esquema actualizado. Incluye todos los procedimientos y usa CREATE OR ALTER para conservar los datos.
 
-Cada procedimiento puede editarse y ejecutarse individualmente en SSMS, sin modo SQLCMD ni generador. La solución `AlDia.DataBase.slnx` está en la carpeta superior. Los procedimientos usan `CREATE OR ALTER` y se pueden actualizar por separado, conservando los datos.
+La solución AlDia.DataBase.slnx está en la carpeta superior. Los procedimientos se editan en el archivo consolidado; también se puede seleccionar y ejecutar un bloque completo con su GO en SSMS. El script incluye USE AlDiaDB. Una base con el esquema anterior requiere su migración antes de instalar estos contratos.
+
+La etapa DAL/BLL actualizó este archivo y verificó los 51 procedimientos en una base temporal, eliminada al finalizar. Posteriormente el usuario ejecutó el archivo completo en AlDiaDB y se verificó mediante consultas de solo lectura que los 51 procedimientos coinciden con la versión actual del proyecto. **La instalación ya está verificada.** No se recreó la base real ni se agregaron datos de prueba en ella.
 
 ## Operaciones públicas
 
@@ -33,7 +34,7 @@ Las correcciones y anulaciones se conservan porque requieren reglas de negocio: 
 
 La interfaz llama a BLL; BLL valida la sesión y coordina las operaciones; DAL ejecuta estos procedimientos con parámetros. Las validaciones de estado, inventario, pagos y las transacciones que protegen varias tablas se ejecutan también en SQL Server para mantener la consistencia ante accesos simultáneos.
 
-El mantenimiento de usuarios, clientes, equipos, tipos, servicios y catálogo de repuestos está implementado mediante los procedimientos `usp_Guardar*` y `usp_Consultar*`. Se agregan consultas de órdenes, estados y expediente, autenticación y registro de errores. Entity, DAL y BLL se documentan en `AlDia.Solution/ARQUITECTURA.md`. No se debe conceder escritura directa sobre las tablas para sustituir las operaciones del flujo.
+El mantenimiento de roles, usuarios, clientes, equipos, tipos, servicios y catálogo de repuestos está implementado mediante los procedimientos `usp_Guardar*` y `usp_Consultar*`. Se incluyen consultas de órdenes, estados, expediente y pagos, autenticación, registro y consulta de errores. Las consultas de listados admiten búsqueda, paginación OFFSET/FETCH y total OUTPUT; @Pagina NULL conserva las consultas completas anteriores. Usuarios carga IdRol y usa ContrasenaHash. Los tres roles de permisos conservan sus nombres y estado activo; un rol nuevo no obtiene permisos implícitos. Entity, DAL y BLL se documentan en `AlDia.Solution/ARQUITECTURA.md`. No se debe conceder escritura directa sobre las tablas para sustituir las operaciones del flujo.
 
 Los permisos del usuario SQL de la aplicación se definirán cuando se integre con estos procedimientos.
 
@@ -61,7 +62,7 @@ La cédula de los clientes es obligatoria y única. Este archivo no contiene mig
 - Enviar NULL explícitamente en campos opcionales. Las operaciones de corrección reemplazan los campos indicados en su firma.
 - Tomar IdUsuarioActor de la sesión autenticada. Validar un identificador y un rol en SQL no autentica al operador: quien controle la conexión y pueda enviar otro identificador puede suplantarlo. La aplicación debe proteger su autenticación y credenciales.
 - Ejecutar estos scripts no crea usuarios de negocio ni contraseñas predeterminadas. `usp_CrearAdministradorInicial` permite el registro explícito del primer administrador con un hash generado por BLL; solo funciona si la tabla Usuarios está vacía.
-- Cada escritura usa transacción, XACT_ABORT, TRY/CATCH y THROW. Un error revierte toda la transacción activa, incluida una transacción externa iniciada por el cliente.
+- Las operaciones de escritura del negocio usan transacción, XACT_ABORT, TRY/CATCH y THROW. Un error revierte toda la transacción activa, incluida una transacción externa iniciada por el cliente.
 - Los errores funcionales usan 51000–51003; las restricciones pueden generar errores nativos de SQL Server. Los auxiliares no son una API pública.
 - No entregar a la aplicación una conexión sysadmin ni db_owner. Las garantías del proceso se implementan en los procedimientos; no mediante triggers.
 

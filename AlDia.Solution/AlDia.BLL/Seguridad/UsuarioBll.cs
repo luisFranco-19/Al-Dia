@@ -23,7 +23,7 @@ public sealed class UsuarioBll
             throw new ValidacionException("Usuario o contrasena incorrectos.");
         var credencial = await _datos.BuscarCredencialAsync(usuario.Trim(), ct);
         bool valida = _hash.Verificar(contrasena, credencial?.Hash ?? HashFicticio);
-        if (!valida || credencial is null || !credencial.Usuario.Estado) throw new ValidacionException("Usuario o contrasena incorrectos.");
+        if (!valida || credencial is null || !credencial.Usuario.Estado || !credencial.Usuario.PermisoRol.HasValue) throw new ValidacionException("Usuario o contrasena incorrectos.");
         ct.ThrowIfCancellationRequested();
         _sesion.Iniciar(credencial.Usuario);
         return credencial.Usuario;
@@ -47,7 +47,9 @@ public sealed class UsuarioBll
     public async Task<int> GuardarEntidadAsync(UsuarioEntity usuario, string? contrasena = null, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(usuario);
-        int id = await GuardarAsync(usuario.CrearSolicitud(), contrasena, ct);
+        int id = usuario.IdRol.HasValue
+            ? await GuardarPorRolAsync(usuario.CrearSolicitudPorRol(), contrasena, ct)
+            : await GuardarAsync(usuario.CrearSolicitud(), contrasena, ct);
         usuario.AsignarId(id);
         return id;
     }
@@ -56,6 +58,37 @@ public sealed class UsuarioBll
         int actor = _sesion.Exigir(RolUsuario.Administrador);
         if (idUsuario.HasValue) Validacion.Id(idUsuario.Value, "Usuario");
         return _datos.ConsultarAsync(actor, idUsuario, soloActivos, ct);
+    }
+    public Task<int> GuardarPorRolAsync(UsuarioRolSolicitud solicitud, string? contrasena = null, CancellationToken ct = default)
+    {
+        int actor = _sesion.Exigir(RolUsuario.Administrador);
+        ArgumentNullException.ThrowIfNull(solicitud);
+        var s = solicitud with
+        {
+            IdUsuario = Validacion.IdNuevoOExistente(solicitud.IdUsuario, "IdUsuario"),
+            IdRol = Validacion.Id(solicitud.IdRol, "IdRol"),
+            Nombre = Validacion.Texto(solicitud.Nombre, "Nombre", 100),
+            Apellido = Validacion.Texto(solicitud.Apellido, "Apellido", 100),
+            Cedula = Validacion.Texto(solicitud.Cedula, "Cedula", 20),
+            Usuario = Validacion.Texto(solicitud.Usuario, "Usuario", 50),
+            Telefono = Validacion.Opcional(solicitud.Telefono, "Telefono", 20),
+            Correo = Validacion.Correo(solicitud.Correo)
+        };
+        if (s.IdUsuario == 0 || contrasena is not null) ValidarContrasena(contrasena);
+        return _datos.GuardarPorRolAsync(actor, s, contrasena is null ? null : _hash.Crear(contrasena), ct);
+    }
+    public Task<PaginacionEntity<UsuarioEntity>> ConsultarPaginaAsync(int pagina = 1, int tamPagina = 10,
+        string? buscar = null, bool soloActivos = false, CancellationToken ct = default) =>
+        _datos.ConsultarPaginaAsync(_sesion.Exigir(RolUsuario.Administrador), pagina, tamPagina,
+            ConsultaListado.Validar(pagina, tamPagina, buscar), soloActivos, ct);
+    public async Task<UsuarioEntity?> ObtenerPorIdAsync(int id, CancellationToken ct = default) =>
+        (await ConsultarAsync(Validacion.Id(id, "IdUsuario"), false, ct)).SingleOrDefault();
+    public async Task CambiarEstadoAsync(int id, bool estado, CancellationToken ct = default)
+    {
+        _sesion.Exigir(RolUsuario.Administrador);
+        var usuario = await ObtenerPorIdAsync(id, ct) ?? throw new ValidacionException("Usuario inexistente.");
+        usuario.CambiarEstado(estado);
+        await GuardarEntidadAsync(usuario, ct: ct);
     }
     public void CerrarSesion() => _sesion.Cerrar();
     private static void ValidarContrasena(string? valor)

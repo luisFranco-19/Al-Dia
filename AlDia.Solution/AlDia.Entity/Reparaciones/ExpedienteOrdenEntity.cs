@@ -1,20 +1,46 @@
+using AlDia.Entity.Common;
 using AlDia.Entity.Pagos;
+
 namespace AlDia.Entity.Reparaciones;
-public sealed record EstadoReparacionEntity(int IdEstado, string Nombre, string? Descripcion);
-public sealed record OrdenReparacionEntity(int IdOrden, string NumeroOrden, int IdEquipo, int IdRecepcionista, int IdEstado,
-    string EstadoNombre, int? IdTecnicoResponsable, DateTime FechaRecepcion, string ProblemaReportado, string? ObservacionesRecepcion,
-    string? AccesoriosRecepcion, DateTime? FechaEntrega, bool Anulada, decimal Total, decimal Pagado, decimal Saldo,
-    int IdCliente, string NombreCliente, string ApellidoCliente);
-public sealed record DiagnosticoEntity(int IdDiagnostico, int IdOrden, int IdTecnico, DateTime FechaDiagnostico,
-    string ProblemaEncontrado, string ReparacionPropuesta, decimal CostoEstimado, string? Observaciones);
-public sealed record ConfirmacionEntity(int IdConfirmacion, int IdDiagnostico, int IdUsuario, DecisionCliente Decision,
-    decimal? CostoAprobado, DateTime FechaConfirmacion, string? Observaciones);
-public sealed record DetalleServicioEntity(int IdDetalleServicio, int IdOrden, int IdServicio, int IdTecnico,
-    int Cantidad, decimal Precio, string? Observaciones);
-public sealed record DetalleRepuestoEntity(int IdDetalleRepuesto, int IdOrden, int IdRepuesto, int IdTecnico, int Cantidad, decimal Precio);
-public sealed record HistorialEstadoEntity(int IdHistorial, int IdOrden, int? IdEstadoAnterior, int IdEstadoNuevo,
-    int IdUsuario, DateTime FechaCambio, string? Observacion);
-public sealed record ExpedienteOrdenEntity(OrdenReparacionEntity Orden, DiagnosticoEntity? Diagnostico,
-    ConfirmacionEntity? Confirmacion, IReadOnlyList<DetalleServicioEntity> Servicios,
-    IReadOnlyList<DetalleRepuestoEntity> Repuestos, IReadOnlyList<PagoEntity> Pagos,
-    IReadOnlyList<HistorialEstadoEntity> Historial);
+
+// Composicion: reune los datos consultados sin ejecutar operaciones de persistencia.
+public sealed class ExpedienteOrdenEntity
+{
+    public OrdenReparacionEntity Orden { get; }
+    public DiagnosticoEntity? Diagnostico { get; }
+    public ConfirmacionEntity? Confirmacion { get; }
+    public IReadOnlyList<DetalleServicioEntity> Servicios { get; }
+    public IReadOnlyList<DetalleRepuestoEntity> Repuestos { get; }
+    public IReadOnlyList<PagoEntity> Pagos { get; }
+    public IReadOnlyList<HistorialEstadoEntity> Historial { get; }
+
+    public ExpedienteOrdenEntity(OrdenReparacionEntity orden, DiagnosticoEntity? diagnostico,
+        ConfirmacionEntity? confirmacion, IReadOnlyList<DetalleServicioEntity> servicios,
+        IReadOnlyList<DetalleRepuestoEntity> repuestos, IReadOnlyList<PagoEntity> pagos,
+        IReadOnlyList<HistorialEstadoEntity> historial)
+    {
+        ArgumentNullException.ThrowIfNull(orden);
+        ArgumentNullException.ThrowIfNull(servicios);
+        ArgumentNullException.ThrowIfNull(repuestos);
+        ArgumentNullException.ThrowIfNull(pagos);
+        ArgumentNullException.ThrowIfNull(historial);
+        var copiaServicios = servicios.ToList();
+        var copiaRepuestos = repuestos.ToList();
+        var copiaPagos = pagos.ToList();
+        var copiaHistorial = historial.ToList();
+        if ((diagnostico is not null && diagnostico.IdOrden != orden.IdOrden)
+            || (confirmacion is not null && (diagnostico is null || confirmacion.IdDiagnostico != diagnostico.IdDiagnostico))
+            || copiaServicios.Any(x => x is null || x.IdOrden != orden.IdOrden)
+            || copiaRepuestos.Any(x => x is null || x.IdOrden != orden.IdOrden)
+            || copiaPagos.Any(x => x is null || x.IdOrden != orden.IdOrden)
+            || copiaHistorial.Any(x => x is null || x.IdOrden != orden.IdOrden))
+            throw new ValidacionException("Los registros del expediente deben pertenecer a la misma orden y diagnostico.");
+        Orden = orden;
+        Diagnostico = diagnostico;
+        Confirmacion = confirmacion;
+        Servicios = copiaServicios.AsReadOnly();
+        Repuestos = copiaRepuestos.AsReadOnly();
+        Pagos = copiaPagos.AsReadOnly();
+        Historial = copiaHistorial.AsReadOnly();
+    }
+}

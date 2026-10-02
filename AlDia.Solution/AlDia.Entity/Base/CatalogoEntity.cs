@@ -11,6 +11,7 @@ public abstract class CatalogoEntity
     public string Nombre { get; private set; }
     public string? Descripcion { get; private set; }
     public bool Estado { get; private set; }
+    public string EstadoNombre => Estado ? "Activo" : "Inactivo";
     #endregion
 
     #region Constructores
@@ -30,7 +31,8 @@ public abstract class CatalogoEntity
         Nombre = Validacion.Texto(nombre, "Nombre", _longitudNombre);
     public void CambiarDescripcion(string? descripcion) =>
         Descripcion = Validacion.Opcional(descripcion, "Descripcion", _longitudDescripcion);
-    public void Activar() => Estado = true;
-    public void Desactivar() => Estado = false;
+    public void CambiarEstado(bool estado) => Estado = estado;
+    public void Activar() => CambiarEstado(true);
+    public void Desactivar() => CambiarEstado(false);
     #endregion
 }
