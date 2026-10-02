@@ -137,14 +137,12 @@ El archivo consolidado `AlDia.DataBase/AlDia.DataBase/Procedimientos_Almacenados
 
 La implementación de DAL y BLL de todo el sistema se documenta en [DAL_BLL.md](DAL_BLL.md), con el alcance por tabla, métodos, permisos, paginación y requisitos de instalación. Esta etapa actualizó el archivo de procedimientos. Posteriormente el usuario lo ejecutó en AlDiaDB; se verificó mediante consultas de solo lectura que los 51 procedimientos instalados coinciden con las definiciones actuales del proyecto. La instalación de procedimientos ya está verificada. Una base existente debe tener el esquema actualizado y estos procedimientos. Base de datos.sql recrea la base y no se usa para actualizar datos existentes.
 
-Verificación final: solución completa con cero errores y cero advertencias; 556 comprobaciones de Entity en 17 escenarios; 157 comprobaciones DAL/BLL contra SQL Server en una base temporal. Se probaron mantenimiento, estados, búsqueda y paginación, FK de roles, autenticación, permisos, flujo de recepción hasta entrega, rechazo y resultado no reparado, correcciones y anulaciones, auditoría, cancelación, transacciones fallidas y concurrencia de técnicos y stock. La base temporal fue eliminada; AlDiaDB no se modificó.
+Las capas Entity, DAL y BLL cubren las operaciones del sistema. El contexto general, los requisitos y el procedimiento de instalación se encuentran en el [README principal](../README.md).
 
 Desde la raíz:
 
 ```powershell
-dotnet build AlDia.Solution/AlDia.Solution.slnx --no-restore
-dotnet run --project tests/AlDia.Entity.Tests/AlDia.Entity.Tests.csproj
-dotnet run --project tests/AlDia.Capas.Tests/AlDia.Capas.Tests.csproj
+dotnet build AlDia.Solution/AlDia.Solution.slnx
 ```
 
-Las pruebas de capas necesitan SQL Server local y permisos de autenticación integrada para crear su base temporal. Se conservan el login, el registro inicial y el dashboard actuales; los formularios de los módulos pertenecen a la siguiente etapa UI.
+Se conservan el login, el registro inicial y el dashboard actuales; los formularios de los módulos pertenecen a la siguiente etapa UI.

@@ -82,15 +82,12 @@ Las entidades de órdenes, diagnósticos, confirmaciones, detalles, pagos e hist
 
 Este contrato se utiliza en los listados de DAL/BLL siguiendo el patrón del maestro. SQL devuelve una página y el total del mismo filtro; DAL cierra el lector antes de leer el parámetro OUTPUT. No se recortan listas completas en memoria para simular paginación. Ver [DAL_BLL.md](../DAL_BLL.md).
 
-## Verificación
+## Compilación
 
 Desde la raíz del repositorio:
 
 ```powershell
-dotnet run --project tests/AlDia.Entity.Tests/AlDia.Entity.Tests.csproj
-dotnet build AlDia.Solution/AlDia.Solution.slnx --no-restore
+dotnet build AlDia.Solution/AlDia.Solution.slnx
 ```
 
-Las comprobaciones de Entity no utilizan SQL Server ni agregan paquetes. Leen el archivo SQL únicamente para verificar la cobertura de sus 16 tablas y columnas. También verifican las relaciones y límites del esquema, la conservación de datos ante cambios rechazados, copia del usuario, polimorfismo, paginación, decisiones del cliente, subtotales, saldos, auditoría de pagos, pertenencia al expediente y compatibilidad del JSON.
-
-Resultado de esta etapa: 556 comprobaciones superadas en 17 escenarios; la solución completa compiló con cero errores y cero advertencias.
+Entity representa las 16 tablas del esquema y mantiene sus límites y relaciones, la validación de los cambios, la copia del usuario, el polimorfismo, la composición del expediente y la compatibilidad JSON. El contexto del proyecto se encuentra en el [README principal](../../README.md).

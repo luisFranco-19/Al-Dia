@@ -71,20 +71,12 @@ Las consultas antiguas continúan disponibles: `@Pagina = NULL` devuelve el conj
 
 Esta etapa actualizó el archivo SQL y probó su instalación en bases temporales. La instalación inicial en AlDiaDB quedó pendiente. Posteriormente el usuario ejecutó el archivo completo; se comprobó mediante consultas de solo lectura en LAPTOP-1FRB462E/AlDiaDB que los 51 procedimientos instalados coinciden con las definiciones del archivo actual, incluidos los parámetros de paginación, IdRol, IdPago y el login con rol activo. **La instalación de procedimientos ya está verificada.** Para utilizar las capas con una base existente, esta debe tener el esquema actualizado del usuario y los procedimientos de ese archivo. El script de procedimientos utiliza `CREATE OR ALTER` y conserva los datos. `Base de datos.sql` recrea la base; se reserva para instalaciones nuevas.
 
-## Verificación reproducible
+## Compilación
 
 Desde la raíz del proyecto:
 
 ```powershell
-dotnet build AlDia.Solution/AlDia.Solution.slnx --no-restore
-dotnet run --project tests/AlDia.Entity.Tests/AlDia.Entity.Tests.csproj
-dotnet run --project tests/AlDia.Capas.Tests/AlDia.Capas.Tests.csproj
+dotnet build AlDia.Solution/AlDia.Solution.slnx
 ```
 
-Las pruebas de capas requieren SQL Server local y autenticación integrada con permiso para crear una base temporal. Crean un nombre único `AlDia_Capas_Test_<GUID>`, cargan las 16 tablas y los 51 procedimientos y lo eliminan en `finally`. Excluyen el preámbulo que recrea AlDiaDB y rechazan instrucciones que cambien de base en los lotes cargados.
-
-Cubren mantenimiento y paginación, FK de roles, hash y sesión, permisos en BLL y SQL, expediente, recepción hasta entrega, rechazo y resultado no reparado, correcciones y anulaciones, errores, cancelación, competencia de técnicos y consumo simultáneo de la última unidad. Comprueban que las transacciones fallidas conserven stock y total.
-
-Resultado final: compilación con cero errores y cero advertencias, 556 comprobaciones de Entity y 157 comprobaciones DAL/BLL correctas.
-
-Los formularios de los módulos y el listado base quedan para la etapa UI. Estas capas proporcionan las operaciones que utilizarán.
+Los formularios de los módulos y el listado base corresponden a la etapa UI. Estas capas proporcionan las operaciones que utilizarán. El contexto general, los requisitos y las instrucciones de ejecución se encuentran en el [README del proyecto](../README.md).
