@@ -1,0 +1,564 @@
+namespace AlDia.UI.Formularios.Hijos.Usuarios;
+
+partial class FrmRegistroUsuario
+{
+    private System.ComponentModel.IContainer components = null;
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing) components?.Dispose();
+        base.Dispose(disposing);
+    }
+
+    #region Windows Form Designer generated code
+
+    private void InitializeComponent()
+    {
+        tablaSecciones = new TableLayoutPanel();
+        panelDatos = new Panel();
+        lblDatos = new Label();
+        lineaDatos = new Panel();
+        panelAcceso = new Panel();
+        lblAcceso = new Label();
+        lineaAcceso = new Panel();
+        lblNombre = new Label();
+        panelNombre = new AlDia.UI.Controles.PanelTarjeta();
+        txtNombre = new TextBox();
+        lblApellido = new Label();
+        panelApellido = new AlDia.UI.Controles.PanelTarjeta();
+        txtApellido = new TextBox();
+        lblCedula = new Label();
+        panelCedula = new AlDia.UI.Controles.PanelTarjeta();
+        txtCedula = new TextBox();
+        lblTelefono = new Label();
+        panelTelefono = new AlDia.UI.Controles.PanelTarjeta();
+        txtTelefono = new TextBox();
+        lblCorreo = new Label();
+        panelCorreo = new AlDia.UI.Controles.PanelTarjeta();
+        txtCorreo = new TextBox();
+        lblUsuario = new Label();
+        panelUsuario = new AlDia.UI.Controles.PanelTarjeta();
+        txtUsuario = new TextBox();
+        lblRol = new Label();
+        panelRol = new AlDia.UI.Controles.PanelTarjeta();
+        cboRol = new ComboBox();
+        lblContrasena = new Label();
+        panelContrasena = new AlDia.UI.Controles.PanelTarjeta();
+        txtContrasena = new TextBox();
+        lblConfirmacion = new Label();
+        panelConfirmacion = new AlDia.UI.Controles.PanelTarjeta();
+        txtConfirmacion = new TextBox();
+        lblEstado = new Label();
+        panelEstado = new AlDia.UI.Controles.PanelTarjeta();
+        chkActivo = new CheckBox();
+        lblEstadoDetalle = new Label();
+        panelCuerpo.SuspendLayout();
+        tablaSecciones.SuspendLayout();
+        panelDatos.SuspendLayout();
+        panelAcceso.SuspendLayout();
+        panelNombre.SuspendLayout();
+        panelApellido.SuspendLayout();
+        panelCedula.SuspendLayout();
+        panelTelefono.SuspendLayout();
+        panelCorreo.SuspendLayout();
+        panelUsuario.SuspendLayout();
+        panelRol.SuspendLayout();
+        panelContrasena.SuspendLayout();
+        panelConfirmacion.SuspendLayout();
+        panelEstado.SuspendLayout();
+        SuspendLayout();
+        lblTitulo.Text = "Nuevo usuario";
+        lblDescripcion.Text = "Complete la información para registrar una cuenta de usuario.";
+        iconModulo.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+        btnGuardar.Text = "Guardar usuario";
+        // tablaSecciones
+        tablaSecciones.Name = "tablaSecciones";
+        tablaSecciones.Dock = DockStyle.Top;
+        tablaSecciones.Size = new Size(764, 490);
+        tablaSecciones.ColumnCount = 2;
+        tablaSecciones.RowCount = 1;
+        tablaSecciones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        tablaSecciones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        tablaSecciones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        tablaSecciones.Margin = new Padding(0);
+        tablaSecciones.TabIndex = 0;
+        // panelDatos
+        panelDatos.Name = "panelDatos";
+        panelDatos.Dock = DockStyle.Fill;
+        panelDatos.Margin = new Padding(0, 0, 12, 0);
+        panelDatos.Size = new Size(370, 490);
+        panelDatos.TabIndex = 0;
+        // lblDatos
+        lblDatos.Name = "lblDatos";
+        lblDatos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblDatos.Text = "01   Datos personales";
+        lblDatos.Location = new Point(0, 0);
+        lblDatos.Size = new Size(370, 28);
+        lblDatos.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        lblDatos.ForeColor = Color.FromArgb(20, 43, 78);
+        lblDatos.BackColor = Color.Transparent;
+        lblDatos.AutoEllipsis = true;
+        lblDatos.TabStop = false;
+        // lineaDatos
+        lineaDatos.Name = "lineaDatos";
+        lineaDatos.Location = new Point(0, 37);
+        lineaDatos.Size = new Size(370, 1);
+        lineaDatos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lineaDatos.BackColor = Color.FromArgb(205, 216, 230);
+        // panelAcceso
+        panelAcceso.Name = "panelAcceso";
+        panelAcceso.Dock = DockStyle.Fill;
+        panelAcceso.Margin = new Padding(12, 0, 0, 0);
+        panelAcceso.Size = new Size(370, 490);
+        panelAcceso.TabIndex = 1;
+        // lblAcceso
+        lblAcceso.Name = "lblAcceso";
+        lblAcceso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblAcceso.Text = "02   Acceso al sistema";
+        lblAcceso.Location = new Point(0, 0);
+        lblAcceso.Size = new Size(370, 28);
+        lblAcceso.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        lblAcceso.ForeColor = Color.FromArgb(20, 43, 78);
+        lblAcceso.BackColor = Color.Transparent;
+        lblAcceso.AutoEllipsis = true;
+        lblAcceso.TabStop = false;
+        // lineaAcceso
+        lineaAcceso.Name = "lineaAcceso";
+        lineaAcceso.Location = new Point(0, 37);
+        lineaAcceso.Size = new Size(370, 1);
+        lineaAcceso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lineaAcceso.BackColor = Color.FromArgb(205, 216, 230);
+        // lblNombre
+        lblNombre.Name = "lblNombre";
+        lblNombre.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblNombre.Text = "Nombre *";
+        lblNombre.Location = new Point(0, 54);
+        lblNombre.Size = new Size(370, 23);
+        lblNombre.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblNombre.ForeColor = Color.FromArgb(20, 43, 78);
+        lblNombre.BackColor = Color.Transparent;
+        lblNombre.AutoEllipsis = true;
+        lblNombre.TabStop = false;
+        // panelNombre
+        panelNombre.Name = "panelNombre";
+        panelNombre.Location = new Point(0, 82);
+        panelNombre.Size = new Size(370, 42);
+        panelNombre.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelNombre.BackColor = Color.White;
+        panelNombre.RadioBorde = 8;
+        panelNombre.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelNombre.TabIndex = 0;
+        // txtNombre
+        txtNombre.Name = "txtNombre";
+        txtNombre.Location = new Point(13, 11);
+        txtNombre.Size = new Size(344, 24);
+        txtNombre.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtNombre.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+        txtNombre.ForeColor = Color.FromArgb(20, 43, 78);
+        txtNombre.BorderStyle = BorderStyle.None;
+        txtNombre.PlaceholderText = "Ingrese el nombre";
+        txtNombre.TabIndex = 0;
+        // lblApellido
+        lblApellido.Name = "lblApellido";
+        lblApellido.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblApellido.Text = "Apellido *";
+        lblApellido.Location = new Point(0, 136);
+        lblApellido.Size = new Size(370, 23);
+        lblApellido.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblApellido.ForeColor = Color.FromArgb(20, 43, 78);
+        lblApellido.BackColor = Color.Transparent;
+        lblApellido.AutoEllipsis = true;
+        lblApellido.TabStop = false;
+        // panelApellido
+        panelApellido.Name = "panelApellido";
+        panelApellido.Location = new Point(0, 164);
+        panelApellido.Size = new Size(370, 42);
+        panelApellido.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelApellido.BackColor = Color.White;
+        panelApellido.RadioBorde = 8;
+        panelApellido.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelApellido.TabIndex = 1;
+        // txtApellido
+        txtApellido.Name = "txtApellido";
+        txtApellido.Location = new Point(13, 11);
+        txtApellido.Size = new Size(344, 24);
+        txtApellido.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtApellido.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+        txtApellido.ForeColor = Color.FromArgb(20, 43, 78);
+        txtApellido.BorderStyle = BorderStyle.None;
+        txtApellido.PlaceholderText = "Ingrese el apellido";
+        txtApellido.TabIndex = 0;
+        // lblCedula
+        lblCedula.Name = "lblCedula";
+        lblCedula.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblCedula.Text = "Cédula *";
+        lblCedula.Location = new Point(0, 218);
+        lblCedula.Size = new Size(370, 23);
+        lblCedula.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblCedula.ForeColor = Color.FromArgb(20, 43, 78);
+        lblCedula.BackColor = Color.Transparent;
+        lblCedula.AutoEllipsis = true;
+        lblCedula.TabStop = false;
+        // panelCedula
+        panelCedula.Name = "panelCedula";
+        panelCedula.Location = new Point(0, 246);
+        panelCedula.Size = new Size(370, 42);
+        panelCedula.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelCedula.BackColor = Color.White;
+        panelCedula.RadioBorde = 8;
+        panelCedula.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelCedula.TabIndex = 2;
+        // txtCedula
+        txtCedula.Name = "txtCedula";
+        txtCedula.Location = new Point(13, 11);
+        txtCedula.Size = new Size(344, 24);
+        txtCedula.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtCedula.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+        txtCedula.ForeColor = Color.FromArgb(20, 43, 78);
+        txtCedula.BorderStyle = BorderStyle.None;
+        txtCedula.PlaceholderText = "Número de identificación";
+        txtCedula.TabIndex = 0;
+        // lblTelefono
+        lblTelefono.Name = "lblTelefono";
+        lblTelefono.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblTelefono.Text = "Teléfono (opcional)";
+        lblTelefono.Location = new Point(0, 300);
+        lblTelefono.Size = new Size(370, 23);
+        lblTelefono.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblTelefono.ForeColor = Color.FromArgb(20, 43, 78);
+        lblTelefono.BackColor = Color.Transparent;
+        lblTelefono.AutoEllipsis = true;
+        lblTelefono.TabStop = false;
+        // panelTelefono
+        panelTelefono.Name = "panelTelefono";
+        panelTelefono.Location = new Point(0, 328);
+        panelTelefono.Size = new Size(370, 42);
+        panelTelefono.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelTelefono.BackColor = Color.White;
+        panelTelefono.RadioBorde = 8;
+        panelTelefono.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelTelefono.TabIndex = 3;
+        // txtTelefono
+        txtTelefono.Name = "txtTelefono";
+        txtTelefono.Location = new Point(13, 11);
+        txtTelefono.Size = new Size(344, 24);
+        txtTelefono.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtTelefono.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+        txtTelefono.ForeColor = Color.FromArgb(20, 43, 78);
+        txtTelefono.BorderStyle = BorderStyle.None;
+        txtTelefono.PlaceholderText = "Número de contacto";
+        txtTelefono.TabIndex = 0;
+        // lblCorreo
+        lblCorreo.Name = "lblCorreo";
+        lblCorreo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblCorreo.Text = "Correo electrónico (opcional)";
+        lblCorreo.Location = new Point(0, 382);
+        lblCorreo.Size = new Size(370, 23);
+        lblCorreo.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblCorreo.ForeColor = Color.FromArgb(20, 43, 78);
+        lblCorreo.BackColor = Color.Transparent;
+        lblCorreo.AutoEllipsis = true;
+        lblCorreo.TabStop = false;
+        // panelCorreo
+        panelCorreo.Name = "panelCorreo";
+        panelCorreo.Location = new Point(0, 410);
+        panelCorreo.Size = new Size(370, 42);
+        panelCorreo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelCorreo.BackColor = Color.White;
+        panelCorreo.RadioBorde = 8;
+        panelCorreo.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelCorreo.TabIndex = 4;
+        // txtCorreo
+        txtCorreo.Name = "txtCorreo";
+        txtCorreo.Location = new Point(13, 11);
+        txtCorreo.Size = new Size(344, 24);
+        txtCorreo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtCorreo.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+        txtCorreo.ForeColor = Color.FromArgb(20, 43, 78);
+        txtCorreo.BorderStyle = BorderStyle.None;
+        txtCorreo.PlaceholderText = "nombre@correo.com";
+        txtCorreo.TabIndex = 0;
+        // lblUsuario
+        lblUsuario.Name = "lblUsuario";
+        lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblUsuario.Text = "Nombre de usuario *";
+        lblUsuario.Location = new Point(0, 54);
+        lblUsuario.Size = new Size(370, 23);
+        lblUsuario.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblUsuario.ForeColor = Color.FromArgb(20, 43, 78);
+        lblUsuario.BackColor = Color.Transparent;
+        lblUsuario.AutoEllipsis = true;
+        lblUsuario.TabStop = false;
+        // panelUsuario
+        panelUsuario.Name = "panelUsuario";
+        panelUsuario.Location = new Point(0, 82);
+        panelUsuario.Size = new Size(370, 42);
+        panelUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelUsuario.BackColor = Color.White;
+        panelUsuario.RadioBorde = 8;
+        panelUsuario.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelUsuario.TabIndex = 0;
+        // txtUsuario
+        txtUsuario.Name = "txtUsuario";
+        txtUsuario.Location = new Point(13, 11);
+        txtUsuario.Size = new Size(344, 24);
+        txtUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtUsuario.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+        txtUsuario.ForeColor = Color.FromArgb(20, 43, 78);
+        txtUsuario.BorderStyle = BorderStyle.None;
+        txtUsuario.PlaceholderText = "Ingrese el usuario de acceso";
+        txtUsuario.TabIndex = 0;
+        // lblRol
+        lblRol.Name = "lblRol";
+        lblRol.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblRol.Text = "Rol *";
+        lblRol.Location = new Point(0, 136);
+        lblRol.Size = new Size(370, 23);
+        lblRol.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblRol.ForeColor = Color.FromArgb(20, 43, 78);
+        lblRol.BackColor = Color.Transparent;
+        lblRol.AutoEllipsis = true;
+        lblRol.TabStop = false;
+        // panelRol
+        panelRol.Name = "panelRol";
+        panelRol.Location = new Point(0, 164);
+        panelRol.Size = new Size(370, 42);
+        panelRol.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelRol.RadioBorde = 8;
+        panelRol.BackColor = Color.White;
+        panelRol.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelRol.TabIndex = 1;
+        // cboRol
+        cboRol.Name = "cboRol";
+        cboRol.Location = new Point(10, 7);
+        cboRol.Size = new Size(350, 28);
+        cboRol.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        cboRol.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+        cboRol.ForeColor = Color.FromArgb(20, 43, 78);
+        cboRol.DropDownStyle = ComboBoxStyle.DropDownList;
+        cboRol.FlatStyle = FlatStyle.Flat;
+        cboRol.Items.AddRange(new object[] { "Seleccione un rol", "Administrador", "Recepcionista", "Técnico" });
+        cboRol.SelectedIndex = 0;
+        cboRol.TabIndex = 0;
+        // lblContrasena
+        lblContrasena.Name = "lblContrasena";
+        lblContrasena.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblContrasena.Text = "Contraseña *";
+        lblContrasena.Location = new Point(0, 218);
+        lblContrasena.Size = new Size(370, 23);
+        lblContrasena.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblContrasena.ForeColor = Color.FromArgb(20, 43, 78);
+        lblContrasena.BackColor = Color.Transparent;
+        lblContrasena.AutoEllipsis = true;
+        lblContrasena.TabStop = false;
+        // panelContrasena
+        panelContrasena.Name = "panelContrasena";
+        panelContrasena.Location = new Point(0, 246);
+        panelContrasena.Size = new Size(370, 42);
+        panelContrasena.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelContrasena.BackColor = Color.White;
+        panelContrasena.RadioBorde = 8;
+        panelContrasena.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelContrasena.TabIndex = 2;
+        // txtContrasena
+        txtContrasena.Name = "txtContrasena";
+        txtContrasena.Location = new Point(13, 11);
+        txtContrasena.Size = new Size(344, 24);
+        txtContrasena.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtContrasena.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+        txtContrasena.ForeColor = Color.FromArgb(20, 43, 78);
+        txtContrasena.BorderStyle = BorderStyle.None;
+        txtContrasena.PlaceholderText = "Ingrese una contraseña";
+        txtContrasena.TabIndex = 0;
+        txtContrasena.UseSystemPasswordChar = true;
+        // lblConfirmacion
+        lblConfirmacion.Name = "lblConfirmacion";
+        lblConfirmacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblConfirmacion.Text = "Confirmar contraseña *";
+        lblConfirmacion.Location = new Point(0, 300);
+        lblConfirmacion.Size = new Size(370, 23);
+        lblConfirmacion.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblConfirmacion.ForeColor = Color.FromArgb(20, 43, 78);
+        lblConfirmacion.BackColor = Color.Transparent;
+        lblConfirmacion.AutoEllipsis = true;
+        lblConfirmacion.TabStop = false;
+        // panelConfirmacion
+        panelConfirmacion.Name = "panelConfirmacion";
+        panelConfirmacion.Location = new Point(0, 328);
+        panelConfirmacion.Size = new Size(370, 42);
+        panelConfirmacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelConfirmacion.BackColor = Color.White;
+        panelConfirmacion.RadioBorde = 8;
+        panelConfirmacion.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelConfirmacion.TabIndex = 3;
+        // txtConfirmacion
+        txtConfirmacion.Name = "txtConfirmacion";
+        txtConfirmacion.Location = new Point(13, 11);
+        txtConfirmacion.Size = new Size(344, 24);
+        txtConfirmacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtConfirmacion.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+        txtConfirmacion.ForeColor = Color.FromArgb(20, 43, 78);
+        txtConfirmacion.BorderStyle = BorderStyle.None;
+        txtConfirmacion.PlaceholderText = "Repita la contraseña";
+        txtConfirmacion.TabIndex = 0;
+        txtConfirmacion.UseSystemPasswordChar = true;
+        // lblEstado
+        lblEstado.Name = "lblEstado";
+        lblEstado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblEstado.Text = "Estado de la cuenta";
+        lblEstado.Location = new Point(0, 382);
+        lblEstado.Size = new Size(370, 23);
+        lblEstado.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        lblEstado.ForeColor = Color.FromArgb(20, 43, 78);
+        lblEstado.BackColor = Color.Transparent;
+        lblEstado.AutoEllipsis = true;
+        lblEstado.TabStop = false;
+        // panelEstado
+        panelEstado.Name = "panelEstado";
+        panelEstado.Location = new Point(0, 410);
+        panelEstado.Size = new Size(370, 64);
+        panelEstado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        panelEstado.RadioBorde = 8;
+        panelEstado.BackColor = Color.White;
+        panelEstado.ColorBorde = Color.FromArgb(211, 221, 232);
+        panelEstado.TabIndex = 4;
+        // chkActivo
+        chkActivo.Name = "chkActivo";
+        chkActivo.Text = "Usuario activo";
+        chkActivo.Location = new Point(13, 9);
+        chkActivo.Size = new Size(330, 24);
+        chkActivo.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
+        chkActivo.ForeColor = Color.FromArgb(20, 43, 78);
+        chkActivo.Checked = true;
+        chkActivo.CheckState = CheckState.Checked;
+        chkActivo.TabIndex = 0;
+        chkActivo.UseVisualStyleBackColor = true;
+        // lblEstadoDetalle
+        lblEstadoDetalle.Name = "lblEstadoDetalle";
+        lblEstadoDetalle.Text = "Habilita el acceso al sistema.";
+        lblEstadoDetalle.Location = new Point(30, 35);
+        lblEstadoDetalle.Size = new Size(320, 20);
+        lblEstadoDetalle.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+        lblEstadoDetalle.ForeColor = Color.FromArgb(103, 116, 137);
+        lblEstadoDetalle.BackColor = Color.Transparent;
+        lblEstadoDetalle.AutoEllipsis = true;
+        lblEstadoDetalle.TabStop = false;
+        panelCuerpo.Controls.Add(tablaSecciones);
+        tablaSecciones.Controls.Add(panelDatos, 0, 0);
+        panelDatos.Controls.Add(lblDatos);
+        panelDatos.Controls.Add(lineaDatos);
+        tablaSecciones.Controls.Add(panelAcceso, 1, 0);
+        panelAcceso.Controls.Add(lblAcceso);
+        panelAcceso.Controls.Add(lineaAcceso);
+        panelDatos.Controls.Add(lblNombre);
+        panelDatos.Controls.Add(panelNombre);
+        panelNombre.Controls.Add(txtNombre);
+        panelDatos.Controls.Add(lblApellido);
+        panelDatos.Controls.Add(panelApellido);
+        panelApellido.Controls.Add(txtApellido);
+        panelDatos.Controls.Add(lblCedula);
+        panelDatos.Controls.Add(panelCedula);
+        panelCedula.Controls.Add(txtCedula);
+        panelDatos.Controls.Add(lblTelefono);
+        panelDatos.Controls.Add(panelTelefono);
+        panelTelefono.Controls.Add(txtTelefono);
+        panelDatos.Controls.Add(lblCorreo);
+        panelDatos.Controls.Add(panelCorreo);
+        panelCorreo.Controls.Add(txtCorreo);
+        panelAcceso.Controls.Add(lblUsuario);
+        panelAcceso.Controls.Add(panelUsuario);
+        panelUsuario.Controls.Add(txtUsuario);
+        panelAcceso.Controls.Add(lblRol);
+        panelAcceso.Controls.Add(panelRol);
+        panelRol.Controls.Add(cboRol);
+        panelAcceso.Controls.Add(lblContrasena);
+        panelAcceso.Controls.Add(panelContrasena);
+        panelContrasena.Controls.Add(txtContrasena);
+        panelAcceso.Controls.Add(lblConfirmacion);
+        panelAcceso.Controls.Add(panelConfirmacion);
+        panelConfirmacion.Controls.Add(txtConfirmacion);
+        panelAcceso.Controls.Add(lblEstado);
+        panelAcceso.Controls.Add(panelEstado);
+        panelEstado.Controls.Add(chkActivo);
+        panelEstado.Controls.Add(lblEstadoDetalle);
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.FromArgb(230, 236, 243);
+        ClientSize = new Size(820, 728);
+        Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        FormBorderStyle = FormBorderStyle.None;
+        Name = "FrmRegistroUsuario";
+        StartPosition = FormStartPosition.CenterParent;
+        Text = "Al Día · Usuarios";
+        panelEstado.ResumeLayout(false);
+        panelEstado.PerformLayout();
+        panelConfirmacion.ResumeLayout(false);
+        panelConfirmacion.PerformLayout();
+        panelContrasena.ResumeLayout(false);
+        panelContrasena.PerformLayout();
+        panelRol.ResumeLayout(false);
+        panelRol.PerformLayout();
+        panelUsuario.ResumeLayout(false);
+        panelUsuario.PerformLayout();
+        panelCorreo.ResumeLayout(false);
+        panelCorreo.PerformLayout();
+        panelTelefono.ResumeLayout(false);
+        panelTelefono.PerformLayout();
+        panelCedula.ResumeLayout(false);
+        panelCedula.PerformLayout();
+        panelApellido.ResumeLayout(false);
+        panelApellido.PerformLayout();
+        panelNombre.ResumeLayout(false);
+        panelNombre.PerformLayout();
+        panelAcceso.ResumeLayout(false);
+        panelAcceso.PerformLayout();
+        panelDatos.ResumeLayout(false);
+        panelDatos.PerformLayout();
+        tablaSecciones.ResumeLayout(false);
+        tablaSecciones.PerformLayout();
+        panelCuerpo.ResumeLayout(false);
+        panelCuerpo.PerformLayout();
+        ResumeLayout(false);
+    }
+
+    #endregion
+
+    private TableLayoutPanel tablaSecciones;
+    private Panel panelDatos;
+    private Label lblDatos;
+    private Panel lineaDatos;
+    private Panel panelAcceso;
+    private Label lblAcceso;
+    private Panel lineaAcceso;
+    private Label lblNombre;
+    private AlDia.UI.Controles.PanelTarjeta panelNombre;
+    private TextBox txtNombre;
+    private Label lblApellido;
+    private AlDia.UI.Controles.PanelTarjeta panelApellido;
+    private TextBox txtApellido;
+    private Label lblCedula;
+    private AlDia.UI.Controles.PanelTarjeta panelCedula;
+    private TextBox txtCedula;
+    private Label lblTelefono;
+    private AlDia.UI.Controles.PanelTarjeta panelTelefono;
+    private TextBox txtTelefono;
+    private Label lblCorreo;
+    private AlDia.UI.Controles.PanelTarjeta panelCorreo;
+    private TextBox txtCorreo;
+    private Label lblUsuario;
+    private AlDia.UI.Controles.PanelTarjeta panelUsuario;
+    private TextBox txtUsuario;
+    private Label lblRol;
+    private AlDia.UI.Controles.PanelTarjeta panelRol;
+    private ComboBox cboRol;
+    private Label lblContrasena;
+    private AlDia.UI.Controles.PanelTarjeta panelContrasena;
+    private TextBox txtContrasena;
+    private Label lblConfirmacion;
+    private AlDia.UI.Controles.PanelTarjeta panelConfirmacion;
+    private TextBox txtConfirmacion;
+    private Label lblEstado;
+    private AlDia.UI.Controles.PanelTarjeta panelEstado;
+    private CheckBox chkActivo;
+    private Label lblEstadoDetalle;
+}

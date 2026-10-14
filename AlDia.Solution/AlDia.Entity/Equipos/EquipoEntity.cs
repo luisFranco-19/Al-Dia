@@ -8,17 +8,19 @@ public sealed class EquipoEntity
     public int IdEquipo { get; private set; }
     public int IdCliente { get; private set; }
     public int IdTipoEquipo { get; private set; }
-    public string Marca { get; private set; }
+    public string Marca { get; private set; } = string.Empty;
     public string? Modelo { get; private set; }
     public string? NumeroSerie { get; private set; }
     public string? Color { get; private set; }
     public string? Observaciones { get; private set; }
     public bool Estado { get; private set; }
     public string EstadoNombre => Estado ? "Activo" : "Inactivo";
-    public DateTime FechaRegistro { get; }
+    public DateTime FechaRegistro { get; private set; } = DateTime.Now;
     #endregion
 
     #region Constructores
+    public EquipoEntity() { }
+
     public EquipoEntity(int idCliente, int idTipoEquipo, string marca, string? modelo = null,
         string? numeroSerie = null, string? color = null, string? observaciones = null)
         : this(0, idCliente, idTipoEquipo, marca, modelo, numeroSerie, color, observaciones, true, DateTime.Now) { }
@@ -27,16 +29,17 @@ public sealed class EquipoEntity
     public EquipoEntity(int idEquipo, int idCliente, int idTipoEquipo, string marca, string? modelo,
         string? numeroSerie, string? color, string? observaciones, bool estado, DateTime fechaRegistro)
     {
-        IdEquipo = Validacion.IdNuevoOExistente(idEquipo, "IdEquipo");
-        IdCliente = Validacion.Id(idCliente, "IdCliente");
-        IdTipoEquipo = Validacion.Id(idTipoEquipo, "IdTipoEquipo");
-        Marca = Validacion.Texto(marca, "Marca", 50);
-        Modelo = Validacion.Opcional(modelo, "Modelo", 100);
-        NumeroSerie = Validacion.Opcional(numeroSerie, "NumeroSerie", 100);
-        Color = Validacion.Opcional(color, "Color", 50);
-        Observaciones = Validacion.Opcional(observaciones, "Observaciones", 500);
-        Estado = estado;
-        FechaRegistro = fechaRegistro;
+        Validacion.IdNuevoOExistente(idEquipo, "IdEquipo");
+        if (idEquipo > 0) AsignarId(idEquipo);
+        CambiarCliente(idCliente);
+        CambiarTipoEquipo(idTipoEquipo);
+        CambiarMarca(marca);
+        CambiarModelo(modelo);
+        CambiarNumeroSerie(numeroSerie);
+        CambiarColor(color);
+        CambiarObservaciones(observaciones);
+        CambiarEstado(estado);
+        AsignarFechaRegistro(fechaRegistro);
     }
     #endregion
 
@@ -51,17 +54,45 @@ public sealed class EquipoEntity
 
     public void CambiarCliente(int idCliente) => IdCliente = Validacion.Id(idCliente, "IdCliente");
     public void CambiarTipoEquipo(int idTipoEquipo) => IdTipoEquipo = Validacion.Id(idTipoEquipo, "IdTipoEquipo");
-    public void CambiarMarca(string marca) => Marca = Validacion.Texto(marca, "Marca", 50);
-    public void CambiarModelo(string? modelo) => Modelo = Validacion.Opcional(modelo, "Modelo", 100);
-    public void CambiarNumeroSerie(string? numeroSerie) => NumeroSerie = Validacion.Opcional(numeroSerie, "NumeroSerie", 100);
-    public void CambiarColor(string? color) => Color = Validacion.Opcional(color, "Color", 50);
-    public void CambiarObservaciones(string? observaciones) => Observaciones = Validacion.Opcional(observaciones, "Observaciones", 500);
+    public void CambiarMarca(string marca)
+    {
+        if (string.IsNullOrWhiteSpace(marca))
+            throw new ValidacionException("Debe ingresar la marca del equipo.");
+        Marca = marca.Trim();
+    }
+
+    public void CambiarModelo(string? modelo)
+    {
+        Modelo = string.IsNullOrWhiteSpace(modelo) ? null : modelo.Trim();
+    }
+
+    public void CambiarNumeroSerie(string? numeroSerie)
+    {
+        NumeroSerie = string.IsNullOrWhiteSpace(numeroSerie) ? null : numeroSerie.Trim();
+    }
+
+    public void CambiarColor(string? color)
+    {
+        Color = string.IsNullOrWhiteSpace(color) ? null : color.Trim();
+    }
+
+    public void CambiarObservaciones(string? observaciones)
+    {
+        Observaciones = string.IsNullOrWhiteSpace(observaciones) ? null : observaciones.Trim();
+    }
     public void CambiarEstado(bool estado) => Estado = estado;
     public void Activar() => CambiarEstado(true);
     public void Desactivar() => CambiarEstado(false);
+    public void AsignarFechaRegistro(DateTime fechaRegistro) => FechaRegistro = fechaRegistro;
 
-    public EquipoSolicitud CrearSolicitud() =>
-        new(IdCliente, IdTipoEquipo, Marca, Modelo, NumeroSerie, Color, Observaciones, Estado, IdEquipo);
+    public EquipoSolicitud CrearSolicitud()
+    {
+        Validacion.Id(IdCliente, "IdCliente");
+        Validacion.Id(IdTipoEquipo, "IdTipoEquipo");
+        if (string.IsNullOrWhiteSpace(Marca))
+            throw new ValidacionException("Debe ingresar la marca del equipo.");
+        return new(IdCliente, IdTipoEquipo, Marca, Modelo, NumeroSerie, Color, Observaciones, Estado, IdEquipo);
+    }
     #endregion
 }
 

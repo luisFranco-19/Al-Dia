@@ -12,21 +12,23 @@ public sealed class RepuestoEntity : CatalogoEntity
     public decimal PrecioCompra { get; private set; }
     public decimal PrecioVenta { get; private set; }
     // El stock consultado solo cambia en SQL mediante los procedimientos de inventario.
-    public int Stock { get; }
+    public int Stock { get; private set; }
     #endregion
 
     #region Constructores
+    public RepuestoEntity() : base() { }
+
     public RepuestoEntity(string nombre, string? descripcion, string? marca, string? numeroParte,
         decimal precioCompra, decimal precioVenta)
         : this(0, nombre, descripcion, marca, numeroParte, precioCompra, precioVenta, true, 0) { }
 
     public RepuestoEntity(int idRepuesto, string nombre, string? descripcion, string? marca,
         string? numeroParte, decimal precioCompra, decimal precioVenta, bool estado, int stock)
-        : base(nombre, descripcion, estado, 100, 300)
+        : base(nombre, descripcion, estado)
     {
-        IdRepuesto = Validacion.IdNuevoOExistente(idRepuesto, "IdRepuesto");
-        if (stock < 0) throw new ValidacionException("El stock no puede ser negativo.");
-        Stock = stock;
+        Validacion.IdNuevoOExistente(idRepuesto, "IdRepuesto");
+        if (idRepuesto > 0) AsignarId(idRepuesto);
+        AsignarStockConsultado(stock);
         CambiarMarca(marca);
         CambiarNumeroParte(numeroParte);
         CambiarPrecios(precioCompra, precioVenta);
@@ -42,8 +44,15 @@ public sealed class RepuestoEntity : CatalogoEntity
         IdRepuesto = id;
     }
 
-    public void CambiarMarca(string? marca) => Marca = Validacion.Opcional(marca, "Marca", 50);
-    public void CambiarNumeroParte(string? numeroParte) => NumeroParte = Validacion.Opcional(numeroParte, "NumeroParte", 100);
+    public void CambiarMarca(string? marca)
+    {
+        Marca = string.IsNullOrWhiteSpace(marca) ? null : marca.Trim();
+    }
+
+    public void CambiarNumeroParte(string? numeroParte)
+    {
+        NumeroParte = string.IsNullOrWhiteSpace(numeroParte) ? null : numeroParte.Trim();
+    }
     public void CambiarPrecios(decimal precioCompra, decimal precioVenta)
     {
         var compra = Validacion.Dinero(precioCompra, "PrecioCompra");
@@ -52,8 +61,18 @@ public sealed class RepuestoEntity : CatalogoEntity
         PrecioVenta = venta;
     }
 
-    public RepuestoSolicitud CrearSolicitud() =>
-        new(Nombre, Descripcion, Marca, NumeroParte, PrecioCompra, PrecioVenta, Estado, IdRepuesto);
+    // Proyección de SQL: no forma parte de la solicitud de guardado del catálogo.
+    public void AsignarStockConsultado(int stock)
+    {
+        if (stock < 0) throw new ValidacionException("El stock no puede ser negativo.");
+        Stock = stock;
+    }
+
+    public RepuestoSolicitud CrearSolicitud()
+    {
+        ValidarCatalogo();
+        return new(Nombre, Descripcion, Marca, NumeroParte, PrecioCompra, PrecioVenta, Estado, IdRepuesto);
+    }
     #endregion
 }
 

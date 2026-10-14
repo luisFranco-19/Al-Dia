@@ -39,3 +39,6 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+## Capturas de verificación local
+artifacts/verificacion/

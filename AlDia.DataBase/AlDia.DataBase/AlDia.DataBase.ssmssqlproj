@@ -33,6 +33,12 @@
           <AssociatedConnUserName />
           <FullPath>Procedimientos_Almacenados.sql</FullPath>
         </FileNode>
+        <FileNode Name="Datos_Prueba.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Datos_Prueba.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Varios" Type="3" Sorted="true">

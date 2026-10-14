@@ -16,13 +16,15 @@ public sealed class LogErrorEntity
     {
         IdLog = Validacion.IdNuevoOExistente(idLog, "IdLog");
         if (string.IsNullOrWhiteSpace(mensajeError)) throw new ValidacionException("MensajeError es obligatorio.");
-        // NVARCHAR(MAX): se conserva el mensaje original sin recortarlo ni limitarlo a 500 caracteres.
+        // Se conserva el mensaje de auditoria original.
         MensajeError = mensajeError;
         NumeroError = numeroError;
-        Procedimiento = Validacion.Opcional(procedimiento, "Procedimiento", 100);
+        Procedimiento = string.IsNullOrWhiteSpace(procedimiento) ? null : procedimiento.Trim();
         if (lineaError < 0) throw new ValidacionException("LineaError no puede ser negativa.");
         LineaError = lineaError;
-        UsuarioApp = Validacion.Texto(usuarioApp, "UsuarioApp", 25);
+        if (string.IsNullOrWhiteSpace(usuarioApp))
+            throw new ValidacionException("Debe ingresar el usuario de la aplicacion.");
+        UsuarioApp = usuarioApp.Trim();
         FechaError = fechaError;
     }
 

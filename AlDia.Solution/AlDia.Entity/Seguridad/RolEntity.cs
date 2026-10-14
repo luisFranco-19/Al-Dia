@@ -10,14 +10,17 @@ public sealed class RolEntity : CatalogoEntity
     #endregion
 
     #region Constructores
+    public RolEntity() : base() { }
+
     public RolEntity(string nombre, string? descripcion = null)
         : this(0, nombre, descripcion, true) { }
 
     // Reconstruye una fila de dbo.Roles; el ID no se deduce del nombre.
     public RolEntity(int idRol, string nombre, string? descripcion, bool estado)
-        : base(nombre, descripcion, estado, 50, 200)
+        : base(nombre, descripcion, estado)
     {
-        IdRol = Validacion.IdNuevoOExistente(idRol, "IdRol");
+        Validacion.IdNuevoOExistente(idRol, "IdRol");
+        if (idRol > 0) AsignarId(idRol);
     }
     #endregion
 
@@ -30,7 +33,11 @@ public sealed class RolEntity : CatalogoEntity
         IdRol = id;
     }
 
-    public RolSolicitud CrearSolicitud() => new(Nombre, Descripcion, Estado, IdRol);
+    public RolSolicitud CrearSolicitud()
+    {
+        ValidarCatalogo();
+        return new(Nombre, Descripcion, Estado, IdRol);
+    }
     #endregion
 }
 

@@ -10,13 +10,16 @@ public sealed class TipoEquipoEntity : CatalogoEntity
     #endregion
 
     #region Constructores
+    public TipoEquipoEntity() : base() { }
+
     public TipoEquipoEntity(string nombre, string? descripcion = null)
         : this(0, nombre, descripcion, true) { }
 
     public TipoEquipoEntity(int idTipoEquipo, string nombre, string? descripcion, bool estado)
-        : base(nombre, descripcion, estado, 50, 200)
+        : base(nombre, descripcion, estado)
     {
-        IdTipoEquipo = Validacion.IdNuevoOExistente(idTipoEquipo, "IdTipoEquipo");
+        Validacion.IdNuevoOExistente(idTipoEquipo, "IdTipoEquipo");
+        if (idTipoEquipo > 0) AsignarId(idTipoEquipo);
     }
     #endregion
 
@@ -29,7 +32,11 @@ public sealed class TipoEquipoEntity : CatalogoEntity
         IdTipoEquipo = id;
     }
 
-    public TipoEquipoSolicitud CrearSolicitud() => new(Nombre, Descripcion, Estado, IdTipoEquipo);
+    public TipoEquipoSolicitud CrearSolicitud()
+    {
+        ValidarCatalogo();
+        return new(Nombre, Descripcion, Estado, IdTipoEquipo);
+    }
     #endregion
 }
 

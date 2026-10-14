@@ -4,10 +4,17 @@ using AlDia.Entity.Entity;
 
 namespace AlDia.BLL.Common;
 
-public sealed class ConfiguracionBll(IConfiguracionDal datos)
+public sealed class ConfiguracionBll
 {
-    public bool ExisteConfiguracion() => datos.ExisteConfiguracion();
-    public ConexionEntity? Obtener() => datos.Obtener();
+    private readonly IConfiguracionDal _datos;
+
+    public ConfiguracionBll(IConfiguracionDal datos)
+    {
+        _datos = datos ?? throw new ArgumentNullException(nameof(datos));
+    }
+
+    public bool ExisteConfiguracion() => _datos.ExisteConfiguracion();
+    public ConexionEntity? Obtener() => _datos.Obtener();
     public void Guardar(ConexionEntity config)
     {
         ArgumentNullException.ThrowIfNull(config);
@@ -19,6 +26,6 @@ public sealed class ConfiguracionBll(IConfiguracionDal datos)
             Password = config.Password
         };
         if (string.IsNullOrEmpty(validada.Password)) throw new ValidacionException("La contrasena SQL es obligatoria.");
-        if (!datos.Guardar(validada)) throw new ValidacionException("No fue posible guardar la configuracion de conexion.");
+        if (!_datos.Guardar(validada)) throw new ValidacionException("No fue posible guardar la configuracion de conexion.");
     }
 }

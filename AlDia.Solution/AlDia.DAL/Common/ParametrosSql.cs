@@ -1,3 +1,4 @@
+using AlDia.Entity.Common;
 using Microsoft.Data.SqlClient;
 using System.Data;
 namespace AlDia.DAL.Common;
@@ -6,8 +7,13 @@ public static class ParametrosSql
 {
     public static SqlParameter Entero(string nombre, int? valor) => new(nombre, SqlDbType.Int) { Value = (object?)valor ?? DBNull.Value };
     public static SqlParameter Bit(string nombre, bool valor) => new(nombre, SqlDbType.Bit) { Value = valor };
-    public static SqlParameter Texto(string nombre, string? valor, int longitud, bool unicode = false) =>
-        new(nombre, unicode ? SqlDbType.NVarChar : SqlDbType.VarChar, longitud) { Value = (object?)valor ?? DBNull.Value };
+    public static SqlParameter Texto(string nombre, string? valor, int longitud, bool unicode = false)
+    {
+        // Size puede recortar el valor antes de que SQL valide la columna.
+        if (longitud > 0 && valor is not null && valor.Length > longitud)
+            throw new ValidacionException($"{nombre.TrimStart('@')} supera los {longitud} caracteres admitidos por el procedimiento SQL.");
+        return new(nombre, unicode ? SqlDbType.NVarChar : SqlDbType.VarChar, longitud) { Value = (object?)valor ?? DBNull.Value };
+    }
     public static SqlParameter Dinero(string nombre, decimal? valor) => new(nombre, SqlDbType.Decimal)
         { Precision = 10, Scale = 2, Value = (object?)valor ?? DBNull.Value };
     public static SqlParameter Salida(string nombre, SqlDbType tipo = SqlDbType.Int) => new(nombre, tipo) { Direction = ParameterDirection.Output };

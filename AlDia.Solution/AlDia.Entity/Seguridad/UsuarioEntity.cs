@@ -1,5 +1,6 @@
 using AlDia.Entity.Base;
 using AlDia.Entity.Common;
+using System.Net.Mail;
 
 namespace AlDia.Entity.Seguridad;
 
@@ -12,16 +13,18 @@ public sealed class UsuarioEntity : PersonaEntity
     // Null significa que la consulta actual no devolvio IdRol, no que la FK SQL sea opcional.
     public int? IdRol { get; private set; }
     public string? Correo { get; private set; }
-    public string Usuario { get; private set; }
-    public string NombreRol { get; private set; }
+    public string Usuario { get; private set; } = string.Empty;
+    public string NombreRol { get; private set; } = string.Empty;
     // El catalogo puede tener mas nombres que los tres permisos existentes del sistema.
     public RolUsuario? PermisoRol => Enum.TryParse<RolUsuario>(NombreRol, out var rol)
         && Enum.IsDefined(rol) && rol.ToString() == NombreRol ? rol : null;
     public RolUsuario Rol => PermisoRol ?? throw new PermisoException("El rol no tiene permisos configurados en el sistema.");
-    public DateTime FechaRegistro { get; }
+    public DateTime FechaRegistro { get; private set; } = DateTime.Now;
     #endregion
 
     #region Constructores
+    public UsuarioEntity() : base() { }
+
     public UsuarioEntity(string nombre, string apellido, string cedula, string usuario,
         RolUsuario rol, string? telefono = null, string? correo = null)
         : this(0, nombre, apellido, cedula, telefono, correo, usuario, rol, true, DateTime.Now) { }
@@ -35,11 +38,12 @@ public sealed class UsuarioEntity : PersonaEntity
         string? telefono, string? correo, string usuario, RolUsuario rol, bool estado,
         DateTime fechaRegistro, int? idRol = null) : base(nombre, apellido, cedula, estado)
     {
-        IdUsuario = Validacion.IdNuevoOExistente(idUsuario, "IdUsuario");
-        Usuario = Validacion.Texto(usuario, "Usuario", 50);
-        NombreRol = Validacion.Enumeracion(rol, "Rol").ToString();
-        IdRol = idRol.HasValue ? Validacion.Id(idRol.Value, "IdRol") : null;
-        FechaRegistro = fechaRegistro;
+        Validacion.IdNuevoOExistente(idUsuario, "IdUsuario");
+        if (idUsuario > 0) AsignarId(idUsuario);
+        CambiarUsuario(usuario);
+        if (idRol.HasValue) CambiarRol(idRol.Value, rol);
+        else CambiarRol(rol);
+        AsignarFechaRegistro(fechaRegistro);
         CambiarTelefono(telefono);
         CambiarCorreo(correo);
     }
@@ -49,11 +53,11 @@ public sealed class UsuarioEntity : PersonaEntity
         string? telefono, string? correo, string usuario, int idRol, string nombreRol,
         bool estado, DateTime fechaRegistro) : base(nombre, apellido, cedula, estado)
     {
-        IdUsuario = Validacion.IdNuevoOExistente(idUsuario, "IdUsuario");
-        IdRol = Validacion.Id(idRol, "IdRol");
-        NombreRol = Validacion.Texto(nombreRol, "NombreRol", 50);
-        Usuario = Validacion.Texto(usuario, "Usuario", 50);
-        FechaRegistro = fechaRegistro;
+        Validacion.IdNuevoOExistente(idUsuario, "IdUsuario");
+        if (idUsuario > 0) AsignarId(idUsuario);
+        CambiarRol(idRol, nombreRol);
+        CambiarUsuario(usuario);
+        AsignarFechaRegistro(fechaRegistro);
         CambiarTelefono(telefono);
         CambiarCorreo(correo);
     }
@@ -68,7 +72,23 @@ public sealed class UsuarioEntity : PersonaEntity
         IdUsuario = id;
     }
 
-    public void CambiarUsuario(string usuario) => Usuario = Validacion.Texto(usuario, "Usuario", 50);
+    public void CambiarUsuario(string usuario)
+    {
+        if (string.IsNullOrWhiteSpace(usuario))
+            throw new ValidacionException("Debe ingresar el nombre de usuario.");
+        Usuario = usuario.Trim();
+    }
+    public void AsignarFechaRegistro(DateTime fechaRegistro) => FechaRegistro = fechaRegistro;
+
+    public void CambiarRol(int idRol, string nombreRol)
+    {
+        int id = Validacion.Id(idRol, "IdRol");
+        if (string.IsNullOrWhiteSpace(nombreRol))
+            throw new ValidacionException("Debe ingresar el nombre del rol.");
+        string nombre = nombreRol.Trim();
+        IdRol = id;
+        NombreRol = nombre;
+    }
     public void CambiarRol(RolUsuario rol)
     {
         var validado = Validacion.Enumeracion(rol, "Rol");
@@ -99,13 +119,41 @@ public sealed class UsuarioEntity : PersonaEntity
         if (!rol.Estado) throw new ValidacionException("El rol seleccionado debe estar activo.");
         return id;
     }
-    public void CambiarCorreo(string? correo) => Correo = Validacion.Correo(correo);
+    public void CambiarCorreo(string? correo)
+    {
+        if (string.IsNullOrWhiteSpace(correo))
+        {
+            Correo = null;
+            return;
+        }
+        string correoValidado = correo.Trim();
+        if (!MailAddress.TryCreate(correoValidado, out _))
+            throw new ValidacionException("El correo no es valido.");
+        Correo = correoValidado;
+    }
 
-    public UsuarioSolicitud CrearSolicitud() =>
-        new(Nombre, Apellido, Cedula, Usuario, Rol, Telefono, Correo, Estado, IdUsuario);
+    private void ValidarUsuario()
+    {
+        ValidarPersona();
+        if (string.IsNullOrWhiteSpace(Usuario))
+            throw new ValidacionException("Debe ingresar el nombre de usuario.");
+        if (string.IsNullOrWhiteSpace(NombreRol))
+            throw new ValidacionException("Debe ingresar el nombre del rol.");
+        if (Correo is not null && !MailAddress.TryCreate(Correo, out _))
+            throw new ValidacionException("El correo no es valido.");
+    }
 
-    public UsuarioRolSolicitud CrearSolicitudPorRol() =>
-        new(Validacion.Id(IdRol ?? 0, "IdRol"), Nombre, Apellido, Cedula, Usuario, Telefono, Correo, Estado, IdUsuario);
+    public UsuarioSolicitud CrearSolicitud()
+    {
+        ValidarUsuario();
+        return new(Nombre, Apellido, Cedula, Usuario, Rol, Telefono, Correo, Estado, IdUsuario);
+    }
+
+    public UsuarioRolSolicitud CrearSolicitudPorRol()
+    {
+        ValidarUsuario();
+        return new(Validacion.Id(IdRol ?? 0, "IdRol"), Nombre, Apellido, Cedula, Usuario, Telefono, Correo, Estado, IdUsuario);
+    }
 
     // La sesion guarda una copia para que editar una entidad no cambie al actor autenticado.
     public UsuarioEntity Copiar() =>
@@ -125,8 +173,8 @@ public sealed class CredencialUsuario
     public CredencialUsuario(UsuarioEntity usuario, string hash)
     {
         ArgumentNullException.ThrowIfNull(usuario);
-        if (string.IsNullOrEmpty(hash) || hash.Length > 255)
-            throw new ValidacionException("ContrasenaHash es obligatorio y admite hasta 255 caracteres.");
+        if (string.IsNullOrWhiteSpace(hash))
+            throw new ValidacionException("ContrasenaHash es obligatorio.");
         Usuario = usuario;
         Hash = hash;
     }

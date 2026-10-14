@@ -22,6 +22,6 @@ public sealed class HistorialEstadoEntity
         IdEstadoNuevo = Validacion.Id(idEstadoNuevo, "IdEstadoNuevo");
         IdUsuario = Validacion.Id(idUsuario, "IdUsuario");
         FechaCambio = fechaCambio;
-        Observacion = Validacion.Opcional(observacion, "Observacion", 500);
+        Observacion = string.IsNullOrWhiteSpace(observacion) ? null : observacion.Trim();
     }
 }

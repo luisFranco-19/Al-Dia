@@ -255,6 +255,7 @@ partial class FrmDashsbor
         lblMenuPrincipal.AutoEllipsis = true;
         // btnInicio
         btnInicio.Name = "btnInicio";
+        btnInicio.Click += btnInicio_Click;
         btnInicio.Location = new Point(12, 52);
         btnInicio.Size = new Size(211, 46);
         btnInicio.Text = "Inicio";
@@ -279,6 +280,7 @@ partial class FrmDashsbor
         btnInicio.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         // btnClientes
         btnClientes.Name = "btnClientes";
+        btnClientes.Click += btnClientes_Click;
         btnClientes.Location = new Point(12, 102);
         btnClientes.Size = new Size(211, 46);
         btnClientes.Text = "Clientes";
@@ -303,6 +305,7 @@ partial class FrmDashsbor
         btnClientes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         // btnEquipos
         btnEquipos.Name = "btnEquipos";
+        btnEquipos.Click += btnEquipos_Click;
         btnEquipos.Location = new Point(12, 152);
         btnEquipos.Size = new Size(211, 46);
         btnEquipos.Text = "Equipos";
@@ -327,6 +330,7 @@ partial class FrmDashsbor
         btnEquipos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         // btnOrdenes
         btnOrdenes.Name = "btnOrdenes";
+        btnOrdenes.Click += btnOrdenes_Click;
         btnOrdenes.Location = new Point(12, 202);
         btnOrdenes.Size = new Size(211, 46);
         btnOrdenes.Text = "Órdenes de servicio";
@@ -351,6 +355,7 @@ partial class FrmDashsbor
         btnOrdenes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         // btnInventario
         btnInventario.Name = "btnInventario";
+        btnInventario.Click += btnInventario_Click;
         btnInventario.Location = new Point(12, 252);
         btnInventario.Size = new Size(211, 46);
         btnInventario.Text = "Inventario";
@@ -375,6 +380,7 @@ partial class FrmDashsbor
         btnInventario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         // btnPagos
         btnPagos.Name = "btnPagos";
+        btnPagos.Click += btnPagos_Click;
         btnPagos.Location = new Point(12, 302);
         btnPagos.Size = new Size(211, 46);
         btnPagos.Text = "Pagos";
@@ -399,6 +405,8 @@ partial class FrmDashsbor
         btnPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         // btnReportes
         btnReportes.Name = "btnReportes";
+        btnReportes.Click += btnReportes_Click;
+        ayudaControles.SetToolTip(btnReportes, "Reportes de órdenes, pagos e inventario.");
         btnReportes.Location = new Point(12, 352);
         btnReportes.Size = new Size(211, 46);
         btnReportes.Text = "Reportes";
@@ -432,6 +440,7 @@ partial class FrmDashsbor
         lblAdministracion.AutoEllipsis = true;
         // btnCatalogos
         btnCatalogos.Name = "btnCatalogos";
+        btnCatalogos.Click += btnCatalogos_Click;
         btnCatalogos.Location = new Point(12, 459);
         btnCatalogos.Size = new Size(211, 46);
         btnCatalogos.Text = "Catálogos";
@@ -456,6 +465,7 @@ partial class FrmDashsbor
         btnCatalogos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         // btnUsuarios
         btnUsuarios.Name = "btnUsuarios";
+        btnUsuarios.Click += btnUsuarios_Click;
         btnUsuarios.Location = new Point(12, 509);
         btnUsuarios.Size = new Size(211, 46);
         btnUsuarios.Text = "Usuarios";
@@ -706,6 +716,7 @@ partial class FrmDashsbor
         lblOrdenesRecientes.AutoEllipsis = true;
         // btnVerOrdenes
         btnVerOrdenes.Name = "btnVerOrdenes";
+        btnVerOrdenes.Click += btnOrdenes_Click;
         btnVerOrdenes.Location = new Point(588, 5);
         btnVerOrdenes.Size = new Size(112, 34);
         btnVerOrdenes.Text = "Ver todas";

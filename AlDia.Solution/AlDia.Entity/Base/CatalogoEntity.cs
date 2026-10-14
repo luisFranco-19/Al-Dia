@@ -4,35 +4,54 @@ namespace AlDia.Entity.Base;
 
 public abstract class CatalogoEntity
 {
-    private readonly int _longitudNombre;
-    private readonly int _longitudDescripcion;
-
     #region Propiedades
-    public string Nombre { get; private set; }
+    //Defino las propriedades de la clase CatalogoEntity.
+    //Nombre: Nombre del catálogo.
+    public string Nombre { get; private set; } = string.Empty;
+    //Descripcion: Descripción del catálogo.
     public string? Descripcion { get; private set; }
+    //Estado: Estado del catálogo.
     public bool Estado { get; private set; }
+    // Nombre del estado del catálogo.
     public string EstadoNombre => Estado ? "Activo" : "Inactivo";
     #endregion
 
     #region Constructores
-    protected CatalogoEntity(string nombre, string? descripcion, bool estado,
-        int longitudNombre, int longitudDescripcion)
+    // Los datos se completan con los métodos Cambiar...
+    protected CatalogoEntity() { }
+
+    //Constructor de la clase CatalogoEntity.
+    protected CatalogoEntity(string nombre, string? descripcion, bool estado) : this()
     {
-        _longitudNombre = longitudNombre;
-        _longitudDescripcion = longitudDescripcion;
-        Nombre = Validacion.Texto(nombre, "Nombre", _longitudNombre);
-        Descripcion = Validacion.Opcional(descripcion, "Descripcion", _longitudDescripcion);
-        Estado = estado;
+        CambiarNombre(nombre);
+        CambiarDescripcion(descripcion);
+        CambiarEstado(estado);
     }
     #endregion
 
     #region Metodos
-    public void CambiarNombre(string nombre) =>
-        Nombre = Validacion.Texto(nombre, "Nombre", _longitudNombre);
-    public void CambiarDescripcion(string? descripcion) =>
-        Descripcion = Validacion.Opcional(descripcion, "Descripcion", _longitudDescripcion);
+    //Metodos para cambiar el nombre, la descripción y el estado del catálogo.
+    public void CambiarNombre(string nombre)
+    {
+        if (string.IsNullOrWhiteSpace(nombre))
+            throw new ValidacionException("Debe ingresar el nombre del catalogo.");
+        Nombre = nombre.Trim();
+    }
+
+    public void CambiarDescripcion(string? descripcion)
+    {
+        Descripcion = string.IsNullOrWhiteSpace(descripcion) ? null : descripcion.Trim();
+    }
+    //el estado va ser igual al estado.
     public void CambiarEstado(bool estado) => Estado = estado;
+    //Se activa el estado.
     public void Activar() => CambiarEstado(true);
     public void Desactivar() => CambiarEstado(false);
+
+    protected void ValidarCatalogo()
+    {
+        if (string.IsNullOrWhiteSpace(Nombre))
+            throw new ValidacionException("Debe ingresar el nombre del catalogo.");
+    }
     #endregion
 }

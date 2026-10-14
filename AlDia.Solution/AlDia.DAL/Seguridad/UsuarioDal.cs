@@ -5,25 +5,66 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 namespace AlDia.DAL.Seguridad;
 
-public sealed class UsuarioDal(EjecutorSql sql) : IUsuarioDal
+public sealed class UsuarioDal : IUsuarioDal
 {
-    internal static UsuarioEntity Mapear(SqlDataReader r) => new(
-        r.Entero("IdUsuario"), r.Texto("Nombre"), r.Texto("Apellido"), r.Texto("Cedula"),
-        r.TextoOpcional("Telefono"), r.TextoOpcional("Correo"), r.Texto("Usuario"),
-        r.Entero("IdRol"), r.Texto("Rol"), r.Bit("Estado"), r.Fecha("FechaRegistro"));
-    public Task<EstadoInicializacion> ConsultarInicializacionAsync(CancellationToken ct = default) =>
-        sql.EjecutarAsync("dbo.usp_ConsultarInicializacion",
-            [ParametrosSql.Salida("@HayUsuarios", SqlDbType.Bit), ParametrosSql.Salida("@HayAdministradorActivo", SqlDbType.Bit)],
-            async (cmd, token) =>
-            {
-                await cmd.ExecuteNonQueryAsync(token);
-                return new EstadoInicializacion(Convert.ToBoolean(cmd.Parameters["@HayUsuarios"].Value), Convert.ToBoolean(cmd.Parameters["@HayAdministradorActivo"].Value));
-            }, null, ct);
+    private readonly EjecutorSql _sql;
+
+    public UsuarioDal(EjecutorSql sql)
+    {
+        _sql = sql ?? throw new ArgumentNullException(nameof(sql));
+    }
+
+    internal static UsuarioEntity Mapear(SqlDataReader r)
+    {
+        UsuarioEntity entidad = new();
+        entidad.AsignarId(r.Entero("IdUsuario"));
+        entidad.CambiarNombre(r.Texto("Nombre"));
+        entidad.CambiarApellido(r.Texto("Apellido"));
+        entidad.CambiarCedula(r.Texto("Cedula"));
+        entidad.CambiarTelefono(r.TextoOpcional("Telefono"));
+        entidad.CambiarCorreo(r.TextoOpcional("Correo"));
+        entidad.CambiarUsuario(r.Texto("Usuario"));
+        entidad.CambiarRol(r.Entero("IdRol"), r.Texto("Rol"));
+        entidad.CambiarEstado(r.Bit("Estado"));
+        entidad.AsignarFechaRegistro(r.Fecha("FechaRegistro"));
+        return entidad;
+    }
+    public async Task<EstadoInicializacion> ConsultarInicializacionAsync(CancellationToken ct = default)
+    {
+        try
+        {
+            using SqlConnection cn = _sql.ObtenerConexion();
+            using SqlCommand cmd = new("dbo.usp_ConsultarInicializacion", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(ParametrosSql.Salida("@HayUsuarios", SqlDbType.Bit));
+            cmd.Parameters.Add(ParametrosSql.Salida("@HayAdministradorActivo", SqlDbType.Bit));
+
+            await cn.OpenAsync(ct);
+            await cmd.ExecuteNonQueryAsync(ct);
+            return new EstadoInicializacion(Convert.ToBoolean(cmd.Parameters["@HayUsuarios"].Value), Convert.ToBoolean(cmd.Parameters["@HayAdministradorActivo"].Value));
+        }
+        catch (SqlException ex) when (!ct.IsCancellationRequested)
+        {
+            throw await _sql.TraducirErrorAsync(ex, null);
+        }
+    }
     public async Task<CredencialUsuario?> BuscarCredencialAsync(string usuario, CancellationToken ct = default)
     {
-        var resultados = await sql.ConsultarAsync("dbo.usp_BuscarCredencialUsuario", [ParametrosSql.Texto("@Usuario", usuario, 50)],
-            r => new CredencialUsuario(Mapear(r), r.Texto("ContrasenaHash")), null, ct);
-        return resultados.SingleOrDefault();
+        try
+        {
+            using SqlConnection cn = _sql.ObtenerConexion();
+            using SqlCommand cmd = new("dbo.usp_BuscarCredencialUsuario", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(ParametrosSql.Texto("@Usuario", usuario, 50));
+            await cn.OpenAsync(ct);
+            using SqlDataReader dr = await cmd.ExecuteReaderAsync(ct);
+            if (!await dr.ReadAsync(ct)) return null;
+            return new CredencialUsuario(Mapear(dr), dr.Texto("ContrasenaHash"));
+        }
+        catch (SqlException ex) when (!ct.IsCancellationRequested)
+        {
+            throw await _sql.TraducirErrorAsync(ex, null);
+        }
     }
     private static SqlParameter[] DatosUsuario(UsuarioSolicitud s, string? hash) =>
     [
@@ -32,23 +73,171 @@ public sealed class UsuarioDal(EjecutorSql sql) : IUsuarioDal
         ParametrosSql.Texto("@Correo", s.Correo, 100), ParametrosSql.Texto("@Usuario", s.Usuario, 50),
         ParametrosSql.Texto("@ContrasenaHash", hash, 255)
     ];
-    public Task<int> CrearAdministradorInicialAsync(UsuarioSolicitud s, string hash, CancellationToken ct = default) =>
-        sql.EscribirAsync("dbo.usp_CrearAdministradorInicial", [..DatosUsuario(s, hash), ParametrosSql.Salida("@IdUsuario")], "@IdUsuario", null, ct);
-    public Task<int> GuardarAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct = default) =>
-        sql.EscribirAsync("dbo.usp_GuardarUsuario", [ParametrosSql.Entero("@IdUsuarioActor", idActor), ParametrosSql.EntradaSalida("@IdUsuario", s.IdUsuario),
-            ..DatosUsuario(s, hash), ParametrosSql.Texto("@Rol", s.Rol.ToString(), 50), ParametrosSql.Bit("@Estado", s.Estado)], "@IdUsuario", idActor, ct);
-    public Task<IReadOnlyList<UsuarioEntity>> ConsultarAsync(int idActor, int? idUsuario = null, bool soloActivos = true, CancellationToken ct = default) =>
-        sql.ConsultarAsync("dbo.usp_ConsultarUsuarios", [ParametrosSql.Entero("@IdUsuarioActor", idActor), ParametrosSql.Entero("@IdUsuario", idUsuario),
-            ParametrosSql.Bit("@SoloActivos", soloActivos)], Mapear, idActor, ct);
-    public Task<int> GuardarPorRolAsync(int idActor, UsuarioRolSolicitud s, string? hash, CancellationToken ct = default) =>
-        sql.EscribirAsync("dbo.usp_GuardarUsuario", [ParametrosSql.Entero("@IdUsuarioActor", idActor),
-            ParametrosSql.EntradaSalida("@IdUsuario", s.IdUsuario), ParametrosSql.Entero("@IdRol", s.IdRol),
-            ParametrosSql.Texto("@Nombre", s.Nombre, 100), ParametrosSql.Texto("@Apellido", s.Apellido, 100),
-            ParametrosSql.Texto("@Cedula", s.Cedula, 20), ParametrosSql.Texto("@Telefono", s.Telefono, 20),
-            ParametrosSql.Texto("@Correo", s.Correo, 100), ParametrosSql.Texto("@Usuario", s.Usuario, 50),
-            ParametrosSql.Texto("@ContrasenaHash", hash, 255), ParametrosSql.Bit("@Estado", s.Estado)], "@IdUsuario", idActor, ct);
-    public Task<PaginacionEntity<UsuarioEntity>> ConsultarPaginaAsync(int idActor, int pagina, int tamPagina,
-        string? buscar, bool soloActivos, CancellationToken ct = default) =>
-        sql.ConsultarPaginaAsync("dbo.usp_ConsultarUsuarios", [ParametrosSql.Entero("@IdUsuarioActor", idActor),
-            ParametrosSql.Bit("@SoloActivos", soloActivos)], Mapear, idActor, pagina, tamPagina, buscar, ct);
+    public async Task<int> CrearAdministradorInicialAsync(UsuarioSolicitud s, string hash, CancellationToken ct = default)
+    {
+        try
+        {
+            using SqlConnection cn = _sql.ObtenerConexion();
+            using SqlCommand cmd = new("dbo.usp_CrearAdministradorInicial", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddRange(DatosUsuario(s, hash));
+            cmd.Parameters.Add(ParametrosSql.Salida("@IdUsuario"));
+
+            await cn.OpenAsync(ct);
+            await cmd.ExecuteNonQueryAsync(ct);
+            return Convert.ToInt32(cmd.Parameters["@IdUsuario"].Value);
+        }
+        catch (SqlException ex) when (!ct.IsCancellationRequested)
+        {
+            throw await _sql.TraducirErrorAsync(ex, null);
+        }
+    }
+    public Task<int> GuardarAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        return s.IdUsuario == 0
+            ? AgregarAsync(idActor, s, hash, ct)
+            : ActualizarAsync(idActor, s, hash, ct);
+    }
+
+    public Task<int> AgregarAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        if (s.IdUsuario != 0)
+            throw new ValidacionException("Para agregar, el registro debe ser nuevo.");
+        return GuardarRegistroAsync(idActor, s, hash, ct);
+    }
+
+    public Task<int> ActualizarAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        Validacion.Id(s.IdUsuario, "IdUsuario");
+        return GuardarRegistroAsync(idActor, s, hash, ct);
+    }
+
+    private async Task<int> GuardarRegistroAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct)
+    {
+        try
+        {
+            using SqlConnection cn = _sql.ObtenerConexion();
+            using SqlCommand cmd = new("dbo.usp_GuardarUsuario", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(ParametrosSql.Entero("@IdUsuarioActor", idActor));
+            cmd.Parameters.Add(ParametrosSql.EntradaSalida("@IdUsuario", s.IdUsuario));
+            cmd.Parameters.AddRange(DatosUsuario(s, hash));
+            cmd.Parameters.Add(ParametrosSql.Texto("@Rol", s.Rol.ToString(), 50));
+            cmd.Parameters.Add(ParametrosSql.Bit("@Estado", s.Estado));
+
+            await cn.OpenAsync(ct);
+            await cmd.ExecuteNonQueryAsync(ct);
+            return Convert.ToInt32(cmd.Parameters["@IdUsuario"].Value);
+        }
+        catch (SqlException ex) when (!ct.IsCancellationRequested)
+        {
+            throw await _sql.TraducirErrorAsync(ex, idActor);
+        }
+    }
+    public async Task<IReadOnlyList<UsuarioEntity>> ConsultarAsync(int idActor, int? idUsuario = null, bool soloActivos = true, CancellationToken ct = default)
+    {
+        try
+        {
+            using SqlConnection cn = _sql.ObtenerConexion();
+            using SqlCommand cmd = new("dbo.usp_ConsultarUsuarios", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(ParametrosSql.Entero("@IdUsuarioActor", idActor));
+            cmd.Parameters.Add(ParametrosSql.Entero("@IdUsuario", idUsuario));
+            cmd.Parameters.Add(ParametrosSql.Bit("@SoloActivos", soloActivos));
+
+            await cn.OpenAsync(ct);
+            List<UsuarioEntity> registros = [];
+            using SqlDataReader dr = await cmd.ExecuteReaderAsync(ct);
+            while (await dr.ReadAsync(ct)) registros.Add(Mapear(dr));
+            return registros.AsReadOnly();
+        }
+        catch (SqlException ex) when (!ct.IsCancellationRequested)
+        {
+            throw await _sql.TraducirErrorAsync(ex, idActor);
+        }
+    }
+    public Task<int> GuardarPorRolAsync(int idActor, UsuarioRolSolicitud s, string? hash, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        return s.IdUsuario == 0
+            ? AgregarAsync(idActor, s, hash, ct)
+            : ActualizarAsync(idActor, s, hash, ct);
+    }
+
+    public Task<int> AgregarAsync(int idActor, UsuarioRolSolicitud s, string? hash, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        if (s.IdUsuario != 0)
+            throw new ValidacionException("Para agregar, el registro debe ser nuevo.");
+        return GuardarPorRolRegistroAsync(idActor, s, hash, ct);
+    }
+
+    public Task<int> ActualizarAsync(int idActor, UsuarioRolSolicitud s, string? hash, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        Validacion.Id(s.IdUsuario, "IdUsuario");
+        return GuardarPorRolRegistroAsync(idActor, s, hash, ct);
+    }
+
+    private async Task<int> GuardarPorRolRegistroAsync(int idActor, UsuarioRolSolicitud s, string? hash, CancellationToken ct)
+    {
+        try
+        {
+            using SqlConnection cn = _sql.ObtenerConexion();
+            using SqlCommand cmd = new("dbo.usp_GuardarUsuario", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(ParametrosSql.Entero("@IdUsuarioActor", idActor));
+            cmd.Parameters.Add(ParametrosSql.EntradaSalida("@IdUsuario", s.IdUsuario));
+            cmd.Parameters.Add(ParametrosSql.Entero("@IdRol", s.IdRol));
+            cmd.Parameters.Add(ParametrosSql.Texto("@Nombre", s.Nombre, 100));
+            cmd.Parameters.Add(ParametrosSql.Texto("@Apellido", s.Apellido, 100));
+            cmd.Parameters.Add(ParametrosSql.Texto("@Cedula", s.Cedula, 20));
+            cmd.Parameters.Add(ParametrosSql.Texto("@Telefono", s.Telefono, 20));
+            cmd.Parameters.Add(ParametrosSql.Texto("@Correo", s.Correo, 100));
+            cmd.Parameters.Add(ParametrosSql.Texto("@Usuario", s.Usuario, 50));
+            cmd.Parameters.Add(ParametrosSql.Texto("@ContrasenaHash", hash, 255));
+            cmd.Parameters.Add(ParametrosSql.Bit("@Estado", s.Estado));
+
+            await cn.OpenAsync(ct);
+            await cmd.ExecuteNonQueryAsync(ct);
+            return Convert.ToInt32(cmd.Parameters["@IdUsuario"].Value);
+        }
+        catch (SqlException ex) when (!ct.IsCancellationRequested)
+        {
+            throw await _sql.TraducirErrorAsync(ex, idActor);
+        }
+    }
+    public async Task<PaginacionEntity<UsuarioEntity>> ConsultarPaginaAsync(int idActor, int pagina, int tamPagina,
+        string? buscar, bool soloActivos, CancellationToken ct = default)
+    {
+        try
+        {
+            using SqlConnection cn = _sql.ObtenerConexion();
+            using SqlCommand cmd = new("dbo.usp_ConsultarUsuarios", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(ParametrosSql.Entero("@IdUsuarioActor", idActor));
+            cmd.Parameters.Add(ParametrosSql.Bit("@SoloActivos", soloActivos));
+            cmd.Parameters.Add(ParametrosSql.Entero("@Pagina", pagina));
+            cmd.Parameters.Add(ParametrosSql.Entero("@TamPagina", tamPagina));
+            cmd.Parameters.Add(ParametrosSql.Texto("@Buscar", buscar, 100, true));
+            cmd.Parameters.Add(ParametrosSql.Salida("@TotalRegistros"));
+
+            await cn.OpenAsync(ct);
+            List<UsuarioEntity> registros = [];
+            using (SqlDataReader dr = await cmd.ExecuteReaderAsync(ct))
+            {
+                while (await dr.ReadAsync(ct)) registros.Add(Mapear(dr));
+            }
+            // SQL entrega el total mediante OUTPUT al cerrar el lector.
+            return new PaginacionEntity<UsuarioEntity>(registros,
+                Convert.ToInt32(cmd.Parameters["@TotalRegistros"].Value), pagina, tamPagina);
+        }
+        catch (SqlException ex) when (!ct.IsCancellationRequested)
+        {
+            throw await _sql.TraducirErrorAsync(ex, idActor);
+        }
+    }
 }

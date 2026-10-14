@@ -10,6 +10,9 @@ public sealed class ClienteEntity : PersonaEntity
     #endregion
 
     #region Constructores
+    // se crea un objeto cliente sin datos, para completarlos mediante metodos.
+    public ClienteEntity() : base() { }
+    //se prepara para crear un cliente nuevo con un ID 0 y un esado activo por defecto.
     public ClienteEntity(string nombre, string apellido, string telefono, string cedula)
         : this(0, nombre, apellido, telefono, cedula, true) { }
 
@@ -17,7 +20,8 @@ public sealed class ClienteEntity : PersonaEntity
     public ClienteEntity(int idCliente, string nombre, string apellido, string telefono,
         string cedula, bool estado) : base(nombre, apellido, cedula, estado)
     {
-        IdCliente = Validacion.IdNuevoOExistente(idCliente, "IdCliente");
+        Validacion.IdNuevoOExistente(idCliente, "IdCliente");
+        if (idCliente > 0) AsignarId(idCliente);
         CambiarTelefono(telefono);
     }
     #endregion
@@ -31,12 +35,23 @@ public sealed class ClienteEntity : PersonaEntity
         IdCliente = id;
     }
 
-    public override void CambiarTelefono(string? telefono) =>
-        base.CambiarTelefono(Validacion.Texto(telefono, "Telefono", 20));
+    public override void CambiarTelefono(string? telefono)
+    {
+        if (string.IsNullOrWhiteSpace(telefono))
+            throw new ValidacionException("Debe ingresar el telefono del cliente.");
+        base.CambiarTelefono(telefono);
+    }
 
-    public ClienteSolicitud CrearSolicitud() =>
-        new(Nombre, Apellido, Telefono!, Cedula, Estado, IdCliente);
+    public ClienteSolicitud CrearSolicitud()
+    {
+        ValidarPersona();
+        if (string.IsNullOrWhiteSpace(Telefono))
+            throw new ValidacionException("Debe ingresar el telefono del cliente.");
+        return new(Nombre, Apellido, Telefono, Cedula, Estado, IdCliente);
+    }
     #endregion
 }
-
-public sealed record ClienteSolicitud(string Nombre, string Apellido, string Telefono, string Cedula, bool Estado = true, int IdCliente = 0);
+// Objeto para que recopile la imformacion de un cliente y
+// y se prepara medinate Crear Solicitud.
+public sealed record ClienteSolicitud(string Nombre, string Apellido, string Telefono, string Cedula,
+    bool Estado = true, int IdCliente = 0);

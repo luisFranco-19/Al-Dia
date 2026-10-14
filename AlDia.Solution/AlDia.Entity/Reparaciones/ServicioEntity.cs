@@ -11,13 +11,16 @@ public sealed class ServicioEntity : CatalogoEntity
     #endregion
 
     #region Constructores
+    public ServicioEntity() : base() { }
+
     public ServicioEntity(string nombre, string? descripcion, decimal precioBase)
         : this(0, nombre, descripcion, precioBase, true) { }
 
     public ServicioEntity(int idServicio, string nombre, string? descripcion, decimal precioBase, bool estado)
-        : base(nombre, descripcion, estado, 100, 300)
+        : base(nombre, descripcion, estado)
     {
-        IdServicio = Validacion.IdNuevoOExistente(idServicio, "IdServicio");
+        Validacion.IdNuevoOExistente(idServicio, "IdServicio");
+        if (idServicio > 0) AsignarId(idServicio);
         CambiarPrecioBase(precioBase);
     }
     #endregion
@@ -32,7 +35,11 @@ public sealed class ServicioEntity : CatalogoEntity
     }
 
     public void CambiarPrecioBase(decimal precio) => PrecioBase = Validacion.Dinero(precio, "PrecioBase");
-    public ServicioSolicitud CrearSolicitud() => new(Nombre, Descripcion, PrecioBase, Estado, IdServicio);
+    public ServicioSolicitud CrearSolicitud()
+    {
+        ValidarCatalogo();
+        return new(Nombre, Descripcion, PrecioBase, Estado, IdServicio);
+    }
     #endregion
 }
 

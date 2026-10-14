@@ -12,14 +12,17 @@ GO
    MÓDULO: SISTEMA Y AUDITORÍA DE ERRORES
    AUTORIZACIÓN / ROLES: Cualquier usuario o llamado interno desde bloques CATCH
    DESCRIPCIÓN:
-   Registra excepciones no controladas en la tabla tblLogErrores con numero de error, procedimiento, linea, usuario y mensaje para auditoria técnica.
+   Registra excepciones no controladas en la tabla tblLogErrores con numero de error, 
+   procedimiento, linea, usuario y mensaje para auditoria técnica.
    ========================================================================= */
 CREATE OR ALTER PROCEDURE dbo.usp_RegistrarError
- @MensajeError NVARCHAR(MAX), @NumeroError INT, @Procedimiento NVARCHAR(100), @LineaError INT, @UsuarioApp NVARCHAR(25)
+ @MensajeError NVARCHAR(MAX), @NumeroError INT, @Procedimiento NVARCHAR(100),
+ @LineaError INT, @UsuarioApp NVARCHAR(25)
 AS
 BEGIN
  SET NOCOUNT ON;
-INSERT dbo.tblLogErrores(mensajeError,numeroError,procedimiento,lineaError,usuarioApp) VALUES(@MensajeError,@NumeroError,@Procedimiento,@LineaError,@UsuarioApp);
+INSERT dbo.tblLogErrores(mensajeError,numeroError,procedimiento,lineaError,usuarioApp) 
+VALUES(@MensajeError,@NumeroError,@Procedimiento,@LineaError,@UsuarioApp);
 END;
 GO
 
@@ -29,7 +32,8 @@ GO
    MÓDULO: SEGURIDAD / AUXILIAR INTERNO
    AUTORIZACIÓN / ROLES: Uso interno por los procedimientos del sistema
    DESCRIPCIÓN:
-   Valida que el usuario actor exista, se encuentre activo y posea uno de los roles autorizados consultando la tabla dbo.Roles. Lanza error 51001 si no cumple.
+   Valida que el usuario actor exista, se encuentre activo y posea uno de los
+   roles autorizados consultando la tabla dbo.Roles. Lanza error 51001 si no cumple.
    ========================================================================= */
 CREATE OR ALTER PROCEDURE dbo.usp_Interno_ValidarUsuario
     @IdUsuarioActor INT, @Roles VARCHAR(100)
@@ -51,7 +55,8 @@ GO
    MÓDULO: FLUJO DE TRABAJO / AUXILIAR INTERNO
    AUTORIZACIÓN / ROLES: Uso interno en operaciones transaccionales de órdenes
    DESCRIPCIÓN:
-   Bloquea con UPDLOCK y HOLDLOCK el registro de una orden de reparacion para garantizar concurrencia segura ante accesos simultáneos, retornando estado y técnico.
+   Bloquea con UPDLOCK y HOLDLOCK el registro de una orden de reparacion para
+   garantizar concurrencia segura ante accesos simultáneos, retornando estado y técnico.
    ========================================================================= */
 CREATE OR ALTER PROCEDURE dbo.usp_Interno_BloquearOrden
     @IdOrden INT, @Estado VARCHAR(50) OUTPUT, @Tecnico INT OUTPUT
@@ -74,7 +79,8 @@ GO
    MÓDULO: FLUJO DE TRABAJO / AUXILIAR INTERNO
    AUTORIZACIÓN / ROLES: Uso interno en transiciones de flujo
    DESCRIPCIÓN:
-   Registra formalmente una transicion de estado en dbo.HistorialEstados y actualiza la columna IdEstado en dbo.OrdenesReparacion.
+   Registra formalmente una transicion de estado en dbo.HistorialEstados y actualiza 
+   la columna IdEstado en dbo.OrdenesReparacion.
    ========================================================================= */
 CREATE OR ALTER PROCEDURE dbo.usp_Interno_Estado
     @IdOrden INT, @Nombre VARCHAR(50), @IdUsuarioActor INT, @Observacion VARCHAR(500)
@@ -98,7 +104,8 @@ GO
    MÓDULO: FINANZAS / AUXILIAR INTERNO
    AUTORIZACIÓN / ROLES: Uso interno tras agregar/modificar/retirar servicios o repuestos
    DESCRIPCIÓN:
-   Recalcula automáticamente el importe Total de la orden sumando los servicios registrados y los repuestos consumidos, validando no superar el costo aprobado.
+   Recalcula automáticamente el importe Total de la orden sumando los servicios registrados y
+   los repuestos consumidos, validando no superar el costo aprobado.
    ========================================================================= */
 CREATE OR ALTER PROCEDURE dbo.usp_Interno_RecalcularTotal
     @IdOrden INT
@@ -124,7 +131,8 @@ GO
    MÓDULO: SEGURIDAD / ARRANQUE
    AUTORIZACIÓN / ROLES: Público / Llamado por UI al iniciar la aplicación
    DESCRIPCIÓN:
-   Comprueba si la base de datos ya cuenta con usuarios y si existe al menos un Administrador activo en dbo.Roles. Permite al login saber si mostrar el asistente inicial.
+   Comprueba si la base de datos ya cuenta con usuarios y si existe al menos un
+   Administrador activo en dbo.Roles. Permite al login saber si mostrar el asistente inicial.
    ========================================================================= */
 CREATE OR ALTER PROCEDURE dbo.usp_ConsultarInicializacion
  @HayUsuarios BIT OUTPUT, @HayAdministradorActivo BIT OUTPUT
@@ -146,7 +154,8 @@ GO
    MÓDULO: SEGURIDAD / CONFIGURACIÓN INICIAL
    AUTORIZACIÓN / ROLES: Público (exclusivo para la creación del primer usuario)
    DESCRIPCIÓN:
-   Registra al primer usuario Administrador con su hash criptografico PBKDF2 (ContrasenaHash). Solo se permite si no existe ningun usuario en la base de datos.
+   Registra al primer usuario Administrador con su hash criptografico PBKDF2 (ContrasenaHash).
+   Solo se permite si no existe ningun usuario en la base de datos.
    ========================================================================= */
 CREATE OR ALTER PROCEDURE dbo.usp_CrearAdministradorInicial
  @Nombre VARCHAR(100), @Apellido VARCHAR(100), @Cedula VARCHAR(20), @Telefono VARCHAR(20), @Correo VARCHAR(100), @Usuario VARCHAR(50), @ContrasenaHash VARCHAR(255), @IdUsuario INT OUTPUT

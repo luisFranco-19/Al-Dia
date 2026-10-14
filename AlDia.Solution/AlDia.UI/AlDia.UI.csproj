@@ -23,4 +23,232 @@
     <Folder Include="Formularios\Hijos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Formularios\Base\FrmListadoBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Base\FrmListadoBase.Designer.cs">
+      <DependentUpon>FrmListadoBase.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Base\FrmListadoBase.resx">
+      <DependentUpon>FrmListadoBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Base\FrmRegistroBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Base\FrmRegistroBase.Designer.cs">
+      <DependentUpon>FrmRegistroBase.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Base\FrmRegistroBase.resx">
+      <DependentUpon>FrmRegistroBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmCatalogos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmCatalogos.Designer.cs">
+      <DependentUpon>FrmCatalogos.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Catalogos\FrmCatalogos.resx">
+      <DependentUpon>FrmCatalogos.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmRegistroRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmRegistroRol.Designer.cs">
+      <DependentUpon>FrmRegistroRol.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Catalogos\FrmRegistroRol.resx">
+      <DependentUpon>FrmRegistroRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmRegistroServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmRegistroServicio.Designer.cs">
+      <DependentUpon>FrmRegistroServicio.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Catalogos\FrmRegistroServicio.resx">
+      <DependentUpon>FrmRegistroServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmRegistroTipoEquipo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmRegistroTipoEquipo.Designer.cs">
+      <DependentUpon>FrmRegistroTipoEquipo.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Catalogos\FrmRegistroTipoEquipo.resx">
+      <DependentUpon>FrmRegistroTipoEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmRoles.Designer.cs">
+      <DependentUpon>FrmRoles.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Catalogos\FrmRoles.resx">
+      <DependentUpon>FrmRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmServicios.Designer.cs">
+      <DependentUpon>FrmServicios.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Catalogos\FrmServicios.resx">
+      <DependentUpon>FrmServicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmTiposEquipo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Catalogos\FrmTiposEquipo.Designer.cs">
+      <DependentUpon>FrmTiposEquipo.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Catalogos\FrmTiposEquipo.resx">
+      <DependentUpon>FrmTiposEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Clientes\FrmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Clientes\FrmClientes.Designer.cs">
+      <DependentUpon>FrmClientes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Clientes\FrmClientes.resx">
+      <DependentUpon>FrmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Clientes\FrmRegistroCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Clientes\FrmRegistroCliente.Designer.cs">
+      <DependentUpon>FrmRegistroCliente.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Clientes\FrmRegistroCliente.resx">
+      <DependentUpon>FrmRegistroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Equipos\FrmEquipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Equipos\FrmEquipos.Designer.cs">
+      <DependentUpon>FrmEquipos.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Equipos\FrmEquipos.resx">
+      <DependentUpon>FrmEquipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Equipos\FrmRegistroEquipo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Equipos\FrmRegistroEquipo.Designer.cs">
+      <DependentUpon>FrmRegistroEquipo.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Equipos\FrmRegistroEquipo.resx">
+      <DependentUpon>FrmRegistroEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Inventario\FrmAjusteExistencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Inventario\FrmAjusteExistencias.Designer.cs">
+      <DependentUpon>FrmAjusteExistencias.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Inventario\FrmAjusteExistencias.resx">
+      <DependentUpon>FrmAjusteExistencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Inventario\FrmInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Inventario\FrmInventario.Designer.cs">
+      <DependentUpon>FrmInventario.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Inventario\FrmInventario.resx">
+      <DependentUpon>FrmInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Inventario\FrmRegistroRepuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Inventario\FrmRegistroRepuesto.Designer.cs">
+      <DependentUpon>FrmRegistroRepuesto.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Inventario\FrmRegistroRepuesto.resx">
+      <DependentUpon>FrmRegistroRepuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\OrdenesServicio\FrmDetalleOrdenServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\OrdenesServicio\FrmDetalleOrdenServicio.Designer.cs">
+      <DependentUpon>FrmDetalleOrdenServicio.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\OrdenesServicio\FrmDetalleOrdenServicio.resx">
+      <DependentUpon>FrmDetalleOrdenServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\OrdenesServicio\FrmOrdenesServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\OrdenesServicio\FrmOrdenesServicio.Designer.cs">
+      <DependentUpon>FrmOrdenesServicio.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\OrdenesServicio\FrmOrdenesServicio.resx">
+      <DependentUpon>FrmOrdenesServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\OrdenesServicio\FrmRegistroOrdenServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\OrdenesServicio\FrmRegistroOrdenServicio.Designer.cs">
+      <DependentUpon>FrmRegistroOrdenServicio.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\OrdenesServicio\FrmRegistroOrdenServicio.resx">
+      <DependentUpon>FrmRegistroOrdenServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Pagos\FrmPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Pagos\FrmPagos.Designer.cs">
+      <DependentUpon>FrmPagos.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Pagos\FrmPagos.resx">
+      <DependentUpon>FrmPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Pagos\FrmRegistroPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Pagos\FrmRegistroPago.Designer.cs">
+      <DependentUpon>FrmRegistroPago.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Pagos\FrmRegistroPago.resx">
+      <DependentUpon>FrmRegistroPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Reportes\FrmReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Reportes\FrmReportes.Designer.cs">
+      <DependentUpon>FrmReportes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Reportes\FrmReportes.resx">
+      <DependentUpon>FrmReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Reportes\FrmVistaReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Reportes\FrmVistaReporte.Designer.cs">
+      <DependentUpon>FrmVistaReporte.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Reportes\FrmVistaReporte.resx">
+      <DependentUpon>FrmVistaReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Usuarios\FrmRegistroUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Usuarios\FrmRegistroUsuario.Designer.cs">
+      <DependentUpon>FrmRegistroUsuario.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Usuarios\FrmRegistroUsuario.resx">
+      <DependentUpon>FrmRegistroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Update="Formularios\Hijos\Usuarios\FrmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Hijos\Usuarios\FrmUsuarios.Designer.cs">
+      <DependentUpon>FrmUsuarios.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Formularios\Hijos\Usuarios\FrmUsuarios.resx">
+      <DependentUpon>FrmUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

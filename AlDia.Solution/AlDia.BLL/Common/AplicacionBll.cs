@@ -22,6 +22,7 @@ public sealed class AplicacionBll
     public ServicioBll Servicios { get; }
     public RepuestoBll Repuestos { get; }
     public PagoBll Pagos { get; }
+    public CatalogosBll Catalogos { get; }
     public AplicacionBll(string cadena) : this(new ConexionFactory(cadena)) { }
     public AplicacionBll(IConexionFactory conexiones)
     {
@@ -37,6 +38,7 @@ public sealed class AplicacionBll
         Servicios = new(new AlDia.DAL.Reparaciones.ServicioDal(sql), Sesion);
         Repuestos = new(new AlDia.DAL.Inventario.RepuestoDal(sql), Sesion);
         Pagos = new(new AlDia.DAL.Pagos.PagoDal(sql), Sesion);
+        Catalogos = new(Roles, TiposEquipo, Servicios);
     }
     public static AplicacionBll DesdeConexionActual() => new(new ConexionActualFactory());
 }

@@ -44,6 +44,21 @@ public sealed class UsuarioBll
         string? hash = contrasena is null ? null : _hash.Crear(contrasena);
         return _datos.GuardarAsync(actor, s, hash, ct);
     }
+    public Task<int> AgregarAsync(UsuarioEntity usuario, string contrasena, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(usuario);
+        if (usuario.IdUsuario != 0)
+            throw new ValidacionException("Para agregar, el registro debe ser nuevo.");
+        return GuardarEntidadAsync(usuario, contrasena, ct);
+    }
+
+    public Task<int> ActualizarAsync(UsuarioEntity usuario, string? contrasena = null, CancellationToken ct = default)
+    {
+        ArgumentNullException.ThrowIfNull(usuario);
+        Validacion.Id(usuario.IdUsuario, "IdUsuario");
+        return GuardarEntidadAsync(usuario, contrasena, ct);
+    }
+
     public async Task<int> GuardarEntidadAsync(UsuarioEntity usuario, string? contrasena = null, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(usuario);
@@ -101,5 +116,17 @@ public sealed class UsuarioBll
         ArgumentNullException.ThrowIfNull(s);
         return new UsuarioEntity(s.IdUsuario, s.Nombre, s.Apellido, s.Cedula, s.Telefono,
             s.Correo, s.Usuario, s.Rol, s.Estado, DateTime.Now).CrearSolicitud();
+    }
+
+    public async Task<PaginacionEntity<UsuarioEntity>> MostrarAsync(int pagina = 1, int tamPagina = 10,
+        string? buscar = null, bool? estado = null, string? nombreRol = null, CancellationToken ct = default)
+    {
+        ConsultaListado.Validar(pagina, tamPagina, buscar);
+        if (estado != false && nombreRol is null)
+            return await ConsultarPaginaAsync(pagina, tamPagina, buscar, estado == true, ct);
+        var registros = (await ConsultarAsync(soloActivos: false, ct: ct))
+            .Where(x => !estado.HasValue || x.Estado == estado.Value)
+            .Where(x => nombreRol is null || x.NombreRol == nombreRol);
+        return ConsultaListado.Paginar(registros, pagina, tamPagina, buscar, x => [x.Nombre, x.Apellido, x.Usuario, x.Cedula, x.Correo, x.Telefono, x.NombreRol]);
     }
 }

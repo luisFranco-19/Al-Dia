@@ -24,20 +24,40 @@ namespace AlDia.Entity.Entity
             CambiarDatosConexion(servidor, baseDatos, usuarioSql, password);
         }
 
-        public void CambiarServidor(string servidor) => _servidor = Validacion.Texto(servidor, "Servidor", 128);
-        public void CambiarBaseDatos(string baseDatos) => _baseDatos = Validacion.Texto(baseDatos, "BaseDatos", 128);
-        public void CambiarUsuarioSql(string usuarioSql) => _usuarioSql = Validacion.Texto(usuarioSql, "UsuarioSql", 128);
+        public void CambiarServidor(string servidor)
+        {
+            if (string.IsNullOrWhiteSpace(servidor))
+                throw new ValidacionException("Debe ingresar el servidor SQL.");
+            _servidor = servidor.Trim();
+        }
+
+        public void CambiarBaseDatos(string baseDatos)
+        {
+            if (string.IsNullOrWhiteSpace(baseDatos))
+                throw new ValidacionException("Debe ingresar la base de datos.");
+            _baseDatos = baseDatos.Trim();
+        }
+
+        public void CambiarUsuarioSql(string usuarioSql)
+        {
+            if (string.IsNullOrWhiteSpace(usuarioSql))
+                throw new ValidacionException("Debe ingresar el usuario SQL.");
+            _usuarioSql = usuarioSql.Trim();
+        }
         public void CambiarPassword(string password) => _password = ValidarPassword(password);
 
         public void CambiarDatosConexion(string servidor, string baseDatos, string usuarioSql, string password)
         {
-            var servidorValidado = Validacion.Texto(servidor, "Servidor", 128);
-            var baseValidada = Validacion.Texto(baseDatos, "BaseDatos", 128);
-            var usuarioValidado = Validacion.Texto(usuarioSql, "UsuarioSql", 128);
+            if (string.IsNullOrWhiteSpace(servidor))
+                throw new ValidacionException("Debe ingresar el servidor SQL.");
+            if (string.IsNullOrWhiteSpace(baseDatos))
+                throw new ValidacionException("Debe ingresar la base de datos.");
+            if (string.IsNullOrWhiteSpace(usuarioSql))
+                throw new ValidacionException("Debe ingresar el usuario SQL.");
             var passwordValidado = ValidarPassword(password);
-            _servidor = servidorValidado;
-            _baseDatos = baseValidada;
-            _usuarioSql = usuarioValidado;
+            _servidor = servidor.Trim();
+            _baseDatos = baseDatos.Trim();
+            _usuarioSql = usuarioSql.Trim();
             _password = passwordValidado;
         }
 
