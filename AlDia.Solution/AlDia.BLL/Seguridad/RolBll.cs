@@ -36,14 +36,17 @@ public sealed class RolBll
         return GuardarEntidadAsync(rol, ct);
     }
 
+    // Aplica permisos y guarda los datos del rol.
     public async Task<int> GuardarEntidadAsync(RolEntity rol, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(rol);
+        // Solo un administrador puede gestionar roles.
         int actor = _sesion.Exigir(RolUsuario.Administrador);
         int id = await _datos.GuardarAsync(actor, rol.CrearSolicitud(), ct);
         rol.AsignarId(id);
         return id;
     }
+    // Consulta roles para los formularios.
     public Task<IReadOnlyList<RolEntity>> ConsultarAsync(int? id = null, bool soloActivos = true, CancellationToken ct = default)
     {
         int actor = _sesion.Exigir(RolUsuario.Administrador);

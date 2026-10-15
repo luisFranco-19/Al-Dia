@@ -13,7 +13,7 @@ public sealed class UsuarioDal : IUsuarioDal
     {
         _sql = sql ?? throw new ArgumentNullException(nameof(sql));
     }
-
+    // Convierte una fila de SQL en un usuario.
     internal static UsuarioEntity Mapear(SqlDataReader r)
     {
         UsuarioEntity entidad = new();
@@ -29,6 +29,7 @@ public sealed class UsuarioDal : IUsuarioDal
         entidad.AsignarFechaRegistro(r.Fecha("FechaRegistro"));
         return entidad;
     }
+    // Consulta si hay usuarios y si hay un administrador activo.
     public async Task<EstadoInicializacion> ConsultarInicializacionAsync(CancellationToken ct = default)
     {
         try
@@ -48,11 +49,13 @@ public sealed class UsuarioDal : IUsuarioDal
             throw await _sql.TraducirErrorAsync(ex, null);
         }
     }
+    // Busca la cuenta y su hash para el login.
     public async Task<CredencialUsuario?> BuscarCredencialAsync(string usuario, CancellationToken ct = default)
     {
         try
         {
             using SqlConnection cn = _sql.ObtenerConexion();
+            // Ejecuta la consulta de credenciales.
             using SqlCommand cmd = new("dbo.usp_BuscarCredencialUsuario", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(ParametrosSql.Texto("@Usuario", usuario, 50));
@@ -66,6 +69,7 @@ public sealed class UsuarioDal : IUsuarioDal
             throw await _sql.TraducirErrorAsync(ex, null);
         }
     }
+    // Convierte los datos de un usuario en parámetros SQL.
     private static SqlParameter[] DatosUsuario(UsuarioSolicitud s, string? hash) =>
     [
         ParametrosSql.Texto("@Nombre", s.Nombre, 100), ParametrosSql.Texto("@Apellido", s.Apellido, 100),
@@ -73,6 +77,7 @@ public sealed class UsuarioDal : IUsuarioDal
         ParametrosSql.Texto("@Correo", s.Correo, 100), ParametrosSql.Texto("@Usuario", s.Usuario, 50),
         ParametrosSql.Texto("@ContrasenaHash", hash, 255)
     ];
+    // Crea el primer administrador del sistema.
     public async Task<int> CrearAdministradorInicialAsync(UsuarioSolicitud s, string hash, CancellationToken ct = default)
     {
         try
@@ -91,7 +96,7 @@ public sealed class UsuarioDal : IUsuarioDal
         {
             throw await _sql.TraducirErrorAsync(ex, null);
         }
-    }
+    } // Guarda un usuario, agregando o actualizando según corresponda.
     public Task<int> GuardarAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(s);
@@ -99,7 +104,7 @@ public sealed class UsuarioDal : IUsuarioDal
             ? AgregarAsync(idActor, s, hash, ct)
             : ActualizarAsync(idActor, s, hash, ct);
     }
-
+    // Agrega un nuevo usuario.
     public Task<int> AgregarAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(s);
@@ -108,6 +113,7 @@ public sealed class UsuarioDal : IUsuarioDal
         return GuardarRegistroAsync(idActor, s, hash, ct);
     }
 
+    // Actualiza un usuario existente.
     public Task<int> ActualizarAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(s);
@@ -115,6 +121,7 @@ public sealed class UsuarioDal : IUsuarioDal
         return GuardarRegistroAsync(idActor, s, hash, ct);
     }
 
+    // Guarda un usuario, agregando o actualizando según corresponda.
     private async Task<int> GuardarRegistroAsync(int idActor, UsuarioSolicitud s, string? hash, CancellationToken ct)
     {
         try
@@ -181,7 +188,7 @@ public sealed class UsuarioDal : IUsuarioDal
         Validacion.Id(s.IdUsuario, "IdUsuario");
         return GuardarPorRolRegistroAsync(idActor, s, hash, ct);
     }
-
+    // Guarda un usuario vinculado a un rol, agregando o actualizando según corresponda.
     private async Task<int> GuardarPorRolRegistroAsync(int idActor, UsuarioRolSolicitud s, string? hash, CancellationToken ct)
     {
         try

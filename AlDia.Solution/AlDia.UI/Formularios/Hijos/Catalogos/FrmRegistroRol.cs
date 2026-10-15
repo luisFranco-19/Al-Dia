@@ -25,6 +25,7 @@ public partial class FrmRegistroRol : FrmRegistroBase
         btnGuardar.Text = "Guardar cambios";
     }
 
+    // Carga el rol cuando se abrió para editar.
     protected override async Task CargarDatosAsync()
     {
         if (!_id.HasValue) return;
@@ -41,6 +42,7 @@ public partial class FrmRegistroRol : FrmRegistroBase
         return Requerido(txtNombre, "Ingrese el nombre.");
     }
 
+    // Agrega un rol nuevo o actualiza el existente.
     protected override async Task GuardarAsync()
     {
         _entidad ??= new RolEntity();

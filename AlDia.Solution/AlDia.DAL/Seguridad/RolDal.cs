@@ -8,15 +8,17 @@ namespace AlDia.DAL.Seguridad;
 
 public sealed class RolDal : IRolDal
 {
-    private readonly EjecutorSql _sql;
+    private readonly EjecutorSql _sql; 
 
     public RolDal(EjecutorSql sql)
     {
-        _sql = sql ?? throw new ArgumentNullException(nameof(sql));
+        _sql = sql ?? throw new ArgumentNullException(nameof(sql)); // Inyección de dependencia para la ejecución de SQL
     }
 
+    // Convierte una fila de SQL en un rol.
     private static RolEntity Mapear(SqlDataReader r)
     {
+        //Mapeamos los datos del lector de SQL a una entidad de rol
         RolEntity entidad = new();
         entidad.AsignarId(r.Entero("IdRol"));
         entidad.CambiarNombre(r.Texto("Nombre"));
@@ -26,10 +28,10 @@ public sealed class RolDal : IRolDal
     }
     public Task<int> GuardarAsync(int idActor, RolSolicitud s, CancellationToken ct = default)
     {
-        ArgumentNullException.ThrowIfNull(s);
+        ArgumentNullException.ThrowIfNull(s); // Validamos que el objeto de solicitud no sea nulo
         return s.IdRol == 0
-            ? AgregarAsync(idActor, s, ct)
-            : ActualizarAsync(idActor, s, ct);
+            ? AgregarAsync(idActor, s, ct)// Agregar un nuevo rol
+            : ActualizarAsync(idActor, s, ct);// Actualizar un rol existente
     }
 
     public Task<int> AgregarAsync(int idActor, RolSolicitud s, CancellationToken ct = default)
@@ -47,10 +49,12 @@ public sealed class RolDal : IRolDal
         return GuardarRegistroAsync(idActor, s, ct);
     }
 
+    // Ejecuta el procedimiento que guarda el rol.
     private async Task<int> GuardarRegistroAsync(int idActor, RolSolicitud s, CancellationToken ct)
     {
         try
         {
+            // Se abre la conexión y se prepara el comando para ejecutar el procedimiento almacenado
             using SqlConnection cn = _sql.ObtenerConexion();
             using SqlCommand cmd = new("dbo.usp_GuardarRol", cn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -69,6 +73,7 @@ public sealed class RolDal : IRolDal
             throw await _sql.TraducirErrorAsync(ex, idActor);
         }
     }
+    // Lee los roles disponibles desde SQL.
     public async Task<IReadOnlyList<RolEntity>> ConsultarAsync(int idActor, int? idRol = null, bool soloActivos = true, CancellationToken ct = default)
     {
         try
@@ -91,6 +96,7 @@ public sealed class RolDal : IRolDal
             throw await _sql.TraducirErrorAsync(ex, idActor);
         }
     }
+    // Lee los roles disponibles desde SQL con paginación.
     public async Task<PaginacionEntity<RolEntity>> ConsultarPaginaAsync(int idActor, int pagina, int tamPagina,
         string? buscar, bool soloActivos, CancellationToken ct = default)
     {

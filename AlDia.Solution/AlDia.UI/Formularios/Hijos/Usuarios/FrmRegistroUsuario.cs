@@ -43,6 +43,7 @@ public partial class FrmRegistroUsuario : FrmRegistroBase
         }
     }
 
+    // Carga los roles activos para poder asignarlos al usuario.
     protected override async Task CargarDatosAsync()
     {
         _roles = (await Aplicacion.Roles.MostrarRolesActivosAsync(TokenFormulario)).ToList();
@@ -83,6 +84,7 @@ public partial class FrmRegistroUsuario : FrmRegistroBase
         return valido;
     }
 
+    // Guarda el usuario junto con el rol elegido.
     protected override async Task GuardarAsync()
     {
         var rol = (RolEntity)cboRol.SelectedItem!;
@@ -93,6 +95,7 @@ public partial class FrmRegistroUsuario : FrmRegistroBase
         _usuario.CambiarTelefono(txtTelefono.Text);
         _usuario.CambiarCorreo(txtCorreo.Text);
         _usuario.CambiarUsuario(txtUsuario.Text);
+        // Guarda en el usuario el rol seleccionado.
         _usuario.CambiarRol(rol);
         _usuario.CambiarEstado(chkActivo.Checked);
         string? clave = txtContrasena.Text.Length == 0 ? null : txtContrasena.Text;

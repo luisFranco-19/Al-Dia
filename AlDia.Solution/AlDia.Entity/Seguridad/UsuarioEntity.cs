@@ -4,6 +4,7 @@ using System.Net.Mail;
 
 namespace AlDia.Entity.Seguridad;
 
+// Roles que el sistema reconoce para controlar permisos.
 public enum RolUsuario { Administrador, Recepcionista, Tecnico }
 
 public sealed class UsuarioEntity : PersonaEntity
@@ -16,6 +17,7 @@ public sealed class UsuarioEntity : PersonaEntity
     public string Usuario { get; private set; } = string.Empty;
     public string NombreRol { get; private set; } = string.Empty;
     // El catalogo puede tener mas nombres que los tres permisos existentes del sistema.
+    // Convierte el nombre del rol a un permiso reconocido.
     public RolUsuario? PermisoRol => Enum.TryParse<RolUsuario>(NombreRol, out var rol)
         && Enum.IsDefined(rol) && rol.ToString() == NombreRol ? rol : null;
     public RolUsuario Rol => PermisoRol ?? throw new PermisoException("El rol no tiene permisos configurados en el sistema.");
@@ -105,6 +107,7 @@ public sealed class UsuarioEntity : PersonaEntity
         NombreRol = rolValidado.ToString();
     }
 
+    // Asigna al usuario un rol activo del catálogo.
     public void CambiarRol(RolEntity rol)
     {
         int id = ValidarRolSeleccionado(rol);
@@ -149,6 +152,7 @@ public sealed class UsuarioEntity : PersonaEntity
         return new(Nombre, Apellido, Cedula, Usuario, Rol, Telefono, Correo, Estado, IdUsuario);
     }
 
+    // Prepara usuario y rol para guardarlos en la base.
     public UsuarioRolSolicitud CrearSolicitudPorRol()
     {
         ValidarUsuario();

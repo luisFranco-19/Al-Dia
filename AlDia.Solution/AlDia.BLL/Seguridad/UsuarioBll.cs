@@ -15,20 +15,28 @@ public sealed class UsuarioBll
         _sesion = sesion ?? throw new ArgumentNullException(nameof(sesion));
         _hash = hash ?? new HashContrasena();
     }
-    public Task<EstadoInicializacion> ConsultarInicializacionAsync(CancellationToken ct = default) => _datos.ConsultarInicializacionAsync(ct);
+    public Task<EstadoInicializacion> ConsultarInicializacionAsync(CancellationToken ct = default)
+        => _datos.ConsultarInicializacionAsync(ct);
+    // Verifica las credenciales y abre la sesión.
     public async Task<UsuarioEntity> AutenticarAsync(string usuario, string contrasena, CancellationToken ct = default)
     {
+        // Limpia cualquier sesión anterior.
         _sesion.Cerrar();
-        if (string.IsNullOrWhiteSpace(usuario) || usuario.Trim().Length > 50 || string.IsNullOrEmpty(contrasena) || contrasena.Length > 128)
+        if (string.IsNullOrWhiteSpace(usuario) || usuario.Trim().Length > 50 || string.IsNullOrEmpty(contrasena) 
+            || contrasena.Length > 128)
             throw new ValidacionException("Usuario o contrasena incorrectos.");
         var credencial = await _datos.BuscarCredencialAsync(usuario.Trim(), ct);
+        // Compara la contraseña con el hash guardado.
         bool valida = _hash.Verificar(contrasena, credencial?.Hash ?? HashFicticio);
-        if (!valida || credencial is null || !credencial.Usuario.Estado || !credencial.Usuario.PermisoRol.HasValue) throw new ValidacionException("Usuario o contrasena incorrectos.");
+        if (!valida || credencial is null || !credencial.Usuario.Estado || !credencial.Usuario.PermisoRol.HasValue)
+            throw new ValidacionException("Usuario o contrasena incorrectos.");
         ct.ThrowIfCancellationRequested();
+        // Guarda como activa la cuenta validada.
         _sesion.Iniciar(credencial.Usuario);
         return credencial.Usuario;
     }
-    public Task<int> CrearAdministradorInicialAsync(UsuarioSolicitud solicitud, string contrasena, CancellationToken ct = default)
+    public Task<int> CrearAdministradorInicialAsync(UsuarioSolicitud solicitud, string contrasena,
+        CancellationToken ct = default)
     {
         var s = Validar(solicitud);
         if (s.IdUsuario != 0 || s.Rol != RolUsuario.Administrador || !s.Estado)
@@ -74,6 +82,7 @@ public sealed class UsuarioBll
         if (idUsuario.HasValue) Validacion.Id(idUsuario.Value, "Usuario");
         return _datos.ConsultarAsync(actor, idUsuario, soloActivos, ct);
     }
+    // Guarda usuarios vinculados a un rol del catálogo.
     public Task<int> GuardarPorRolAsync(UsuarioRolSolicitud solicitud, string? contrasena = null, CancellationToken ct = default)
     {
         int actor = _sesion.Exigir(RolUsuario.Administrador);

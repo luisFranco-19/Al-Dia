@@ -3,6 +3,7 @@ using AlDia.Entity.Common;
 
 namespace AlDia.Entity.Seguridad;
 
+// Representa un rol del catálogo del sistema.
 public sealed class RolEntity : CatalogoEntity
 {
     #region Propiedades
@@ -12,6 +13,7 @@ public sealed class RolEntity : CatalogoEntity
     #region Constructores
     public RolEntity() : base() { }
 
+    // Crea un nuevo rol; el ID se deduce del nombre.
     public RolEntity(string nombre, string? descripcion = null)
         : this(0, nombre, descripcion, true) { }
 
@@ -33,6 +35,7 @@ public sealed class RolEntity : CatalogoEntity
         IdRol = id;
     }
 
+    // Prepara los datos validados para guardarlos.
     public RolSolicitud CrearSolicitud()
     {
         ValidarCatalogo();
@@ -40,5 +43,5 @@ public sealed class RolEntity : CatalogoEntity
     }
     #endregion
 }
-
+// Representa la solicitud de creación o actualización de un rol.
 public sealed record RolSolicitud(string Nombre, string? Descripcion, bool Estado = true, int IdRol = 0);

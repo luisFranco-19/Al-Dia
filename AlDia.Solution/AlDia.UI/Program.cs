@@ -26,8 +26,10 @@ namespace AlDia.UI
             var aplicacion = AplicacionBll.DesdeConexionActual();
             while (true)
             {
+                // Primero solicita el inicio de sesión.
                 using (var login = new FrmLogin(aplicacion.Usuarios))
                 {
+                    // Continúa solo si el usuario logró autenticarse.
                     if (login.ShowDialog() != DialogResult.OK || !aplicacion.Sesion.EstaAutenticada)
                         return;
                 }
@@ -50,8 +52,8 @@ namespace AlDia.UI
         {
             try
             {
-                var config = new ConfiguracionDal().Obtener();
-                if (config is null) throw new InvalidOperationException("No se encontró la configuración de conexión.");
+                var config = new ConfiguracionDal().Obtener()
+                    ?? throw new InvalidOperationException("No se encontró la configuración de conexión.");
                 Conexion.CadenaConexion = Conexion.ConstruirCadena(config);
                 return true;
             }

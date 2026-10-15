@@ -13,7 +13,7 @@ public partial class FrmLogin : Form
     private bool _reintentarConexion;
     private bool _recursosLiberados;
 
-    // El constructor sin argumentos permite abrir el disenador de Visual Studio.
+    
     public FrmLogin() => InitializeComponent();
     public FrmLogin(UsuarioBll usuarios) : this()
     {
@@ -79,6 +79,7 @@ public partial class FrmLogin : Form
         return usuarioValido && claveValida;
     }
 
+    // Envía las credenciales para iniciar sesión.
     private async Task IngresarAsync()
     {
         if (_ocupado || !_puedeIngresar || _usuarios is null || !ValidarCampos()) return;
@@ -86,6 +87,7 @@ public partial class FrmLogin : Form
         MostrarMensaje("Validando tus credenciales…", false);
         try
         {
+            // La BLL valida la cuenta y registra la sesión.
             await _usuarios.AutenticarAsync(txtUsuario.Text.Trim(), txtContrasena.Text, _cancelacion.Token);
             if (_cancelacion.IsCancellationRequested) return;
             txtContrasena.Clear();

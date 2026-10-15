@@ -1,21 +1,23 @@
 using System.Security.Cryptography;
 namespace AlDia.BLL.Seguridad;
 
-public interface IHashContrasena
+public interface IHashContrasena // Metodo para proteger y verificar contraseñas
 {
-    string Crear(string contrasena);
-    bool Verificar(string contrasena, string hash);
+    string Crear(string contrasena); // Protege la contraseña antes de guardarla.
+    bool Verificar(string contrasena, string hash);// Comprueba la contraseña contra el hash almacenado.
 }
-public sealed class HashContrasena : IHashContrasena
+public sealed class HashContrasena : IHashContrasena // Implementación de IHashContrasena
 {
-    private const int Iteraciones = 600000;
+    private const int Iteraciones = 600000; // Número de iteraciones del algoritmo PBKDF2
+    // Protege la contraseña antes de guardarla.
     public string Crear(string contrasena)
-    {
+    {   // Esto genera un hash seguro de la contraseña usando PBKDF2 con SHA256 y una sal aleatoria.
         ArgumentNullException.ThrowIfNull(contrasena);
         var sal = RandomNumberGenerator.GetBytes(16);
         var derivado = Rfc2898DeriveBytes.Pbkdf2(contrasena, sal, Iteraciones, HashAlgorithmName.SHA256, 32);
         return $"PBKDF2-SHA256${Iteraciones}${Convert.ToBase64String(sal)}${Convert.ToBase64String(derivado)}";
     }
+    // Comprueba la contraseña contra el hash almacenado.
     public bool Verificar(string contrasena, string hash)
     {
         try
