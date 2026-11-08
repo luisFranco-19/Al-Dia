@@ -14,9 +14,21 @@ partial class FrmDetalleOrdenServicio
 
     private void InitializeComponent()
     {
+        DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+        DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
         tablaExpediente = new TableLayoutPanel();
         tablaResumen = new TableLayoutPanel();
-        tabsExpediente = new TabControl();
         paneltxtOrdenResumen = new Panel();
         lbltxtOrdenResumen = new Label();
         txtOrdenResumen = new TextBox();
@@ -35,11 +47,8 @@ partial class FrmDetalleOrdenServicio
         paneltxtSaldoResumen = new Panel();
         lbltxtSaldoResumen = new Label();
         txtSaldoResumen = new TextBox();
+        tabsExpediente = new TabControl();
         tabRecepcion = new TabPage();
-        tabDiagnostico = new TabPage();
-        tabTrabajos = new TabPage();
-        tabPagos = new TabPage();
-        tabHistorial = new TabPage();
         paneltxtFechaRecepcionDetalle = new Panel();
         lbltxtFechaRecepcionDetalle = new Label();
         txtFechaRecepcionDetalle = new TextBox();
@@ -55,6 +64,7 @@ partial class FrmDetalleOrdenServicio
         paneltxtObservacionesDetalle = new Panel();
         lbltxtObservacionesDetalle = new Label();
         txtObservacionesDetalle = new TextBox();
+        tabDiagnostico = new TabPage();
         panelcboTecnicoDiagnostico = new Panel();
         lblcboTecnicoDiagnostico = new Label();
         cboTecnicoDiagnostico = new ComboBox();
@@ -69,19 +79,20 @@ partial class FrmDetalleOrdenServicio
         txtReparacionPropuesta = new TextBox();
         panelnumCostoEstimado = new Panel();
         lblnumCostoEstimado = new Label();
-        numCostoEstimado = new NumericUpDown();
+        numCostoEstimado = new TextBox();
         panelcboDecisionCliente = new Panel();
         lblcboDecisionCliente = new Label();
         cboDecisionCliente = new ComboBox();
         panelnumCostoAprobado = new Panel();
         lblnumCostoAprobado = new Label();
-        numCostoAprobado = new NumericUpDown();
+        numCostoAprobado = new TextBox();
         paneltxtFechaConfirmacion = new Panel();
         lbltxtFechaConfirmacion = new Label();
         txtFechaConfirmacion = new TextBox();
         paneltxtObservacionesDiagnostico = new Panel();
         lbltxtObservacionesDiagnostico = new Label();
         txtObservacionesDiagnostico = new TextBox();
+        tabTrabajos = new TabPage();
         lblServiciosOrden = new Label();
         btnAgregarServicio = new FontAwesome.Sharp.IconButton();
         dgvServiciosOrden = new DataGridView();
@@ -107,6 +118,7 @@ partial class FrmDetalleOrdenServicio
         paneltxtObservacionesTrabajo = new Panel();
         lbltxtObservacionesTrabajo = new Label();
         txtObservacionesTrabajo = new TextBox();
+        tabPagos = new TabPage();
         lblCobrosOrden = new Label();
         btnRegistrarPagoOrden = new FontAwesome.Sharp.IconButton();
         dgvPagosOrden = new DataGridView();
@@ -125,6 +137,7 @@ partial class FrmDetalleOrdenServicio
         paneltxtSaldoPagos = new Panel();
         lbltxtSaldoPagos = new Label();
         txtSaldoPagos = new TextBox();
+        tabHistorial = new TabPage();
         lblHistorialTitulo = new Label();
         lblHistorialDescripcion = new Label();
         dgvHistorialOrden = new DataGridView();
@@ -134,1189 +147,1792 @@ partial class FrmDetalleOrdenServicio
         dgvHistorialOrdenCol3 = new DataGridViewTextBoxColumn();
         dgvHistorialOrdenCol4 = new DataGridViewTextBoxColumn();
         lblHistorialVacio = new Label();
+        ((System.ComponentModel.ISupportInitialize)errorIcon).BeginInit();
+        panelContenido.SuspendLayout();
+        panelCabecera.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)iconModulo).BeginInit();
         panelCuerpo.SuspendLayout();
+        panelPie.SuspendLayout();
         tablaExpediente.SuspendLayout();
         tablaResumen.SuspendLayout();
+        paneltxtOrdenResumen.SuspendLayout();
+        paneltxtClienteResumen.SuspendLayout();
+        paneltxtEquipoResumen.SuspendLayout();
+        paneltxtEstadoResumen.SuspendLayout();
+        paneltxtTecnicoResumen.SuspendLayout();
+        paneltxtSaldoResumen.SuspendLayout();
         tabsExpediente.SuspendLayout();
         tabRecepcion.SuspendLayout();
+        paneltxtFechaRecepcionDetalle.SuspendLayout();
+        paneltxtRecepcionistaDetalle.SuspendLayout();
+        paneltxtProblemaRecepcionDetalle.SuspendLayout();
+        paneltxtAccesoriosDetalle.SuspendLayout();
+        paneltxtObservacionesDetalle.SuspendLayout();
         tabDiagnostico.SuspendLayout();
+        panelcboTecnicoDiagnostico.SuspendLayout();
+        paneltxtFechaDiagnostico.SuspendLayout();
+        paneltxtProblemaEncontrado.SuspendLayout();
+        paneltxtReparacionPropuesta.SuspendLayout();
+        panelnumCostoEstimado.SuspendLayout();
+        panelcboDecisionCliente.SuspendLayout();
+        panelnumCostoAprobado.SuspendLayout();
+        paneltxtFechaConfirmacion.SuspendLayout();
+        paneltxtObservacionesDiagnostico.SuspendLayout();
         tabTrabajos.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)dgvServiciosOrden).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)dgvRepuestosOrden).BeginInit();
+        paneltxtTotalTrabajos.SuspendLayout();
+        panelcboResultadoReparacion.SuspendLayout();
+        paneltxtObservacionesTrabajo.SuspendLayout();
         tabPagos.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)dgvPagosOrden).BeginInit();
+        paneltxtTotalPagos.SuspendLayout();
+        paneltxtPagadoOrden.SuspendLayout();
+        paneltxtSaldoPagos.SuspendLayout();
         tabHistorial.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)dgvHistorialOrden).BeginInit();
         SuspendLayout();
-        ClientSize = new Size(1040, 860);
-        lblTitulo.Text = "Expediente de la orden";
-        lblDescripcion.Text = "Recepción, diagnóstico, trabajos realizados, pagos e historial del equipo.";
+        // 
+        // panelContenido
+        // 
+        panelContenido.Size = new Size(1040, 860);
+        // 
+        // panelCabecera
+        // 
+        panelCabecera.Size = new Size(1040, 139);
+        // 
+        // iconModulo
+        // 
         iconModulo.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
-        btnGuardar.Text = "Guardar cambios";
+        // 
+        // lblTitulo
+        // 
+        lblTitulo.Text = "Expediente de la orden";
+        // 
+        // lblDescripcion
+        // 
+        lblDescripcion.Text = "Recepción, diagnóstico, trabajos realizados, pagos e historial del equipo.";
+        // 
+        // btnCerrar
+        // 
+        btnCerrar.FlatAppearance.BorderSize = 0;
+        btnCerrar.FlatAppearance.MouseOverBackColor = Color.FromArgb(244, 246, 250);
+        btnCerrar.Location = new Point(859, 4);
+        // 
+        // panelCuerpo
+        // 
+        panelCuerpo.Controls.Add(tablaExpediente);
+        panelCuerpo.Size = new Size(1040, 614);
+        // 
+        // panelPie
+        // 
+        panelPie.Location = new Point(0, 753);
+        panelPie.Size = new Size(1040, 107);
+        // 
+        // lineaPie
+        // 
+        lineaPie.Size = new Size(1040, 1);
+        // 
+        // lblObligatorios
+        // 
+        lblObligatorios.Size = new Size(262, 32);
         lblObligatorios.Text = "Información de la orden de servicio";
-        tablaExpediente.Name = "tablaExpediente";
-        tablaExpediente.Dock = DockStyle.Top;
-        tablaExpediente.Size = new Size(984, 672);
+        lblObligatorios.TextAlign = ContentAlignment.MiddleLeft;
+        // 
+        // btnCancelar
+        // 
+        btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(211, 221, 232);
+        btnCancelar.FlatAppearance.MouseDownBackColor = Color.FromArgb(230, 236, 243);
+        btnCancelar.FlatAppearance.MouseOverBackColor = Color.FromArgb(244, 246, 250);
+        btnCancelar.Location = new Point(857, 25);
+        // 
+        // btnGuardar
+        // 
+        btnGuardar.FlatAppearance.BorderColor = Color.FromArgb(211, 221, 232);
+        btnGuardar.FlatAppearance.BorderSize = 0;
+        btnGuardar.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 64, 175);
+        btnGuardar.FlatAppearance.MouseOverBackColor = Color.FromArgb(29, 78, 216);
+        btnGuardar.Location = new Point(774, 25);
+        btnGuardar.Text = "Guardar cambios";
+        // 
+        // tablaExpediente
+        // 
         tablaExpediente.ColumnCount = 1;
         tablaExpediente.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        tablaExpediente.Controls.Add(tablaResumen, 0, 0);
+        tablaExpediente.Controls.Add(tabsExpediente, 0, 1);
+        tablaExpediente.Dock = DockStyle.Top;
+        tablaExpediente.Location = new Point(32, 32);
+        tablaExpediente.Margin = new Padding(0);
+        tablaExpediente.Name = "tablaExpediente";
         tablaExpediente.RowCount = 2;
         tablaExpediente.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
         tablaExpediente.RowStyles.Add(new RowStyle(SizeType.Absolute, 502F));
-        tablaExpediente.Margin = new Padding(0);
+        tablaExpediente.Size = new Size(955, 672);
         tablaExpediente.TabIndex = 0;
-        tablaResumen.Name = "tablaResumen";
-        tablaResumen.Size = new Size(984, 160);
-        tablaResumen.Dock = DockStyle.Fill;
+        // 
+        // tablaResumen
+        // 
         tablaResumen.ColumnCount = 3;
         tablaResumen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
         tablaResumen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.34F));
         tablaResumen.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+        tablaResumen.Controls.Add(paneltxtOrdenResumen, 0, 0);
+        tablaResumen.Controls.Add(paneltxtClienteResumen, 1, 0);
+        tablaResumen.Controls.Add(paneltxtEquipoResumen, 2, 0);
+        tablaResumen.Controls.Add(paneltxtEstadoResumen, 0, 1);
+        tablaResumen.Controls.Add(paneltxtTecnicoResumen, 1, 1);
+        tablaResumen.Controls.Add(paneltxtSaldoResumen, 2, 1);
+        tablaResumen.Dock = DockStyle.Fill;
+        tablaResumen.Location = new Point(0, 0);
+        tablaResumen.Margin = new Padding(0, 0, 0, 10);
+        tablaResumen.Name = "tablaResumen";
         tablaResumen.RowCount = 2;
         tablaResumen.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
         tablaResumen.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-        tablaResumen.Margin = new Padding(0, 0, 0, 10);
+        tablaResumen.Size = new Size(955, 160);
         tablaResumen.TabIndex = 0;
-        tabsExpediente.Name = "tabsExpediente";
-        tabsExpediente.Size = new Size(984, 502);
+        // 
+        // paneltxtOrdenResumen
+        // 
+        paneltxtOrdenResumen.Controls.Add(lbltxtOrdenResumen);
+        paneltxtOrdenResumen.Controls.Add(txtOrdenResumen);
+        paneltxtOrdenResumen.Dock = DockStyle.Fill;
+        paneltxtOrdenResumen.Location = new Point(0, 0);
+        paneltxtOrdenResumen.Margin = new Padding(0, 0, 16, 0);
+        paneltxtOrdenResumen.Name = "paneltxtOrdenResumen";
+        paneltxtOrdenResumen.Size = new Size(302, 80);
+        paneltxtOrdenResumen.TabIndex = 0;
+        // 
+        // lbltxtOrdenResumen
+        // 
+        lbltxtOrdenResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtOrdenResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtOrdenResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtOrdenResumen.Location = new Point(0, 4);
+        lbltxtOrdenResumen.Name = "lbltxtOrdenResumen";
+        lbltxtOrdenResumen.Size = new Size(302, 22);
+        lbltxtOrdenResumen.TabIndex = 0;
+        lbltxtOrdenResumen.Text = "N.º de orden";
+        // 
+        // txtOrdenResumen
+        // 
+        txtOrdenResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtOrdenResumen.BackColor = Color.FromArgb(246, 248, 251);
+        txtOrdenResumen.BorderStyle = BorderStyle.FixedSingle;
+        txtOrdenResumen.Font = new Font("Segoe UI", 10F);
+        txtOrdenResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        txtOrdenResumen.Location = new Point(0, 32);
+        txtOrdenResumen.MaxLength = 100;
+        txtOrdenResumen.Name = "txtOrdenResumen";
+        txtOrdenResumen.PlaceholderText = "—";
+        txtOrdenResumen.ReadOnly = true;
+        txtOrdenResumen.Size = new Size(302, 30);
+        txtOrdenResumen.TabIndex = 0;
+        txtOrdenResumen.TabStop = false;
+        // 
+        // paneltxtClienteResumen
+        // 
+        paneltxtClienteResumen.Controls.Add(lbltxtClienteResumen);
+        paneltxtClienteResumen.Controls.Add(txtClienteResumen);
+        paneltxtClienteResumen.Dock = DockStyle.Fill;
+        paneltxtClienteResumen.Location = new Point(318, 0);
+        paneltxtClienteResumen.Margin = new Padding(0, 0, 16, 0);
+        paneltxtClienteResumen.Name = "paneltxtClienteResumen";
+        paneltxtClienteResumen.Size = new Size(302, 80);
+        paneltxtClienteResumen.TabIndex = 1;
+        // 
+        // lbltxtClienteResumen
+        // 
+        lbltxtClienteResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtClienteResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtClienteResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtClienteResumen.Location = new Point(0, 4);
+        lbltxtClienteResumen.Name = "lbltxtClienteResumen";
+        lbltxtClienteResumen.Size = new Size(302, 22);
+        lbltxtClienteResumen.TabIndex = 0;
+        lbltxtClienteResumen.Text = "Cliente";
+        // 
+        // txtClienteResumen
+        // 
+        txtClienteResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtClienteResumen.BackColor = Color.FromArgb(246, 248, 251);
+        txtClienteResumen.BorderStyle = BorderStyle.FixedSingle;
+        txtClienteResumen.Font = new Font("Segoe UI", 10F);
+        txtClienteResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        txtClienteResumen.Location = new Point(0, 32);
+        txtClienteResumen.MaxLength = 100;
+        txtClienteResumen.Name = "txtClienteResumen";
+        txtClienteResumen.PlaceholderText = "—";
+        txtClienteResumen.ReadOnly = true;
+        txtClienteResumen.Size = new Size(302, 30);
+        txtClienteResumen.TabIndex = 0;
+        txtClienteResumen.TabStop = false;
+        // 
+        // paneltxtEquipoResumen
+        // 
+        paneltxtEquipoResumen.Controls.Add(lbltxtEquipoResumen);
+        paneltxtEquipoResumen.Controls.Add(txtEquipoResumen);
+        paneltxtEquipoResumen.Dock = DockStyle.Fill;
+        paneltxtEquipoResumen.Location = new Point(636, 0);
+        paneltxtEquipoResumen.Margin = new Padding(0);
+        paneltxtEquipoResumen.Name = "paneltxtEquipoResumen";
+        paneltxtEquipoResumen.Size = new Size(319, 80);
+        paneltxtEquipoResumen.TabIndex = 2;
+        // 
+        // lbltxtEquipoResumen
+        // 
+        lbltxtEquipoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtEquipoResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtEquipoResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtEquipoResumen.Location = new Point(0, 4);
+        lbltxtEquipoResumen.Name = "lbltxtEquipoResumen";
+        lbltxtEquipoResumen.Size = new Size(319, 22);
+        lbltxtEquipoResumen.TabIndex = 0;
+        lbltxtEquipoResumen.Text = "Equipo";
+        // 
+        // txtEquipoResumen
+        // 
+        txtEquipoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtEquipoResumen.BackColor = Color.FromArgb(246, 248, 251);
+        txtEquipoResumen.BorderStyle = BorderStyle.FixedSingle;
+        txtEquipoResumen.Font = new Font("Segoe UI", 10F);
+        txtEquipoResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        txtEquipoResumen.Location = new Point(0, 32);
+        txtEquipoResumen.MaxLength = 100;
+        txtEquipoResumen.Name = "txtEquipoResumen";
+        txtEquipoResumen.PlaceholderText = "—";
+        txtEquipoResumen.ReadOnly = true;
+        txtEquipoResumen.Size = new Size(319, 30);
+        txtEquipoResumen.TabIndex = 0;
+        txtEquipoResumen.TabStop = false;
+        // 
+        // paneltxtEstadoResumen
+        // 
+        paneltxtEstadoResumen.Controls.Add(lbltxtEstadoResumen);
+        paneltxtEstadoResumen.Controls.Add(txtEstadoResumen);
+        paneltxtEstadoResumen.Dock = DockStyle.Fill;
+        paneltxtEstadoResumen.Location = new Point(0, 80);
+        paneltxtEstadoResumen.Margin = new Padding(0, 0, 16, 0);
+        paneltxtEstadoResumen.Name = "paneltxtEstadoResumen";
+        paneltxtEstadoResumen.Size = new Size(302, 80);
+        paneltxtEstadoResumen.TabIndex = 3;
+        // 
+        // lbltxtEstadoResumen
+        // 
+        lbltxtEstadoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtEstadoResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtEstadoResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtEstadoResumen.Location = new Point(0, 4);
+        lbltxtEstadoResumen.Name = "lbltxtEstadoResumen";
+        lbltxtEstadoResumen.Size = new Size(302, 22);
+        lbltxtEstadoResumen.TabIndex = 0;
+        lbltxtEstadoResumen.Text = "Estado de la orden";
+        // 
+        // txtEstadoResumen
+        // 
+        txtEstadoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtEstadoResumen.BackColor = Color.FromArgb(246, 248, 251);
+        txtEstadoResumen.BorderStyle = BorderStyle.FixedSingle;
+        txtEstadoResumen.Font = new Font("Segoe UI", 10F);
+        txtEstadoResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        txtEstadoResumen.Location = new Point(0, 32);
+        txtEstadoResumen.MaxLength = 100;
+        txtEstadoResumen.Name = "txtEstadoResumen";
+        txtEstadoResumen.PlaceholderText = "—";
+        txtEstadoResumen.ReadOnly = true;
+        txtEstadoResumen.Size = new Size(302, 30);
+        txtEstadoResumen.TabIndex = 0;
+        txtEstadoResumen.TabStop = false;
+        // 
+        // paneltxtTecnicoResumen
+        // 
+        paneltxtTecnicoResumen.Controls.Add(lbltxtTecnicoResumen);
+        paneltxtTecnicoResumen.Controls.Add(txtTecnicoResumen);
+        paneltxtTecnicoResumen.Dock = DockStyle.Fill;
+        paneltxtTecnicoResumen.Location = new Point(318, 80);
+        paneltxtTecnicoResumen.Margin = new Padding(0, 0, 16, 0);
+        paneltxtTecnicoResumen.Name = "paneltxtTecnicoResumen";
+        paneltxtTecnicoResumen.Size = new Size(302, 80);
+        paneltxtTecnicoResumen.TabIndex = 4;
+        // 
+        // lbltxtTecnicoResumen
+        // 
+        lbltxtTecnicoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtTecnicoResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtTecnicoResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtTecnicoResumen.Location = new Point(0, 4);
+        lbltxtTecnicoResumen.Name = "lbltxtTecnicoResumen";
+        lbltxtTecnicoResumen.Size = new Size(302, 22);
+        lbltxtTecnicoResumen.TabIndex = 0;
+        lbltxtTecnicoResumen.Text = "Técnico responsable";
+        // 
+        // txtTecnicoResumen
+        // 
+        txtTecnicoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtTecnicoResumen.BackColor = Color.FromArgb(246, 248, 251);
+        txtTecnicoResumen.BorderStyle = BorderStyle.FixedSingle;
+        txtTecnicoResumen.Font = new Font("Segoe UI", 10F);
+        txtTecnicoResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        txtTecnicoResumen.Location = new Point(0, 32);
+        txtTecnicoResumen.MaxLength = 100;
+        txtTecnicoResumen.Name = "txtTecnicoResumen";
+        txtTecnicoResumen.PlaceholderText = "—";
+        txtTecnicoResumen.ReadOnly = true;
+        txtTecnicoResumen.Size = new Size(302, 30);
+        txtTecnicoResumen.TabIndex = 0;
+        txtTecnicoResumen.TabStop = false;
+        // 
+        // paneltxtSaldoResumen
+        // 
+        paneltxtSaldoResumen.Controls.Add(lbltxtSaldoResumen);
+        paneltxtSaldoResumen.Controls.Add(txtSaldoResumen);
+        paneltxtSaldoResumen.Dock = DockStyle.Fill;
+        paneltxtSaldoResumen.Location = new Point(636, 80);
+        paneltxtSaldoResumen.Margin = new Padding(0);
+        paneltxtSaldoResumen.Name = "paneltxtSaldoResumen";
+        paneltxtSaldoResumen.Size = new Size(319, 80);
+        paneltxtSaldoResumen.TabIndex = 5;
+        // 
+        // lbltxtSaldoResumen
+        // 
+        lbltxtSaldoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtSaldoResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtSaldoResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtSaldoResumen.Location = new Point(0, 4);
+        lbltxtSaldoResumen.Name = "lbltxtSaldoResumen";
+        lbltxtSaldoResumen.Size = new Size(319, 22);
+        lbltxtSaldoResumen.TabIndex = 0;
+        lbltxtSaldoResumen.Text = "Saldo pendiente (C$)";
+        // 
+        // txtSaldoResumen
+        // 
+        txtSaldoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtSaldoResumen.BackColor = Color.FromArgb(246, 248, 251);
+        txtSaldoResumen.BorderStyle = BorderStyle.FixedSingle;
+        txtSaldoResumen.Font = new Font("Segoe UI", 10F);
+        txtSaldoResumen.ForeColor = Color.FromArgb(20, 43, 78);
+        txtSaldoResumen.Location = new Point(0, 32);
+        txtSaldoResumen.MaxLength = 100;
+        txtSaldoResumen.Name = "txtSaldoResumen";
+        txtSaldoResumen.PlaceholderText = "—";
+        txtSaldoResumen.ReadOnly = true;
+        txtSaldoResumen.Size = new Size(319, 30);
+        txtSaldoResumen.TabIndex = 0;
+        txtSaldoResumen.TabStop = false;
+        // 
+        // tabsExpediente
+        // 
+        tabsExpediente.Controls.Add(tabRecepcion);
+        tabsExpediente.Controls.Add(tabDiagnostico);
+        tabsExpediente.Controls.Add(tabTrabajos);
+        tabsExpediente.Controls.Add(tabPagos);
+        tabsExpediente.Controls.Add(tabHistorial);
         tabsExpediente.Dock = DockStyle.Fill;
         tabsExpediente.Font = new Font("Segoe UI", 10F);
         tabsExpediente.ItemSize = new Size(140, 36);
+        tabsExpediente.Location = new Point(0, 170);
         tabsExpediente.Margin = new Padding(0);
+        tabsExpediente.Name = "tabsExpediente";
         tabsExpediente.SelectedIndex = 0;
+        tabsExpediente.Size = new Size(955, 502);
         tabsExpediente.TabIndex = 1;
-        paneltxtOrdenResumen.Name = "paneltxtOrdenResumen";
-        paneltxtOrdenResumen.Location = new Point(0, 0);
-        paneltxtOrdenResumen.Size = new Size(312, 80);
-        paneltxtOrdenResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtOrdenResumen.TabIndex = 0;
-        lbltxtOrdenResumen.Name = "lbltxtOrdenResumen";
-        lbltxtOrdenResumen.Text = "N.º de orden";
-        lbltxtOrdenResumen.Location = new Point(0, 4);
-        lbltxtOrdenResumen.Size = new Size(312, 22);
-        lbltxtOrdenResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtOrdenResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtOrdenResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtOrdenResumen.Name = "txtOrdenResumen";
-        txtOrdenResumen.Location = new Point(0, 32);
-        txtOrdenResumen.Size = new Size(312, 29);
-        txtOrdenResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtOrdenResumen.Font = new Font("Segoe UI", 10F);
-        txtOrdenResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        txtOrdenResumen.BackColor = Color.FromArgb(246, 248, 251);
-        txtOrdenResumen.TabIndex = 0;
-        txtOrdenResumen.BorderStyle = BorderStyle.FixedSingle;
-        txtOrdenResumen.MaxLength = 100;
-        txtOrdenResumen.PlaceholderText = "—";
-        txtOrdenResumen.ReadOnly = true;
-        txtOrdenResumen.TabStop = false;
-        paneltxtOrdenResumen.Controls.Add(lbltxtOrdenResumen);
-        paneltxtOrdenResumen.Controls.Add(txtOrdenResumen);
-        tablaResumen.Controls.Add(paneltxtOrdenResumen);
-        paneltxtOrdenResumen.Dock = DockStyle.Fill;
-        paneltxtOrdenResumen.Margin = new Padding(0, 0, 16, 0);
-        tablaResumen.SetCellPosition(paneltxtOrdenResumen, new TableLayoutPanelCellPosition(0, 0));
-        paneltxtClienteResumen.Name = "paneltxtClienteResumen";
-        paneltxtClienteResumen.Location = new Point(0, 0);
-        paneltxtClienteResumen.Size = new Size(312, 80);
-        paneltxtClienteResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtClienteResumen.TabIndex = 1;
-        lbltxtClienteResumen.Name = "lbltxtClienteResumen";
-        lbltxtClienteResumen.Text = "Cliente";
-        lbltxtClienteResumen.Location = new Point(0, 4);
-        lbltxtClienteResumen.Size = new Size(312, 22);
-        lbltxtClienteResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtClienteResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtClienteResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtClienteResumen.Name = "txtClienteResumen";
-        txtClienteResumen.Location = new Point(0, 32);
-        txtClienteResumen.Size = new Size(312, 29);
-        txtClienteResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtClienteResumen.Font = new Font("Segoe UI", 10F);
-        txtClienteResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        txtClienteResumen.BackColor = Color.FromArgb(246, 248, 251);
-        txtClienteResumen.TabIndex = 0;
-        txtClienteResumen.BorderStyle = BorderStyle.FixedSingle;
-        txtClienteResumen.MaxLength = 100;
-        txtClienteResumen.PlaceholderText = "—";
-        txtClienteResumen.ReadOnly = true;
-        txtClienteResumen.TabStop = false;
-        paneltxtClienteResumen.Controls.Add(lbltxtClienteResumen);
-        paneltxtClienteResumen.Controls.Add(txtClienteResumen);
-        tablaResumen.Controls.Add(paneltxtClienteResumen);
-        paneltxtClienteResumen.Dock = DockStyle.Fill;
-        paneltxtClienteResumen.Margin = new Padding(0, 0, 16, 0);
-        tablaResumen.SetCellPosition(paneltxtClienteResumen, new TableLayoutPanelCellPosition(1, 0));
-        paneltxtEquipoResumen.Name = "paneltxtEquipoResumen";
-        paneltxtEquipoResumen.Location = new Point(0, 0);
-        paneltxtEquipoResumen.Size = new Size(312, 80);
-        paneltxtEquipoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtEquipoResumen.TabIndex = 2;
-        lbltxtEquipoResumen.Name = "lbltxtEquipoResumen";
-        lbltxtEquipoResumen.Text = "Equipo";
-        lbltxtEquipoResumen.Location = new Point(0, 4);
-        lbltxtEquipoResumen.Size = new Size(312, 22);
-        lbltxtEquipoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtEquipoResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtEquipoResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtEquipoResumen.Name = "txtEquipoResumen";
-        txtEquipoResumen.Location = new Point(0, 32);
-        txtEquipoResumen.Size = new Size(312, 29);
-        txtEquipoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtEquipoResumen.Font = new Font("Segoe UI", 10F);
-        txtEquipoResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        txtEquipoResumen.BackColor = Color.FromArgb(246, 248, 251);
-        txtEquipoResumen.TabIndex = 0;
-        txtEquipoResumen.BorderStyle = BorderStyle.FixedSingle;
-        txtEquipoResumen.MaxLength = 100;
-        txtEquipoResumen.PlaceholderText = "—";
-        txtEquipoResumen.ReadOnly = true;
-        txtEquipoResumen.TabStop = false;
-        paneltxtEquipoResumen.Controls.Add(lbltxtEquipoResumen);
-        paneltxtEquipoResumen.Controls.Add(txtEquipoResumen);
-        tablaResumen.Controls.Add(paneltxtEquipoResumen);
-        paneltxtEquipoResumen.Dock = DockStyle.Fill;
-        paneltxtEquipoResumen.Margin = new Padding(0, 0, 0, 0);
-        tablaResumen.SetCellPosition(paneltxtEquipoResumen, new TableLayoutPanelCellPosition(2, 0));
-        paneltxtEstadoResumen.Name = "paneltxtEstadoResumen";
-        paneltxtEstadoResumen.Location = new Point(0, 0);
-        paneltxtEstadoResumen.Size = new Size(312, 80);
-        paneltxtEstadoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtEstadoResumen.TabIndex = 3;
-        lbltxtEstadoResumen.Name = "lbltxtEstadoResumen";
-        lbltxtEstadoResumen.Text = "Estado de la orden";
-        lbltxtEstadoResumen.Location = new Point(0, 4);
-        lbltxtEstadoResumen.Size = new Size(312, 22);
-        lbltxtEstadoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtEstadoResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtEstadoResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtEstadoResumen.Name = "txtEstadoResumen";
-        txtEstadoResumen.Location = new Point(0, 32);
-        txtEstadoResumen.Size = new Size(312, 29);
-        txtEstadoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtEstadoResumen.Font = new Font("Segoe UI", 10F);
-        txtEstadoResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        txtEstadoResumen.BackColor = Color.FromArgb(246, 248, 251);
-        txtEstadoResumen.TabIndex = 0;
-        txtEstadoResumen.BorderStyle = BorderStyle.FixedSingle;
-        txtEstadoResumen.MaxLength = 100;
-        txtEstadoResumen.PlaceholderText = "—";
-        txtEstadoResumen.ReadOnly = true;
-        txtEstadoResumen.TabStop = false;
-        paneltxtEstadoResumen.Controls.Add(lbltxtEstadoResumen);
-        paneltxtEstadoResumen.Controls.Add(txtEstadoResumen);
-        tablaResumen.Controls.Add(paneltxtEstadoResumen);
-        paneltxtEstadoResumen.Dock = DockStyle.Fill;
-        paneltxtEstadoResumen.Margin = new Padding(0, 0, 16, 0);
-        tablaResumen.SetCellPosition(paneltxtEstadoResumen, new TableLayoutPanelCellPosition(0, 1));
-        paneltxtTecnicoResumen.Name = "paneltxtTecnicoResumen";
-        paneltxtTecnicoResumen.Location = new Point(0, 0);
-        paneltxtTecnicoResumen.Size = new Size(312, 80);
-        paneltxtTecnicoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtTecnicoResumen.TabIndex = 4;
-        lbltxtTecnicoResumen.Name = "lbltxtTecnicoResumen";
-        lbltxtTecnicoResumen.Text = "Técnico responsable";
-        lbltxtTecnicoResumen.Location = new Point(0, 4);
-        lbltxtTecnicoResumen.Size = new Size(312, 22);
-        lbltxtTecnicoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtTecnicoResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtTecnicoResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtTecnicoResumen.Name = "txtTecnicoResumen";
-        txtTecnicoResumen.Location = new Point(0, 32);
-        txtTecnicoResumen.Size = new Size(312, 29);
-        txtTecnicoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtTecnicoResumen.Font = new Font("Segoe UI", 10F);
-        txtTecnicoResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        txtTecnicoResumen.BackColor = Color.FromArgb(246, 248, 251);
-        txtTecnicoResumen.TabIndex = 0;
-        txtTecnicoResumen.BorderStyle = BorderStyle.FixedSingle;
-        txtTecnicoResumen.MaxLength = 100;
-        txtTecnicoResumen.PlaceholderText = "—";
-        txtTecnicoResumen.ReadOnly = true;
-        txtTecnicoResumen.TabStop = false;
-        paneltxtTecnicoResumen.Controls.Add(lbltxtTecnicoResumen);
-        paneltxtTecnicoResumen.Controls.Add(txtTecnicoResumen);
-        tablaResumen.Controls.Add(paneltxtTecnicoResumen);
-        paneltxtTecnicoResumen.Dock = DockStyle.Fill;
-        paneltxtTecnicoResumen.Margin = new Padding(0, 0, 16, 0);
-        tablaResumen.SetCellPosition(paneltxtTecnicoResumen, new TableLayoutPanelCellPosition(1, 1));
-        paneltxtSaldoResumen.Name = "paneltxtSaldoResumen";
-        paneltxtSaldoResumen.Location = new Point(0, 0);
-        paneltxtSaldoResumen.Size = new Size(312, 80);
-        paneltxtSaldoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtSaldoResumen.TabIndex = 5;
-        lbltxtSaldoResumen.Name = "lbltxtSaldoResumen";
-        lbltxtSaldoResumen.Text = "Saldo pendiente (C$)";
-        lbltxtSaldoResumen.Location = new Point(0, 4);
-        lbltxtSaldoResumen.Size = new Size(312, 22);
-        lbltxtSaldoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtSaldoResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtSaldoResumen.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtSaldoResumen.Name = "txtSaldoResumen";
-        txtSaldoResumen.Location = new Point(0, 32);
-        txtSaldoResumen.Size = new Size(312, 29);
-        txtSaldoResumen.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtSaldoResumen.Font = new Font("Segoe UI", 10F);
-        txtSaldoResumen.ForeColor = Color.FromArgb(20, 43, 78);
-        txtSaldoResumen.BackColor = Color.FromArgb(246, 248, 251);
-        txtSaldoResumen.TabIndex = 0;
-        txtSaldoResumen.BorderStyle = BorderStyle.FixedSingle;
-        txtSaldoResumen.MaxLength = 100;
-        txtSaldoResumen.PlaceholderText = "—";
-        txtSaldoResumen.ReadOnly = true;
-        txtSaldoResumen.TabStop = false;
-        paneltxtSaldoResumen.Controls.Add(lbltxtSaldoResumen);
-        paneltxtSaldoResumen.Controls.Add(txtSaldoResumen);
-        tablaResumen.Controls.Add(paneltxtSaldoResumen);
-        paneltxtSaldoResumen.Dock = DockStyle.Fill;
-        paneltxtSaldoResumen.Margin = new Padding(0, 0, 0, 0);
-        tablaResumen.SetCellPosition(paneltxtSaldoResumen, new TableLayoutPanelCellPosition(2, 1));
-        tabRecepcion.Name = "tabRecepcion";
-        tabRecepcion.Size = new Size(976, 460);
-        tabRecepcion.Text = "Recepción";
+        // 
+        // tabRecepcion
+        // 
         tabRecepcion.AutoScroll = true;
         tabRecepcion.BackColor = Color.White;
+        tabRecepcion.Controls.Add(paneltxtFechaRecepcionDetalle);
+        tabRecepcion.Controls.Add(paneltxtRecepcionistaDetalle);
+        tabRecepcion.Controls.Add(paneltxtProblemaRecepcionDetalle);
+        tabRecepcion.Controls.Add(paneltxtAccesoriosDetalle);
+        tabRecepcion.Controls.Add(paneltxtObservacionesDetalle);
+        tabRecepcion.Location = new Point(4, 40);
+        tabRecepcion.Name = "tabRecepcion";
         tabRecepcion.Padding = new Padding(18);
+        tabRecepcion.Size = new Size(947, 458);
         tabRecepcion.TabIndex = 0;
-        tabsExpediente.Controls.Add(tabRecepcion);
-        tabDiagnostico.Name = "tabDiagnostico";
-        tabDiagnostico.Size = new Size(976, 460);
-        tabDiagnostico.Text = "Diagnóstico";
-        tabDiagnostico.AutoScroll = true;
-        tabDiagnostico.BackColor = Color.White;
-        tabDiagnostico.Padding = new Padding(18);
-        tabDiagnostico.TabIndex = 1;
-        tabsExpediente.Controls.Add(tabDiagnostico);
-        tabTrabajos.Name = "tabTrabajos";
-        tabTrabajos.Size = new Size(976, 460);
-        tabTrabajos.Text = "Trabajos";
-        tabTrabajos.AutoScroll = true;
-        tabTrabajos.BackColor = Color.White;
-        tabTrabajos.Padding = new Padding(18);
-        tabTrabajos.TabIndex = 2;
-        tabsExpediente.Controls.Add(tabTrabajos);
-        tabPagos.Name = "tabPagos";
-        tabPagos.Size = new Size(976, 460);
-        tabPagos.Text = "Pagos";
-        tabPagos.AutoScroll = true;
-        tabPagos.BackColor = Color.White;
-        tabPagos.Padding = new Padding(18);
-        tabPagos.TabIndex = 3;
-        tabsExpediente.Controls.Add(tabPagos);
-        tabHistorial.Name = "tabHistorial";
-        tabHistorial.Size = new Size(976, 460);
-        tabHistorial.Text = "Historial";
-        tabHistorial.AutoScroll = true;
-        tabHistorial.BackColor = Color.White;
-        tabHistorial.Padding = new Padding(18);
-        tabHistorial.TabIndex = 4;
-        tabsExpediente.Controls.Add(tabHistorial);
-        paneltxtFechaRecepcionDetalle.Name = "paneltxtFechaRecepcionDetalle";
-        paneltxtFechaRecepcionDetalle.Location = new Point(18, 18);
-        paneltxtFechaRecepcionDetalle.Size = new Size(442, 80);
+        tabRecepcion.Text = "Recepción";
+        // 
+        // paneltxtFechaRecepcionDetalle
+        // 
         paneltxtFechaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtFechaRecepcionDetalle.TabIndex = 0;
-        lbltxtFechaRecepcionDetalle.Name = "lbltxtFechaRecepcionDetalle";
-        lbltxtFechaRecepcionDetalle.Text = "Fecha de recepción";
-        lbltxtFechaRecepcionDetalle.Location = new Point(0, 4);
-        lbltxtFechaRecepcionDetalle.Size = new Size(442, 22);
-        lbltxtFechaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtFechaRecepcionDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtFechaRecepcionDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtFechaRecepcionDetalle.Name = "txtFechaRecepcionDetalle";
-        txtFechaRecepcionDetalle.Location = new Point(0, 32);
-        txtFechaRecepcionDetalle.Size = new Size(442, 29);
-        txtFechaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtFechaRecepcionDetalle.Font = new Font("Segoe UI", 10F);
-        txtFechaRecepcionDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        txtFechaRecepcionDetalle.BackColor = Color.FromArgb(246, 248, 251);
-        txtFechaRecepcionDetalle.TabIndex = 0;
-        txtFechaRecepcionDetalle.BorderStyle = BorderStyle.FixedSingle;
-        txtFechaRecepcionDetalle.MaxLength = 100;
-        txtFechaRecepcionDetalle.PlaceholderText = "—";
-        txtFechaRecepcionDetalle.ReadOnly = true;
-        txtFechaRecepcionDetalle.TabStop = false;
         paneltxtFechaRecepcionDetalle.Controls.Add(lbltxtFechaRecepcionDetalle);
         paneltxtFechaRecepcionDetalle.Controls.Add(txtFechaRecepcionDetalle);
-        tabRecepcion.Controls.Add(paneltxtFechaRecepcionDetalle);
-        paneltxtRecepcionistaDetalle.Name = "paneltxtRecepcionistaDetalle";
-        paneltxtRecepcionistaDetalle.Location = new Point(482, 18);
-        paneltxtRecepcionistaDetalle.Size = new Size(442, 80);
+        paneltxtFechaRecepcionDetalle.Location = new Point(18, 18);
+        paneltxtFechaRecepcionDetalle.Name = "paneltxtFechaRecepcionDetalle";
+        paneltxtFechaRecepcionDetalle.Size = new Size(413, 80);
+        paneltxtFechaRecepcionDetalle.TabIndex = 0;
+        // 
+        // lbltxtFechaRecepcionDetalle
+        // 
+        lbltxtFechaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtFechaRecepcionDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtFechaRecepcionDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtFechaRecepcionDetalle.Location = new Point(0, 4);
+        lbltxtFechaRecepcionDetalle.Name = "lbltxtFechaRecepcionDetalle";
+        lbltxtFechaRecepcionDetalle.Size = new Size(413, 22);
+        lbltxtFechaRecepcionDetalle.TabIndex = 0;
+        lbltxtFechaRecepcionDetalle.Text = "Fecha de recepción";
+        // 
+        // txtFechaRecepcionDetalle
+        // 
+        txtFechaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtFechaRecepcionDetalle.BackColor = Color.FromArgb(246, 248, 251);
+        txtFechaRecepcionDetalle.BorderStyle = BorderStyle.FixedSingle;
+        txtFechaRecepcionDetalle.Font = new Font("Segoe UI", 10F);
+        txtFechaRecepcionDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        txtFechaRecepcionDetalle.Location = new Point(0, 32);
+        txtFechaRecepcionDetalle.MaxLength = 100;
+        txtFechaRecepcionDetalle.Name = "txtFechaRecepcionDetalle";
+        txtFechaRecepcionDetalle.PlaceholderText = "—";
+        txtFechaRecepcionDetalle.ReadOnly = true;
+        txtFechaRecepcionDetalle.Size = new Size(413, 30);
+        txtFechaRecepcionDetalle.TabIndex = 0;
+        txtFechaRecepcionDetalle.TabStop = false;
+        // 
+        // paneltxtRecepcionistaDetalle
+        // 
         paneltxtRecepcionistaDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtRecepcionistaDetalle.TabIndex = 1;
-        lbltxtRecepcionistaDetalle.Name = "lbltxtRecepcionistaDetalle";
-        lbltxtRecepcionistaDetalle.Text = "Recibido por";
-        lbltxtRecepcionistaDetalle.Location = new Point(0, 4);
-        lbltxtRecepcionistaDetalle.Size = new Size(442, 22);
-        lbltxtRecepcionistaDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtRecepcionistaDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtRecepcionistaDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtRecepcionistaDetalle.Name = "txtRecepcionistaDetalle";
-        txtRecepcionistaDetalle.Location = new Point(0, 32);
-        txtRecepcionistaDetalle.Size = new Size(442, 29);
-        txtRecepcionistaDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtRecepcionistaDetalle.Font = new Font("Segoe UI", 10F);
-        txtRecepcionistaDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        txtRecepcionistaDetalle.BackColor = Color.FromArgb(246, 248, 251);
-        txtRecepcionistaDetalle.TabIndex = 0;
-        txtRecepcionistaDetalle.BorderStyle = BorderStyle.FixedSingle;
-        txtRecepcionistaDetalle.MaxLength = 100;
-        txtRecepcionistaDetalle.PlaceholderText = "—";
-        txtRecepcionistaDetalle.ReadOnly = true;
-        txtRecepcionistaDetalle.TabStop = false;
         paneltxtRecepcionistaDetalle.Controls.Add(lbltxtRecepcionistaDetalle);
         paneltxtRecepcionistaDetalle.Controls.Add(txtRecepcionistaDetalle);
-        tabRecepcion.Controls.Add(paneltxtRecepcionistaDetalle);
-        paneltxtProblemaRecepcionDetalle.Name = "paneltxtProblemaRecepcionDetalle";
-        paneltxtProblemaRecepcionDetalle.Location = new Point(18, 102);
-        paneltxtProblemaRecepcionDetalle.Size = new Size(906, 112);
+        paneltxtRecepcionistaDetalle.Location = new Point(482, 18);
+        paneltxtRecepcionistaDetalle.Name = "paneltxtRecepcionistaDetalle";
+        paneltxtRecepcionistaDetalle.Size = new Size(413, 80);
+        paneltxtRecepcionistaDetalle.TabIndex = 1;
+        // 
+        // lbltxtRecepcionistaDetalle
+        // 
+        lbltxtRecepcionistaDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtRecepcionistaDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtRecepcionistaDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtRecepcionistaDetalle.Location = new Point(0, 4);
+        lbltxtRecepcionistaDetalle.Name = "lbltxtRecepcionistaDetalle";
+        lbltxtRecepcionistaDetalle.Size = new Size(413, 22);
+        lbltxtRecepcionistaDetalle.TabIndex = 0;
+        lbltxtRecepcionistaDetalle.Text = "Recibido por";
+        // 
+        // txtRecepcionistaDetalle
+        // 
+        txtRecepcionistaDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtRecepcionistaDetalle.BackColor = Color.FromArgb(246, 248, 251);
+        txtRecepcionistaDetalle.BorderStyle = BorderStyle.FixedSingle;
+        txtRecepcionistaDetalle.Font = new Font("Segoe UI", 10F);
+        txtRecepcionistaDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        txtRecepcionistaDetalle.Location = new Point(0, 32);
+        txtRecepcionistaDetalle.MaxLength = 100;
+        txtRecepcionistaDetalle.Name = "txtRecepcionistaDetalle";
+        txtRecepcionistaDetalle.PlaceholderText = "—";
+        txtRecepcionistaDetalle.ReadOnly = true;
+        txtRecepcionistaDetalle.Size = new Size(413, 30);
+        txtRecepcionistaDetalle.TabIndex = 0;
+        txtRecepcionistaDetalle.TabStop = false;
+        // 
+        // paneltxtProblemaRecepcionDetalle
+        // 
         paneltxtProblemaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtProblemaRecepcionDetalle.TabIndex = 2;
-        lbltxtProblemaRecepcionDetalle.Name = "lbltxtProblemaRecepcionDetalle";
-        lbltxtProblemaRecepcionDetalle.Text = "Problema reportado";
-        lbltxtProblemaRecepcionDetalle.Location = new Point(0, 4);
-        lbltxtProblemaRecepcionDetalle.Size = new Size(906, 22);
-        lbltxtProblemaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtProblemaRecepcionDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtProblemaRecepcionDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtProblemaRecepcionDetalle.Name = "txtProblemaRecepcionDetalle";
-        txtProblemaRecepcionDetalle.Location = new Point(0, 32);
-        txtProblemaRecepcionDetalle.Size = new Size(906, 72);
-        txtProblemaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtProblemaRecepcionDetalle.Font = new Font("Segoe UI", 10F);
-        txtProblemaRecepcionDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        txtProblemaRecepcionDetalle.BackColor = Color.FromArgb(246, 248, 251);
-        txtProblemaRecepcionDetalle.TabIndex = 0;
-        txtProblemaRecepcionDetalle.BorderStyle = BorderStyle.FixedSingle;
-        txtProblemaRecepcionDetalle.MaxLength = 500;
-        txtProblemaRecepcionDetalle.PlaceholderText = "—";
-        txtProblemaRecepcionDetalle.Multiline = true;
-        txtProblemaRecepcionDetalle.ScrollBars = ScrollBars.Vertical;
-        txtProblemaRecepcionDetalle.ReadOnly = true;
-        txtProblemaRecepcionDetalle.TabStop = false;
         paneltxtProblemaRecepcionDetalle.Controls.Add(lbltxtProblemaRecepcionDetalle);
         paneltxtProblemaRecepcionDetalle.Controls.Add(txtProblemaRecepcionDetalle);
-        tabRecepcion.Controls.Add(paneltxtProblemaRecepcionDetalle);
-        paneltxtAccesoriosDetalle.Name = "paneltxtAccesoriosDetalle";
-        paneltxtAccesoriosDetalle.Location = new Point(18, 224);
-        paneltxtAccesoriosDetalle.Size = new Size(906, 100);
+        paneltxtProblemaRecepcionDetalle.Location = new Point(18, 102);
+        paneltxtProblemaRecepcionDetalle.Name = "paneltxtProblemaRecepcionDetalle";
+        paneltxtProblemaRecepcionDetalle.Size = new Size(877, 112);
+        paneltxtProblemaRecepcionDetalle.TabIndex = 2;
+        // 
+        // lbltxtProblemaRecepcionDetalle
+        // 
+        lbltxtProblemaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtProblemaRecepcionDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtProblemaRecepcionDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtProblemaRecepcionDetalle.Location = new Point(0, 4);
+        lbltxtProblemaRecepcionDetalle.Name = "lbltxtProblemaRecepcionDetalle";
+        lbltxtProblemaRecepcionDetalle.Size = new Size(877, 22);
+        lbltxtProblemaRecepcionDetalle.TabIndex = 0;
+        lbltxtProblemaRecepcionDetalle.Text = "Problema reportado";
+        // 
+        // txtProblemaRecepcionDetalle
+        // 
+        txtProblemaRecepcionDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtProblemaRecepcionDetalle.BackColor = Color.FromArgb(246, 248, 251);
+        txtProblemaRecepcionDetalle.BorderStyle = BorderStyle.FixedSingle;
+        txtProblemaRecepcionDetalle.Font = new Font("Segoe UI", 10F);
+        txtProblemaRecepcionDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        txtProblemaRecepcionDetalle.Location = new Point(0, 32);
+        txtProblemaRecepcionDetalle.MaxLength = 500;
+        txtProblemaRecepcionDetalle.Multiline = true;
+        txtProblemaRecepcionDetalle.Name = "txtProblemaRecepcionDetalle";
+        txtProblemaRecepcionDetalle.PlaceholderText = "—";
+        txtProblemaRecepcionDetalle.ReadOnly = true;
+        txtProblemaRecepcionDetalle.ScrollBars = ScrollBars.Vertical;
+        txtProblemaRecepcionDetalle.Size = new Size(877, 72);
+        txtProblemaRecepcionDetalle.TabIndex = 0;
+        txtProblemaRecepcionDetalle.TabStop = false;
+        // 
+        // paneltxtAccesoriosDetalle
+        // 
         paneltxtAccesoriosDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtAccesoriosDetalle.TabIndex = 3;
-        lbltxtAccesoriosDetalle.Name = "lbltxtAccesoriosDetalle";
-        lbltxtAccesoriosDetalle.Text = "Accesorios recibidos";
-        lbltxtAccesoriosDetalle.Location = new Point(0, 4);
-        lbltxtAccesoriosDetalle.Size = new Size(906, 22);
-        lbltxtAccesoriosDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtAccesoriosDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtAccesoriosDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtAccesoriosDetalle.Name = "txtAccesoriosDetalle";
-        txtAccesoriosDetalle.Location = new Point(0, 32);
-        txtAccesoriosDetalle.Size = new Size(906, 60);
-        txtAccesoriosDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtAccesoriosDetalle.Font = new Font("Segoe UI", 10F);
-        txtAccesoriosDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        txtAccesoriosDetalle.BackColor = Color.FromArgb(246, 248, 251);
-        txtAccesoriosDetalle.TabIndex = 0;
-        txtAccesoriosDetalle.BorderStyle = BorderStyle.FixedSingle;
-        txtAccesoriosDetalle.MaxLength = 300;
-        txtAccesoriosDetalle.PlaceholderText = "—";
-        txtAccesoriosDetalle.Multiline = true;
-        txtAccesoriosDetalle.ScrollBars = ScrollBars.Vertical;
-        txtAccesoriosDetalle.ReadOnly = true;
-        txtAccesoriosDetalle.TabStop = false;
         paneltxtAccesoriosDetalle.Controls.Add(lbltxtAccesoriosDetalle);
         paneltxtAccesoriosDetalle.Controls.Add(txtAccesoriosDetalle);
-        tabRecepcion.Controls.Add(paneltxtAccesoriosDetalle);
-        paneltxtObservacionesDetalle.Name = "paneltxtObservacionesDetalle";
-        paneltxtObservacionesDetalle.Location = new Point(18, 334);
-        paneltxtObservacionesDetalle.Size = new Size(906, 112);
+        paneltxtAccesoriosDetalle.Location = new Point(18, 224);
+        paneltxtAccesoriosDetalle.Name = "paneltxtAccesoriosDetalle";
+        paneltxtAccesoriosDetalle.Size = new Size(877, 100);
+        paneltxtAccesoriosDetalle.TabIndex = 3;
+        // 
+        // lbltxtAccesoriosDetalle
+        // 
+        lbltxtAccesoriosDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtAccesoriosDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtAccesoriosDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtAccesoriosDetalle.Location = new Point(0, 4);
+        lbltxtAccesoriosDetalle.Name = "lbltxtAccesoriosDetalle";
+        lbltxtAccesoriosDetalle.Size = new Size(877, 22);
+        lbltxtAccesoriosDetalle.TabIndex = 0;
+        lbltxtAccesoriosDetalle.Text = "Accesorios recibidos";
+        // 
+        // txtAccesoriosDetalle
+        // 
+        txtAccesoriosDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtAccesoriosDetalle.BackColor = Color.FromArgb(246, 248, 251);
+        txtAccesoriosDetalle.BorderStyle = BorderStyle.FixedSingle;
+        txtAccesoriosDetalle.Font = new Font("Segoe UI", 10F);
+        txtAccesoriosDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        txtAccesoriosDetalle.Location = new Point(0, 32);
+        txtAccesoriosDetalle.MaxLength = 300;
+        txtAccesoriosDetalle.Multiline = true;
+        txtAccesoriosDetalle.Name = "txtAccesoriosDetalle";
+        txtAccesoriosDetalle.PlaceholderText = "—";
+        txtAccesoriosDetalle.ReadOnly = true;
+        txtAccesoriosDetalle.ScrollBars = ScrollBars.Vertical;
+        txtAccesoriosDetalle.Size = new Size(877, 60);
+        txtAccesoriosDetalle.TabIndex = 0;
+        txtAccesoriosDetalle.TabStop = false;
+        // 
+        // paneltxtObservacionesDetalle
+        // 
         paneltxtObservacionesDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtObservacionesDetalle.TabIndex = 4;
-        lbltxtObservacionesDetalle.Name = "lbltxtObservacionesDetalle";
-        lbltxtObservacionesDetalle.Text = "Observaciones de recepción";
-        lbltxtObservacionesDetalle.Location = new Point(0, 4);
-        lbltxtObservacionesDetalle.Size = new Size(906, 22);
-        lbltxtObservacionesDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtObservacionesDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtObservacionesDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtObservacionesDetalle.Name = "txtObservacionesDetalle";
-        txtObservacionesDetalle.Location = new Point(0, 32);
-        txtObservacionesDetalle.Size = new Size(906, 72);
-        txtObservacionesDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtObservacionesDetalle.Font = new Font("Segoe UI", 10F);
-        txtObservacionesDetalle.ForeColor = Color.FromArgb(20, 43, 78);
-        txtObservacionesDetalle.BackColor = Color.FromArgb(246, 248, 251);
-        txtObservacionesDetalle.TabIndex = 0;
-        txtObservacionesDetalle.BorderStyle = BorderStyle.FixedSingle;
-        txtObservacionesDetalle.MaxLength = 500;
-        txtObservacionesDetalle.PlaceholderText = "—";
-        txtObservacionesDetalle.Multiline = true;
-        txtObservacionesDetalle.ScrollBars = ScrollBars.Vertical;
-        txtObservacionesDetalle.ReadOnly = true;
-        txtObservacionesDetalle.TabStop = false;
         paneltxtObservacionesDetalle.Controls.Add(lbltxtObservacionesDetalle);
         paneltxtObservacionesDetalle.Controls.Add(txtObservacionesDetalle);
-        tabRecepcion.Controls.Add(paneltxtObservacionesDetalle);
-        panelcboTecnicoDiagnostico.Name = "panelcboTecnicoDiagnostico";
-        panelcboTecnicoDiagnostico.Location = new Point(18, 18);
-        panelcboTecnicoDiagnostico.Size = new Size(442, 80);
+        paneltxtObservacionesDetalle.Location = new Point(18, 334);
+        paneltxtObservacionesDetalle.Name = "paneltxtObservacionesDetalle";
+        paneltxtObservacionesDetalle.Size = new Size(877, 112);
+        paneltxtObservacionesDetalle.TabIndex = 4;
+        // 
+        // lbltxtObservacionesDetalle
+        // 
+        lbltxtObservacionesDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtObservacionesDetalle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtObservacionesDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtObservacionesDetalle.Location = new Point(0, 4);
+        lbltxtObservacionesDetalle.Name = "lbltxtObservacionesDetalle";
+        lbltxtObservacionesDetalle.Size = new Size(877, 22);
+        lbltxtObservacionesDetalle.TabIndex = 0;
+        lbltxtObservacionesDetalle.Text = "Observaciones de recepción";
+        // 
+        // txtObservacionesDetalle
+        // 
+        txtObservacionesDetalle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtObservacionesDetalle.BackColor = Color.FromArgb(246, 248, 251);
+        txtObservacionesDetalle.BorderStyle = BorderStyle.FixedSingle;
+        txtObservacionesDetalle.Font = new Font("Segoe UI", 10F);
+        txtObservacionesDetalle.ForeColor = Color.FromArgb(20, 43, 78);
+        txtObservacionesDetalle.Location = new Point(0, 32);
+        txtObservacionesDetalle.MaxLength = 500;
+        txtObservacionesDetalle.Multiline = true;
+        txtObservacionesDetalle.Name = "txtObservacionesDetalle";
+        txtObservacionesDetalle.PlaceholderText = "—";
+        txtObservacionesDetalle.ReadOnly = true;
+        txtObservacionesDetalle.ScrollBars = ScrollBars.Vertical;
+        txtObservacionesDetalle.Size = new Size(877, 72);
+        txtObservacionesDetalle.TabIndex = 0;
+        txtObservacionesDetalle.TabStop = false;
+        // 
+        // tabDiagnostico
+        // 
+        tabDiagnostico.AutoScroll = true;
+        tabDiagnostico.BackColor = Color.White;
+        tabDiagnostico.Controls.Add(panelcboTecnicoDiagnostico);
+        tabDiagnostico.Controls.Add(paneltxtFechaDiagnostico);
+        tabDiagnostico.Controls.Add(paneltxtProblemaEncontrado);
+        tabDiagnostico.Controls.Add(paneltxtReparacionPropuesta);
+        tabDiagnostico.Controls.Add(panelnumCostoEstimado);
+        tabDiagnostico.Controls.Add(panelcboDecisionCliente);
+        tabDiagnostico.Controls.Add(panelnumCostoAprobado);
+        tabDiagnostico.Controls.Add(paneltxtFechaConfirmacion);
+        tabDiagnostico.Controls.Add(paneltxtObservacionesDiagnostico);
+        tabDiagnostico.Location = new Point(4, 40);
+        tabDiagnostico.Name = "tabDiagnostico";
+        tabDiagnostico.Padding = new Padding(18);
+        tabDiagnostico.Size = new Size(947, 458);
+        tabDiagnostico.TabIndex = 1;
+        tabDiagnostico.Text = "Diagnóstico";
+        // 
+        // panelcboTecnicoDiagnostico
+        // 
         panelcboTecnicoDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        panelcboTecnicoDiagnostico.TabIndex = 0;
-        lblcboTecnicoDiagnostico.Name = "lblcboTecnicoDiagnostico";
-        lblcboTecnicoDiagnostico.Text = "Técnico responsable";
-        lblcboTecnicoDiagnostico.Location = new Point(0, 4);
-        lblcboTecnicoDiagnostico.Size = new Size(442, 22);
-        lblcboTecnicoDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblcboTecnicoDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
-        lblcboTecnicoDiagnostico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        cboTecnicoDiagnostico.Name = "cboTecnicoDiagnostico";
-        cboTecnicoDiagnostico.Location = new Point(0, 32);
-        cboTecnicoDiagnostico.Size = new Size(442, 29);
-        cboTecnicoDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        cboTecnicoDiagnostico.Font = new Font("Segoe UI", 10F);
-        cboTecnicoDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
-        cboTecnicoDiagnostico.BackColor = Color.White;
-        cboTecnicoDiagnostico.TabIndex = 0;
-        cboTecnicoDiagnostico.DropDownStyle = ComboBoxStyle.DropDownList;
-        cboTecnicoDiagnostico.FlatStyle = FlatStyle.Flat;
-        cboTecnicoDiagnostico.Items.AddRange(new object[] { "Selecciona un técnico" });
-        cboTecnicoDiagnostico.SelectedIndex = 0;
         panelcboTecnicoDiagnostico.Controls.Add(lblcboTecnicoDiagnostico);
         panelcboTecnicoDiagnostico.Controls.Add(cboTecnicoDiagnostico);
-        tabDiagnostico.Controls.Add(panelcboTecnicoDiagnostico);
-        paneltxtFechaDiagnostico.Name = "paneltxtFechaDiagnostico";
-        paneltxtFechaDiagnostico.Location = new Point(482, 18);
-        paneltxtFechaDiagnostico.Size = new Size(442, 80);
+        panelcboTecnicoDiagnostico.Location = new Point(18, 18);
+        panelcboTecnicoDiagnostico.Name = "panelcboTecnicoDiagnostico";
+        panelcboTecnicoDiagnostico.Size = new Size(308, 80);
+        panelcboTecnicoDiagnostico.TabIndex = 0;
+        // 
+        // lblcboTecnicoDiagnostico
+        // 
+        lblcboTecnicoDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblcboTecnicoDiagnostico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lblcboTecnicoDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
+        lblcboTecnicoDiagnostico.Location = new Point(0, 4);
+        lblcboTecnicoDiagnostico.Name = "lblcboTecnicoDiagnostico";
+        lblcboTecnicoDiagnostico.Size = new Size(308, 22);
+        lblcboTecnicoDiagnostico.TabIndex = 0;
+        lblcboTecnicoDiagnostico.Text = "Técnico responsable";
+        // 
+        // cboTecnicoDiagnostico
+        // 
+        cboTecnicoDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        cboTecnicoDiagnostico.BackColor = Color.WhiteSmoke;
+        cboTecnicoDiagnostico.DropDownStyle = ComboBoxStyle.DropDownList;
+        cboTecnicoDiagnostico.FlatStyle = FlatStyle.Flat;
+        cboTecnicoDiagnostico.Font = new Font("Segoe UI", 10F);
+        cboTecnicoDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
+        cboTecnicoDiagnostico.Items.AddRange(new object[] { "Selecciona un técnico" });
+        cboTecnicoDiagnostico.Location = new Point(0, 32);
+        cboTecnicoDiagnostico.Name = "cboTecnicoDiagnostico";
+        cboTecnicoDiagnostico.Size = new Size(308, 31);
+        cboTecnicoDiagnostico.TabIndex = 0;
+        // 
+        // paneltxtFechaDiagnostico
+        // 
         paneltxtFechaDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtFechaDiagnostico.TabIndex = 1;
-        lbltxtFechaDiagnostico.Name = "lbltxtFechaDiagnostico";
-        lbltxtFechaDiagnostico.Text = "Fecha del diagnóstico";
-        lbltxtFechaDiagnostico.Location = new Point(0, 4);
-        lbltxtFechaDiagnostico.Size = new Size(442, 22);
-        lbltxtFechaDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtFechaDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtFechaDiagnostico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtFechaDiagnostico.Name = "txtFechaDiagnostico";
-        txtFechaDiagnostico.Location = new Point(0, 32);
-        txtFechaDiagnostico.Size = new Size(442, 29);
-        txtFechaDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtFechaDiagnostico.Font = new Font("Segoe UI", 10F);
-        txtFechaDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
-        txtFechaDiagnostico.BackColor = Color.FromArgb(246, 248, 251);
-        txtFechaDiagnostico.TabIndex = 0;
-        txtFechaDiagnostico.BorderStyle = BorderStyle.FixedSingle;
-        txtFechaDiagnostico.MaxLength = 100;
-        txtFechaDiagnostico.PlaceholderText = "—";
-        txtFechaDiagnostico.ReadOnly = true;
-        txtFechaDiagnostico.TabStop = false;
         paneltxtFechaDiagnostico.Controls.Add(lbltxtFechaDiagnostico);
         paneltxtFechaDiagnostico.Controls.Add(txtFechaDiagnostico);
-        tabDiagnostico.Controls.Add(paneltxtFechaDiagnostico);
-        paneltxtProblemaEncontrado.Name = "paneltxtProblemaEncontrado";
-        paneltxtProblemaEncontrado.Location = new Point(18, 104);
-        paneltxtProblemaEncontrado.Size = new Size(906, 108);
+        paneltxtFechaDiagnostico.Location = new Point(482, 18);
+        paneltxtFechaDiagnostico.Name = "paneltxtFechaDiagnostico";
+        paneltxtFechaDiagnostico.Size = new Size(308, 80);
+        paneltxtFechaDiagnostico.TabIndex = 1;
+        // 
+        // lbltxtFechaDiagnostico
+        // 
+        lbltxtFechaDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtFechaDiagnostico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtFechaDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtFechaDiagnostico.Location = new Point(0, 4);
+        lbltxtFechaDiagnostico.Name = "lbltxtFechaDiagnostico";
+        lbltxtFechaDiagnostico.Size = new Size(308, 22);
+        lbltxtFechaDiagnostico.TabIndex = 0;
+        lbltxtFechaDiagnostico.Text = "Fecha del diagnóstico";
+        // 
+        // txtFechaDiagnostico
+        // 
+        txtFechaDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtFechaDiagnostico.BackColor = Color.FromArgb(246, 248, 251);
+        txtFechaDiagnostico.BorderStyle = BorderStyle.FixedSingle;
+        txtFechaDiagnostico.Font = new Font("Segoe UI", 10F);
+        txtFechaDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
+        txtFechaDiagnostico.Location = new Point(0, 32);
+        txtFechaDiagnostico.MaxLength = 100;
+        txtFechaDiagnostico.Name = "txtFechaDiagnostico";
+        txtFechaDiagnostico.PlaceholderText = "—";
+        txtFechaDiagnostico.ReadOnly = true;
+        txtFechaDiagnostico.Size = new Size(308, 30);
+        txtFechaDiagnostico.TabIndex = 0;
+        txtFechaDiagnostico.TabStop = false;
+        // 
+        // paneltxtProblemaEncontrado
+        // 
         paneltxtProblemaEncontrado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtProblemaEncontrado.TabIndex = 2;
-        lbltxtProblemaEncontrado.Name = "lbltxtProblemaEncontrado";
-        lbltxtProblemaEncontrado.Text = "Problema encontrado *";
-        lbltxtProblemaEncontrado.Location = new Point(0, 4);
-        lbltxtProblemaEncontrado.Size = new Size(906, 22);
-        lbltxtProblemaEncontrado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtProblemaEncontrado.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtProblemaEncontrado.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtProblemaEncontrado.Name = "txtProblemaEncontrado";
-        txtProblemaEncontrado.Location = new Point(0, 32);
-        txtProblemaEncontrado.Size = new Size(906, 68);
-        txtProblemaEncontrado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtProblemaEncontrado.Font = new Font("Segoe UI", 10F);
-        txtProblemaEncontrado.ForeColor = Color.FromArgb(20, 43, 78);
-        txtProblemaEncontrado.BackColor = Color.White;
-        txtProblemaEncontrado.TabIndex = 0;
-        txtProblemaEncontrado.BorderStyle = BorderStyle.FixedSingle;
-        txtProblemaEncontrado.MaxLength = 1000;
-        txtProblemaEncontrado.PlaceholderText = "Describe el resultado de la revisión técnica.";
-        txtProblemaEncontrado.Multiline = true;
-        txtProblemaEncontrado.ScrollBars = ScrollBars.Vertical;
         paneltxtProblemaEncontrado.Controls.Add(lbltxtProblemaEncontrado);
         paneltxtProblemaEncontrado.Controls.Add(txtProblemaEncontrado);
-        tabDiagnostico.Controls.Add(paneltxtProblemaEncontrado);
-        paneltxtReparacionPropuesta.Name = "paneltxtReparacionPropuesta";
-        paneltxtReparacionPropuesta.Location = new Point(18, 222);
-        paneltxtReparacionPropuesta.Size = new Size(906, 108);
+        paneltxtProblemaEncontrado.Location = new Point(18, 104);
+        paneltxtProblemaEncontrado.Name = "paneltxtProblemaEncontrado";
+        paneltxtProblemaEncontrado.Size = new Size(772, 108);
+        paneltxtProblemaEncontrado.TabIndex = 2;
+        // 
+        // lbltxtProblemaEncontrado
+        // 
+        lbltxtProblemaEncontrado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtProblemaEncontrado.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtProblemaEncontrado.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtProblemaEncontrado.Location = new Point(0, 4);
+        lbltxtProblemaEncontrado.Name = "lbltxtProblemaEncontrado";
+        lbltxtProblemaEncontrado.Size = new Size(772, 22);
+        lbltxtProblemaEncontrado.TabIndex = 0;
+        lbltxtProblemaEncontrado.Text = "Problema encontrado *";
+        // 
+        // txtProblemaEncontrado
+        // 
+        txtProblemaEncontrado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtProblemaEncontrado.BackColor = Color.WhiteSmoke;
+        txtProblemaEncontrado.BorderStyle = BorderStyle.FixedSingle;
+        txtProblemaEncontrado.Font = new Font("Segoe UI", 10F);
+        txtProblemaEncontrado.ForeColor = Color.FromArgb(20, 43, 78);
+        txtProblemaEncontrado.Location = new Point(0, 32);
+        txtProblemaEncontrado.MaxLength = 1000;
+        txtProblemaEncontrado.Multiline = true;
+        txtProblemaEncontrado.Name = "txtProblemaEncontrado";
+        txtProblemaEncontrado.PlaceholderText = "Describe el resultado de la revisión técnica.";
+        txtProblemaEncontrado.ScrollBars = ScrollBars.Vertical;
+        txtProblemaEncontrado.Size = new Size(772, 68);
+        txtProblemaEncontrado.TabIndex = 0;
+        // 
+        // paneltxtReparacionPropuesta
+        // 
         paneltxtReparacionPropuesta.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtReparacionPropuesta.TabIndex = 3;
-        lbltxtReparacionPropuesta.Name = "lbltxtReparacionPropuesta";
-        lbltxtReparacionPropuesta.Text = "Reparación propuesta *";
-        lbltxtReparacionPropuesta.Location = new Point(0, 4);
-        lbltxtReparacionPropuesta.Size = new Size(906, 22);
-        lbltxtReparacionPropuesta.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtReparacionPropuesta.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtReparacionPropuesta.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtReparacionPropuesta.Name = "txtReparacionPropuesta";
-        txtReparacionPropuesta.Location = new Point(0, 32);
-        txtReparacionPropuesta.Size = new Size(906, 68);
-        txtReparacionPropuesta.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtReparacionPropuesta.Font = new Font("Segoe UI", 10F);
-        txtReparacionPropuesta.ForeColor = Color.FromArgb(20, 43, 78);
-        txtReparacionPropuesta.BackColor = Color.White;
-        txtReparacionPropuesta.TabIndex = 0;
-        txtReparacionPropuesta.BorderStyle = BorderStyle.FixedSingle;
-        txtReparacionPropuesta.MaxLength = 1000;
-        txtReparacionPropuesta.PlaceholderText = "Detalla el trabajo que necesita el equipo.";
-        txtReparacionPropuesta.Multiline = true;
-        txtReparacionPropuesta.ScrollBars = ScrollBars.Vertical;
         paneltxtReparacionPropuesta.Controls.Add(lbltxtReparacionPropuesta);
         paneltxtReparacionPropuesta.Controls.Add(txtReparacionPropuesta);
-        tabDiagnostico.Controls.Add(paneltxtReparacionPropuesta);
-        panelnumCostoEstimado.Name = "panelnumCostoEstimado";
-        panelnumCostoEstimado.Location = new Point(18, 340);
-        panelnumCostoEstimado.Size = new Size(442, 80);
+        paneltxtReparacionPropuesta.Location = new Point(18, 222);
+        paneltxtReparacionPropuesta.Name = "paneltxtReparacionPropuesta";
+        paneltxtReparacionPropuesta.Size = new Size(772, 108);
+        paneltxtReparacionPropuesta.TabIndex = 3;
+        // 
+        // lbltxtReparacionPropuesta
+        // 
+        lbltxtReparacionPropuesta.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtReparacionPropuesta.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtReparacionPropuesta.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtReparacionPropuesta.Location = new Point(0, 4);
+        lbltxtReparacionPropuesta.Name = "lbltxtReparacionPropuesta";
+        lbltxtReparacionPropuesta.Size = new Size(772, 22);
+        lbltxtReparacionPropuesta.TabIndex = 0;
+        lbltxtReparacionPropuesta.Text = "Reparación propuesta *";
+        // 
+        // txtReparacionPropuesta
+        // 
+        txtReparacionPropuesta.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtReparacionPropuesta.BackColor = Color.WhiteSmoke;
+        txtReparacionPropuesta.BorderStyle = BorderStyle.FixedSingle;
+        txtReparacionPropuesta.Font = new Font("Segoe UI", 10F);
+        txtReparacionPropuesta.ForeColor = Color.FromArgb(20, 43, 78);
+        txtReparacionPropuesta.Location = new Point(0, 32);
+        txtReparacionPropuesta.MaxLength = 1000;
+        txtReparacionPropuesta.Multiline = true;
+        txtReparacionPropuesta.Name = "txtReparacionPropuesta";
+        txtReparacionPropuesta.PlaceholderText = "Detalla el trabajo que necesita el equipo.";
+        txtReparacionPropuesta.ScrollBars = ScrollBars.Vertical;
+        txtReparacionPropuesta.Size = new Size(772, 68);
+        txtReparacionPropuesta.TabIndex = 0;
+        // 
+        // panelnumCostoEstimado
+        // 
         panelnumCostoEstimado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        panelnumCostoEstimado.TabIndex = 4;
-        lblnumCostoEstimado.Name = "lblnumCostoEstimado";
-        lblnumCostoEstimado.Text = "Costo estimado (C$) *";
-        lblnumCostoEstimado.Location = new Point(0, 4);
-        lblnumCostoEstimado.Size = new Size(442, 22);
-        lblnumCostoEstimado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblnumCostoEstimado.ForeColor = Color.FromArgb(20, 43, 78);
-        lblnumCostoEstimado.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        numCostoEstimado.Name = "numCostoEstimado";
-        numCostoEstimado.Location = new Point(0, 32);
-        numCostoEstimado.Size = new Size(442, 29);
-        numCostoEstimado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        numCostoEstimado.Font = new Font("Segoe UI", 10F);
-        numCostoEstimado.ForeColor = Color.FromArgb(20, 43, 78);
-        numCostoEstimado.BackColor = Color.White;
-        numCostoEstimado.TabIndex = 0;
-        numCostoEstimado.DecimalPlaces = 2;
-        numCostoEstimado.Maximum = 10000000M;
-        numCostoEstimado.ThousandsSeparator = true;
         panelnumCostoEstimado.Controls.Add(lblnumCostoEstimado);
         panelnumCostoEstimado.Controls.Add(numCostoEstimado);
-        tabDiagnostico.Controls.Add(panelnumCostoEstimado);
-        panelcboDecisionCliente.Name = "panelcboDecisionCliente";
-        panelcboDecisionCliente.Location = new Point(482, 340);
-        panelcboDecisionCliente.Size = new Size(442, 80);
+        panelnumCostoEstimado.Location = new Point(18, 340);
+        panelnumCostoEstimado.Name = "panelnumCostoEstimado";
+        panelnumCostoEstimado.Size = new Size(308, 80);
+        panelnumCostoEstimado.TabIndex = 4;
+        // 
+        // lblnumCostoEstimado
+        // 
+        lblnumCostoEstimado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblnumCostoEstimado.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lblnumCostoEstimado.ForeColor = Color.FromArgb(20, 43, 78);
+        lblnumCostoEstimado.Location = new Point(0, 4);
+        lblnumCostoEstimado.Name = "lblnumCostoEstimado";
+        lblnumCostoEstimado.Size = new Size(308, 22);
+        lblnumCostoEstimado.TabIndex = 0;
+        lblnumCostoEstimado.Text = "Costo estimado (C$) *";
+        // 
+        // numCostoEstimado
+        // 
+        numCostoEstimado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        numCostoEstimado.BackColor = Color.White;
+        numCostoEstimado.BorderStyle = BorderStyle.FixedSingle;
+        numCostoEstimado.Font = new Font("Segoe UI", 10F);
+        numCostoEstimado.ForeColor = Color.FromArgb(20, 43, 78);
+        numCostoEstimado.Location = new Point(0, 32);
+        numCostoEstimado.Name = "numCostoEstimado";
+        numCostoEstimado.PlaceholderText = "0.00";
+        numCostoEstimado.Size = new Size(308, 30);
+        numCostoEstimado.TabIndex = 0;
+        numCostoEstimado.Text = "0.00";
+        numCostoEstimado.TextAlign = HorizontalAlignment.Right;
+        // 
+        // panelcboDecisionCliente
+        // 
         panelcboDecisionCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        panelcboDecisionCliente.TabIndex = 5;
-        lblcboDecisionCliente.Name = "lblcboDecisionCliente";
-        lblcboDecisionCliente.Text = "Decisión del cliente";
-        lblcboDecisionCliente.Location = new Point(0, 4);
-        lblcboDecisionCliente.Size = new Size(442, 22);
-        lblcboDecisionCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblcboDecisionCliente.ForeColor = Color.FromArgb(20, 43, 78);
-        lblcboDecisionCliente.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        cboDecisionCliente.Name = "cboDecisionCliente";
-        cboDecisionCliente.Location = new Point(0, 32);
-        cboDecisionCliente.Size = new Size(442, 29);
-        cboDecisionCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        cboDecisionCliente.Font = new Font("Segoe UI", 10F);
-        cboDecisionCliente.ForeColor = Color.FromArgb(20, 43, 78);
-        cboDecisionCliente.BackColor = Color.White;
-        cboDecisionCliente.TabIndex = 0;
-        cboDecisionCliente.DropDownStyle = ComboBoxStyle.DropDownList;
-        cboDecisionCliente.FlatStyle = FlatStyle.Flat;
-        cboDecisionCliente.Items.AddRange(new object[] { "Pendiente de confirmación", "Aprobada", "Rechazada" });
-        cboDecisionCliente.SelectedIndex = 0;
         panelcboDecisionCliente.Controls.Add(lblcboDecisionCliente);
         panelcboDecisionCliente.Controls.Add(cboDecisionCliente);
-        tabDiagnostico.Controls.Add(panelcboDecisionCliente);
-        panelnumCostoAprobado.Name = "panelnumCostoAprobado";
-        panelnumCostoAprobado.Location = new Point(18, 426);
-        panelnumCostoAprobado.Size = new Size(442, 80);
+        panelcboDecisionCliente.Location = new Point(482, 340);
+        panelcboDecisionCliente.Name = "panelcboDecisionCliente";
+        panelcboDecisionCliente.Size = new Size(308, 80);
+        panelcboDecisionCliente.TabIndex = 5;
+        // 
+        // lblcboDecisionCliente
+        // 
+        lblcboDecisionCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblcboDecisionCliente.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lblcboDecisionCliente.ForeColor = Color.FromArgb(20, 43, 78);
+        lblcboDecisionCliente.Location = new Point(0, 4);
+        lblcboDecisionCliente.Name = "lblcboDecisionCliente";
+        lblcboDecisionCliente.Size = new Size(308, 22);
+        lblcboDecisionCliente.TabIndex = 0;
+        lblcboDecisionCliente.Text = "Decisión del cliente";
+        // 
+        // cboDecisionCliente
+        // 
+        cboDecisionCliente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        cboDecisionCliente.BackColor = Color.WhiteSmoke;
+        cboDecisionCliente.DropDownStyle = ComboBoxStyle.DropDownList;
+        cboDecisionCliente.FlatStyle = FlatStyle.Flat;
+        cboDecisionCliente.Font = new Font("Segoe UI", 10F);
+        cboDecisionCliente.ForeColor = Color.FromArgb(20, 43, 78);
+        cboDecisionCliente.Items.AddRange(new object[] { "Pendiente de confirmación", "Aprobada", "Rechazada" });
+        cboDecisionCliente.Location = new Point(0, 32);
+        cboDecisionCliente.Name = "cboDecisionCliente";
+        cboDecisionCliente.Size = new Size(308, 31);
+        cboDecisionCliente.TabIndex = 0;
+        // 
+        // panelnumCostoAprobado
+        // 
         panelnumCostoAprobado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        panelnumCostoAprobado.TabIndex = 6;
-        lblnumCostoAprobado.Name = "lblnumCostoAprobado";
-        lblnumCostoAprobado.Text = "Costo aprobado (C$)";
-        lblnumCostoAprobado.Location = new Point(0, 4);
-        lblnumCostoAprobado.Size = new Size(442, 22);
-        lblnumCostoAprobado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblnumCostoAprobado.ForeColor = Color.FromArgb(20, 43, 78);
-        lblnumCostoAprobado.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        numCostoAprobado.Name = "numCostoAprobado";
-        numCostoAprobado.Location = new Point(0, 32);
-        numCostoAprobado.Size = new Size(442, 29);
-        numCostoAprobado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        numCostoAprobado.Font = new Font("Segoe UI", 10F);
-        numCostoAprobado.ForeColor = Color.FromArgb(20, 43, 78);
-        numCostoAprobado.BackColor = Color.White;
-        numCostoAprobado.TabIndex = 0;
-        numCostoAprobado.DecimalPlaces = 2;
-        numCostoAprobado.Maximum = 10000000M;
-        numCostoAprobado.ThousandsSeparator = true;
         panelnumCostoAprobado.Controls.Add(lblnumCostoAprobado);
         panelnumCostoAprobado.Controls.Add(numCostoAprobado);
-        tabDiagnostico.Controls.Add(panelnumCostoAprobado);
-        paneltxtFechaConfirmacion.Name = "paneltxtFechaConfirmacion";
-        paneltxtFechaConfirmacion.Location = new Point(482, 426);
-        paneltxtFechaConfirmacion.Size = new Size(442, 80);
+        panelnumCostoAprobado.Location = new Point(18, 426);
+        panelnumCostoAprobado.Name = "panelnumCostoAprobado";
+        panelnumCostoAprobado.Size = new Size(308, 80);
+        panelnumCostoAprobado.TabIndex = 6;
+        // 
+        // lblnumCostoAprobado
+        // 
+        lblnumCostoAprobado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblnumCostoAprobado.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lblnumCostoAprobado.ForeColor = Color.FromArgb(20, 43, 78);
+        lblnumCostoAprobado.Location = new Point(0, 4);
+        lblnumCostoAprobado.Name = "lblnumCostoAprobado";
+        lblnumCostoAprobado.Size = new Size(308, 22);
+        lblnumCostoAprobado.TabIndex = 0;
+        lblnumCostoAprobado.Text = "Costo aprobado (C$)";
+        // 
+        // numCostoAprobado
+        // 
+        numCostoAprobado.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        numCostoAprobado.BackColor = Color.White;
+        numCostoAprobado.BorderStyle = BorderStyle.FixedSingle;
+        numCostoAprobado.Font = new Font("Segoe UI", 10F);
+        numCostoAprobado.ForeColor = Color.FromArgb(20, 43, 78);
+        numCostoAprobado.Location = new Point(0, 32);
+        numCostoAprobado.Name = "numCostoAprobado";
+        numCostoAprobado.PlaceholderText = "0.00";
+        numCostoAprobado.Size = new Size(308, 30);
+        numCostoAprobado.TabIndex = 0;
+        numCostoAprobado.Text = "0.00";
+        numCostoAprobado.TextAlign = HorizontalAlignment.Right;
+        // 
+        // paneltxtFechaConfirmacion
+        // 
         paneltxtFechaConfirmacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtFechaConfirmacion.TabIndex = 7;
-        lbltxtFechaConfirmacion.Name = "lbltxtFechaConfirmacion";
-        lbltxtFechaConfirmacion.Text = "Fecha de confirmación";
-        lbltxtFechaConfirmacion.Location = new Point(0, 4);
-        lbltxtFechaConfirmacion.Size = new Size(442, 22);
-        lbltxtFechaConfirmacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtFechaConfirmacion.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtFechaConfirmacion.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtFechaConfirmacion.Name = "txtFechaConfirmacion";
-        txtFechaConfirmacion.Location = new Point(0, 32);
-        txtFechaConfirmacion.Size = new Size(442, 29);
-        txtFechaConfirmacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtFechaConfirmacion.Font = new Font("Segoe UI", 10F);
-        txtFechaConfirmacion.ForeColor = Color.FromArgb(20, 43, 78);
-        txtFechaConfirmacion.BackColor = Color.FromArgb(246, 248, 251);
-        txtFechaConfirmacion.TabIndex = 0;
-        txtFechaConfirmacion.BorderStyle = BorderStyle.FixedSingle;
-        txtFechaConfirmacion.MaxLength = 100;
-        txtFechaConfirmacion.PlaceholderText = "—";
-        txtFechaConfirmacion.ReadOnly = true;
-        txtFechaConfirmacion.TabStop = false;
         paneltxtFechaConfirmacion.Controls.Add(lbltxtFechaConfirmacion);
         paneltxtFechaConfirmacion.Controls.Add(txtFechaConfirmacion);
-        tabDiagnostico.Controls.Add(paneltxtFechaConfirmacion);
-        paneltxtObservacionesDiagnostico.Name = "paneltxtObservacionesDiagnostico";
-        paneltxtObservacionesDiagnostico.Location = new Point(18, 512);
-        paneltxtObservacionesDiagnostico.Size = new Size(906, 108);
+        paneltxtFechaConfirmacion.Location = new Point(482, 426);
+        paneltxtFechaConfirmacion.Name = "paneltxtFechaConfirmacion";
+        paneltxtFechaConfirmacion.Size = new Size(308, 80);
+        paneltxtFechaConfirmacion.TabIndex = 7;
+        // 
+        // lbltxtFechaConfirmacion
+        // 
+        lbltxtFechaConfirmacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtFechaConfirmacion.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtFechaConfirmacion.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtFechaConfirmacion.Location = new Point(0, 4);
+        lbltxtFechaConfirmacion.Name = "lbltxtFechaConfirmacion";
+        lbltxtFechaConfirmacion.Size = new Size(308, 22);
+        lbltxtFechaConfirmacion.TabIndex = 0;
+        lbltxtFechaConfirmacion.Text = "Fecha de confirmación";
+        // 
+        // txtFechaConfirmacion
+        // 
+        txtFechaConfirmacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtFechaConfirmacion.BackColor = Color.FromArgb(246, 248, 251);
+        txtFechaConfirmacion.BorderStyle = BorderStyle.FixedSingle;
+        txtFechaConfirmacion.Font = new Font("Segoe UI", 10F);
+        txtFechaConfirmacion.ForeColor = Color.FromArgb(20, 43, 78);
+        txtFechaConfirmacion.Location = new Point(0, 32);
+        txtFechaConfirmacion.MaxLength = 100;
+        txtFechaConfirmacion.Name = "txtFechaConfirmacion";
+        txtFechaConfirmacion.PlaceholderText = "—";
+        txtFechaConfirmacion.ReadOnly = true;
+        txtFechaConfirmacion.Size = new Size(308, 30);
+        txtFechaConfirmacion.TabIndex = 0;
+        txtFechaConfirmacion.TabStop = false;
+        // 
+        // paneltxtObservacionesDiagnostico
+        // 
         paneltxtObservacionesDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtObservacionesDiagnostico.TabIndex = 8;
-        lbltxtObservacionesDiagnostico.Name = "lbltxtObservacionesDiagnostico";
-        lbltxtObservacionesDiagnostico.Text = "Observaciones del diagnóstico y la confirmación";
-        lbltxtObservacionesDiagnostico.Location = new Point(0, 4);
-        lbltxtObservacionesDiagnostico.Size = new Size(906, 22);
-        lbltxtObservacionesDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtObservacionesDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtObservacionesDiagnostico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtObservacionesDiagnostico.Name = "txtObservacionesDiagnostico";
-        txtObservacionesDiagnostico.Location = new Point(0, 32);
-        txtObservacionesDiagnostico.Size = new Size(906, 68);
-        txtObservacionesDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtObservacionesDiagnostico.Font = new Font("Segoe UI", 10F);
-        txtObservacionesDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
-        txtObservacionesDiagnostico.BackColor = Color.White;
-        txtObservacionesDiagnostico.TabIndex = 0;
-        txtObservacionesDiagnostico.BorderStyle = BorderStyle.FixedSingle;
-        txtObservacionesDiagnostico.MaxLength = 1000;
-        txtObservacionesDiagnostico.PlaceholderText = "Notas de la revisión y respuesta del cliente.";
-        txtObservacionesDiagnostico.Multiline = true;
-        txtObservacionesDiagnostico.ScrollBars = ScrollBars.Vertical;
         paneltxtObservacionesDiagnostico.Controls.Add(lbltxtObservacionesDiagnostico);
         paneltxtObservacionesDiagnostico.Controls.Add(txtObservacionesDiagnostico);
-        tabDiagnostico.Controls.Add(paneltxtObservacionesDiagnostico);
-        lblServiciosOrden.Name = "lblServiciosOrden";
-        lblServiciosOrden.Text = "Servicios realizados";
-        lblServiciosOrden.Location = new Point(18, 22);
-        lblServiciosOrden.Size = new Size(700, 26);
+        paneltxtObservacionesDiagnostico.Location = new Point(18, 512);
+        paneltxtObservacionesDiagnostico.Name = "paneltxtObservacionesDiagnostico";
+        paneltxtObservacionesDiagnostico.Size = new Size(772, 108);
+        paneltxtObservacionesDiagnostico.TabIndex = 8;
+        // 
+        // lbltxtObservacionesDiagnostico
+        // 
+        lbltxtObservacionesDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtObservacionesDiagnostico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtObservacionesDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtObservacionesDiagnostico.Location = new Point(0, 4);
+        lbltxtObservacionesDiagnostico.Name = "lbltxtObservacionesDiagnostico";
+        lbltxtObservacionesDiagnostico.Size = new Size(772, 22);
+        lbltxtObservacionesDiagnostico.TabIndex = 0;
+        lbltxtObservacionesDiagnostico.Text = "Observaciones del diagnóstico y la confirmación";
+        // 
+        // txtObservacionesDiagnostico
+        // 
+        txtObservacionesDiagnostico.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtObservacionesDiagnostico.BackColor = Color.WhiteSmoke;
+        txtObservacionesDiagnostico.BorderStyle = BorderStyle.FixedSingle;
+        txtObservacionesDiagnostico.Font = new Font("Segoe UI", 10F);
+        txtObservacionesDiagnostico.ForeColor = Color.FromArgb(20, 43, 78);
+        txtObservacionesDiagnostico.Location = new Point(0, 32);
+        txtObservacionesDiagnostico.MaxLength = 1000;
+        txtObservacionesDiagnostico.Multiline = true;
+        txtObservacionesDiagnostico.Name = "txtObservacionesDiagnostico";
+        txtObservacionesDiagnostico.PlaceholderText = "Notas de la revisión y respuesta del cliente.";
+        txtObservacionesDiagnostico.ScrollBars = ScrollBars.Vertical;
+        txtObservacionesDiagnostico.Size = new Size(772, 68);
+        txtObservacionesDiagnostico.TabIndex = 0;
+        // 
+        // tabTrabajos
+        // 
+        tabTrabajos.AutoScroll = true;
+        tabTrabajos.BackColor = Color.White;
+        tabTrabajos.Controls.Add(lblServiciosOrden);
+        tabTrabajos.Controls.Add(btnAgregarServicio);
+        tabTrabajos.Controls.Add(dgvServiciosOrden);
+        tabTrabajos.Controls.Add(lblServiciosVacios);
+        tabTrabajos.Controls.Add(lblRepuestosOrden);
+        tabTrabajos.Controls.Add(btnAgregarRepuesto);
+        tabTrabajos.Controls.Add(dgvRepuestosOrden);
+        tabTrabajos.Controls.Add(lblRepuestosVacios);
+        tabTrabajos.Controls.Add(paneltxtTotalTrabajos);
+        tabTrabajos.Controls.Add(panelcboResultadoReparacion);
+        tabTrabajos.Controls.Add(paneltxtObservacionesTrabajo);
+        tabTrabajos.Location = new Point(4, 40);
+        tabTrabajos.Name = "tabTrabajos";
+        tabTrabajos.Padding = new Padding(18);
+        tabTrabajos.Size = new Size(947, 458);
+        tabTrabajos.TabIndex = 2;
+        tabTrabajos.Text = "Trabajos";
+        // 
+        // lblServiciosOrden
+        // 
+        lblServiciosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblServiciosOrden.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         lblServiciosOrden.ForeColor = Color.FromArgb(20, 43, 78);
-        lblServiciosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblServiciosOrden.TabStop = false;
-        tabTrabajos.Controls.Add(lblServiciosOrden);
-        btnAgregarServicio.Name = "btnAgregarServicio";
-        btnAgregarServicio.Text = "Agregar servicio";
-        btnAgregarServicio.Location = new Point(746, 16);
-        btnAgregarServicio.Size = new Size(178, 34);
+        lblServiciosOrden.Location = new Point(18, 22);
+        lblServiciosOrden.Name = "lblServiciosOrden";
+        lblServiciosOrden.Size = new Size(566, 26);
+        lblServiciosOrden.TabIndex = 0;
+        lblServiciosOrden.Text = "Servicios realizados";
+        // 
+        // btnAgregarServicio
+        // 
         btnAgregarServicio.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        btnAgregarServicio.IconChar = FontAwesome.Sharp.IconChar.Plus;
-        btnAgregarServicio.IconColor = Color.FromArgb(37, 99, 235);
-        btnAgregarServicio.IconSize = 16;
+        btnAgregarServicio.BackColor = Color.FromArgb(239, 246, 255);
+        btnAgregarServicio.FlatAppearance.BorderSize = 0;
+        btnAgregarServicio.FlatStyle = FlatStyle.Flat;
         btnAgregarServicio.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
         btnAgregarServicio.ForeColor = Color.FromArgb(37, 99, 235);
-        btnAgregarServicio.BackColor = Color.FromArgb(239, 246, 255);
-        btnAgregarServicio.FlatStyle = FlatStyle.Flat;
-        btnAgregarServicio.FlatAppearance.BorderSize = 0;
-        btnAgregarServicio.TextImageRelation = TextImageRelation.ImageBeforeText;
+        btnAgregarServicio.IconChar = FontAwesome.Sharp.IconChar.Add;
+        btnAgregarServicio.IconColor = Color.FromArgb(37, 99, 235);
+        btnAgregarServicio.IconFont = FontAwesome.Sharp.IconFont.Auto;
+        btnAgregarServicio.IconSize = 16;
+        btnAgregarServicio.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnAgregarServicio.Location = new Point(717, 16);
+        btnAgregarServicio.Name = "btnAgregarServicio";
+        btnAgregarServicio.Size = new Size(178, 34);
         btnAgregarServicio.TabIndex = 0;
-        tabTrabajos.Controls.Add(btnAgregarServicio);
-        dgvServiciosOrden.Name = "dgvServiciosOrden";
-        dgvServiciosOrden.Location = new Point(18, 60);
-        dgvServiciosOrden.Size = new Size(906, 144);
-        dgvServiciosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        btnAgregarServicio.Text = "Agregar servicio";
+        btnAgregarServicio.TextImageRelation = TextImageRelation.ImageBeforeText;
+        btnAgregarServicio.UseVisualStyleBackColor = false;
+        // 
+        // dgvServiciosOrden
+        // 
         dgvServiciosOrden.AllowUserToAddRows = false;
         dgvServiciosOrden.AllowUserToDeleteRows = false;
-        dgvServiciosOrden.ReadOnly = true;
-        dgvServiciosOrden.RowHeadersVisible = false;
-        dgvServiciosOrden.MultiSelect = false;
-        dgvServiciosOrden.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvServiciosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         dgvServiciosOrden.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgvServiciosOrden.BackgroundColor = Color.White;
-        dgvServiciosOrden.BorderStyle = BorderStyle.FixedSingle;
-        dgvServiciosOrden.GridColor = Color.FromArgb(235, 240, 246);
+        dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle1.BackColor = Color.FromArgb(246, 248, 251);
+        dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        dataGridViewCellStyle1.ForeColor = Color.FromArgb(103, 116, 137);
+        dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+        dgvServiciosOrden.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
         dgvServiciosOrden.ColumnHeadersHeight = 40;
         dgvServiciosOrden.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+        dgvServiciosOrden.Columns.AddRange(new DataGridViewColumn[] { dgvServiciosOrdenCol0, dgvServiciosOrdenCol1, dgvServiciosOrdenCol2, dgvServiciosOrdenCol3 });
+        dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle4.BackColor = SystemColors.Window;
+        dataGridViewCellStyle4.Font = new Font("Segoe UI", 10F);
+        dataGridViewCellStyle4.ForeColor = Color.FromArgb(20, 43, 78);
+        dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(234, 240, 252);
+        dataGridViewCellStyle4.SelectionForeColor = Color.FromArgb(20, 43, 78);
+        dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+        dgvServiciosOrden.DefaultCellStyle = dataGridViewCellStyle4;
         dgvServiciosOrden.EnableHeadersVisualStyles = false;
-        dgvServiciosOrden.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(246, 248, 251);
-        dgvServiciosOrden.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(103, 116, 137);
-        dgvServiciosOrden.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        dgvServiciosOrden.DefaultCellStyle.ForeColor = Color.FromArgb(20, 43, 78);
-        dgvServiciosOrden.DefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 240, 252);
-        dgvServiciosOrden.DefaultCellStyle.SelectionForeColor = Color.FromArgb(20, 43, 78);
+        dgvServiciosOrden.GridColor = Color.FromArgb(235, 240, 246);
+        dgvServiciosOrden.Location = new Point(18, 60);
+        dgvServiciosOrden.MultiSelect = false;
+        dgvServiciosOrden.Name = "dgvServiciosOrden";
+        dgvServiciosOrden.ReadOnly = true;
+        dgvServiciosOrden.RowHeadersVisible = false;
+        dgvServiciosOrden.RowHeadersWidth = 51;
         dgvServiciosOrden.RowTemplate.Height = 40;
+        dgvServiciosOrden.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvServiciosOrden.Size = new Size(877, 144);
         dgvServiciosOrden.TabIndex = 1;
-        dgvServiciosOrdenCol0.Name = "dgvServiciosOrdenCol0";
-        dgvServiciosOrdenCol0.HeaderText = "Servicio";
+        // 
+        // dgvServiciosOrdenCol0
+        // 
         dgvServiciosOrdenCol0.FillWeight = 42F;
+        dgvServiciosOrdenCol0.HeaderText = "Servicio";
+        dgvServiciosOrdenCol0.MinimumWidth = 6;
+        dgvServiciosOrdenCol0.Name = "dgvServiciosOrdenCol0";
         dgvServiciosOrdenCol0.ReadOnly = true;
         dgvServiciosOrdenCol0.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvServiciosOrdenCol1.Name = "dgvServiciosOrdenCol1";
-        dgvServiciosOrdenCol1.HeaderText = "Cantidad";
+        // 
+        // dgvServiciosOrdenCol1
+        // 
         dgvServiciosOrdenCol1.FillWeight = 14F;
+        dgvServiciosOrdenCol1.HeaderText = "Cantidad";
+        dgvServiciosOrdenCol1.MinimumWidth = 6;
+        dgvServiciosOrdenCol1.Name = "dgvServiciosOrdenCol1";
         dgvServiciosOrdenCol1.ReadOnly = true;
         dgvServiciosOrdenCol1.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvServiciosOrdenCol2.Name = "dgvServiciosOrdenCol2";
-        dgvServiciosOrdenCol2.HeaderText = "Precio (C$)";
+        // 
+        // dgvServiciosOrdenCol2
+        // 
+        dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+        dataGridViewCellStyle2.Format = "N2";
+        dgvServiciosOrdenCol2.DefaultCellStyle = dataGridViewCellStyle2;
         dgvServiciosOrdenCol2.FillWeight = 20F;
+        dgvServiciosOrdenCol2.HeaderText = "Precio (C$)";
+        dgvServiciosOrdenCol2.MinimumWidth = 6;
+        dgvServiciosOrdenCol2.Name = "dgvServiciosOrdenCol2";
         dgvServiciosOrdenCol2.ReadOnly = true;
         dgvServiciosOrdenCol2.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvServiciosOrdenCol2.DefaultCellStyle.Format = "N2";
-        dgvServiciosOrdenCol2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        dgvServiciosOrdenCol3.Name = "dgvServiciosOrdenCol3";
-        dgvServiciosOrdenCol3.HeaderText = "Subtotal (C$)";
+        // 
+        // dgvServiciosOrdenCol3
+        // 
+        dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
+        dataGridViewCellStyle3.Format = "N2";
+        dgvServiciosOrdenCol3.DefaultCellStyle = dataGridViewCellStyle3;
         dgvServiciosOrdenCol3.FillWeight = 24F;
+        dgvServiciosOrdenCol3.HeaderText = "Subtotal (C$)";
+        dgvServiciosOrdenCol3.MinimumWidth = 6;
+        dgvServiciosOrdenCol3.Name = "dgvServiciosOrdenCol3";
         dgvServiciosOrdenCol3.ReadOnly = true;
         dgvServiciosOrdenCol3.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvServiciosOrdenCol3.DefaultCellStyle.Format = "N2";
-        dgvServiciosOrdenCol3.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        dgvServiciosOrden.Columns.AddRange(new DataGridViewColumn[] { dgvServiciosOrdenCol0, dgvServiciosOrdenCol1, dgvServiciosOrdenCol2, dgvServiciosOrdenCol3 });
-        tabTrabajos.Controls.Add(dgvServiciosOrden);
-        lblServiciosVacios.Name = "lblServiciosVacios";
-        lblServiciosVacios.Text = "Aún no hay servicios agregados a la orden.";
-        lblServiciosVacios.Location = new Point(18, 208);
-        lblServiciosVacios.Size = new Size(906, 24);
+        // 
+        // lblServiciosVacios
+        // 
+        lblServiciosVacios.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblServiciosVacios.Font = new Font("Segoe UI", 9F);
         lblServiciosVacios.ForeColor = Color.FromArgb(103, 116, 137);
-        lblServiciosVacios.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblServiciosVacios.TabStop = false;
-        tabTrabajos.Controls.Add(lblServiciosVacios);
-        lblRepuestosOrden.Name = "lblRepuestosOrden";
-        lblRepuestosOrden.Text = "Repuestos utilizados";
-        lblRepuestosOrden.Location = new Point(18, 256);
-        lblRepuestosOrden.Size = new Size(700, 26);
+        lblServiciosVacios.Location = new Point(18, 208);
+        lblServiciosVacios.Name = "lblServiciosVacios";
+        lblServiciosVacios.Size = new Size(877, 24);
+        lblServiciosVacios.TabIndex = 2;
+        lblServiciosVacios.Text = "Aún no hay servicios agregados a la orden.";
+        // 
+        // lblRepuestosOrden
+        // 
+        lblRepuestosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblRepuestosOrden.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         lblRepuestosOrden.ForeColor = Color.FromArgb(20, 43, 78);
-        lblRepuestosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblRepuestosOrden.TabStop = false;
-        tabTrabajos.Controls.Add(lblRepuestosOrden);
-        btnAgregarRepuesto.Name = "btnAgregarRepuesto";
-        btnAgregarRepuesto.Text = "Agregar repuesto";
-        btnAgregarRepuesto.Location = new Point(746, 250);
-        btnAgregarRepuesto.Size = new Size(178, 34);
+        lblRepuestosOrden.Location = new Point(18, 256);
+        lblRepuestosOrden.Name = "lblRepuestosOrden";
+        lblRepuestosOrden.Size = new Size(877, 26);
+        lblRepuestosOrden.TabIndex = 3;
+        lblRepuestosOrden.Text = "Repuestos utilizados";
+        // 
+        // btnAgregarRepuesto
+        // 
         btnAgregarRepuesto.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        btnAgregarRepuesto.IconChar = FontAwesome.Sharp.IconChar.Plus;
-        btnAgregarRepuesto.IconColor = Color.FromArgb(37, 99, 235);
-        btnAgregarRepuesto.IconSize = 16;
+        btnAgregarRepuesto.BackColor = Color.FromArgb(239, 246, 255);
+        btnAgregarRepuesto.FlatAppearance.BorderSize = 0;
+        btnAgregarRepuesto.FlatStyle = FlatStyle.Flat;
         btnAgregarRepuesto.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
         btnAgregarRepuesto.ForeColor = Color.FromArgb(37, 99, 235);
-        btnAgregarRepuesto.BackColor = Color.FromArgb(239, 246, 255);
-        btnAgregarRepuesto.FlatStyle = FlatStyle.Flat;
-        btnAgregarRepuesto.FlatAppearance.BorderSize = 0;
-        btnAgregarRepuesto.TextImageRelation = TextImageRelation.ImageBeforeText;
+        btnAgregarRepuesto.IconChar = FontAwesome.Sharp.IconChar.Add;
+        btnAgregarRepuesto.IconColor = Color.FromArgb(37, 99, 235);
+        btnAgregarRepuesto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+        btnAgregarRepuesto.IconSize = 16;
+        btnAgregarRepuesto.Location = new Point(717, 250);
+        btnAgregarRepuesto.Name = "btnAgregarRepuesto";
+        btnAgregarRepuesto.Size = new Size(178, 34);
         btnAgregarRepuesto.TabIndex = 2;
-        tabTrabajos.Controls.Add(btnAgregarRepuesto);
-        dgvRepuestosOrden.Name = "dgvRepuestosOrden";
-        dgvRepuestosOrden.Location = new Point(18, 294);
-        dgvRepuestosOrden.Size = new Size(906, 144);
-        dgvRepuestosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        btnAgregarRepuesto.Text = "Agregar repuesto";
+        btnAgregarRepuesto.TextImageRelation = TextImageRelation.ImageBeforeText;
+        btnAgregarRepuesto.UseVisualStyleBackColor = false;
+        // 
+        // dgvRepuestosOrden
+        // 
         dgvRepuestosOrden.AllowUserToAddRows = false;
         dgvRepuestosOrden.AllowUserToDeleteRows = false;
-        dgvRepuestosOrden.ReadOnly = true;
-        dgvRepuestosOrden.RowHeadersVisible = false;
-        dgvRepuestosOrden.MultiSelect = false;
-        dgvRepuestosOrden.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvRepuestosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         dgvRepuestosOrden.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgvRepuestosOrden.BackgroundColor = Color.White;
-        dgvRepuestosOrden.BorderStyle = BorderStyle.FixedSingle;
-        dgvRepuestosOrden.GridColor = Color.FromArgb(235, 240, 246);
+        dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle5.BackColor = Color.FromArgb(246, 248, 251);
+        dataGridViewCellStyle5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        dataGridViewCellStyle5.ForeColor = Color.FromArgb(103, 116, 137);
+        dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+        dgvRepuestosOrden.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
         dgvRepuestosOrden.ColumnHeadersHeight = 40;
         dgvRepuestosOrden.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+        dgvRepuestosOrden.Columns.AddRange(new DataGridViewColumn[] { dgvRepuestosOrdenCol0, dgvRepuestosOrdenCol1, dgvRepuestosOrdenCol2, dgvRepuestosOrdenCol3 });
+        dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle8.BackColor = SystemColors.Window;
+        dataGridViewCellStyle8.Font = new Font("Segoe UI", 10F);
+        dataGridViewCellStyle8.ForeColor = Color.FromArgb(20, 43, 78);
+        dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(234, 240, 252);
+        dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(20, 43, 78);
+        dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+        dgvRepuestosOrden.DefaultCellStyle = dataGridViewCellStyle8;
         dgvRepuestosOrden.EnableHeadersVisualStyles = false;
-        dgvRepuestosOrden.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(246, 248, 251);
-        dgvRepuestosOrden.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(103, 116, 137);
-        dgvRepuestosOrden.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        dgvRepuestosOrden.DefaultCellStyle.ForeColor = Color.FromArgb(20, 43, 78);
-        dgvRepuestosOrden.DefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 240, 252);
-        dgvRepuestosOrden.DefaultCellStyle.SelectionForeColor = Color.FromArgb(20, 43, 78);
+        dgvRepuestosOrden.GridColor = Color.FromArgb(235, 240, 246);
+        dgvRepuestosOrden.Location = new Point(18, 294);
+        dgvRepuestosOrden.MultiSelect = false;
+        dgvRepuestosOrden.Name = "dgvRepuestosOrden";
+        dgvRepuestosOrden.ReadOnly = true;
+        dgvRepuestosOrden.RowHeadersVisible = false;
+        dgvRepuestosOrden.RowHeadersWidth = 51;
         dgvRepuestosOrden.RowTemplate.Height = 40;
+        dgvRepuestosOrden.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvRepuestosOrden.Size = new Size(877, 144);
         dgvRepuestosOrden.TabIndex = 3;
-        dgvRepuestosOrdenCol0.Name = "dgvRepuestosOrdenCol0";
-        dgvRepuestosOrdenCol0.HeaderText = "Repuesto";
+        // 
+        // dgvRepuestosOrdenCol0
+        // 
         dgvRepuestosOrdenCol0.FillWeight = 42F;
+        dgvRepuestosOrdenCol0.HeaderText = "Repuesto";
+        dgvRepuestosOrdenCol0.MinimumWidth = 6;
+        dgvRepuestosOrdenCol0.Name = "dgvRepuestosOrdenCol0";
         dgvRepuestosOrdenCol0.ReadOnly = true;
         dgvRepuestosOrdenCol0.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvRepuestosOrdenCol1.Name = "dgvRepuestosOrdenCol1";
-        dgvRepuestosOrdenCol1.HeaderText = "Cantidad";
+        // 
+        // dgvRepuestosOrdenCol1
+        // 
         dgvRepuestosOrdenCol1.FillWeight = 14F;
+        dgvRepuestosOrdenCol1.HeaderText = "Cantidad";
+        dgvRepuestosOrdenCol1.MinimumWidth = 6;
+        dgvRepuestosOrdenCol1.Name = "dgvRepuestosOrdenCol1";
         dgvRepuestosOrdenCol1.ReadOnly = true;
         dgvRepuestosOrdenCol1.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvRepuestosOrdenCol2.Name = "dgvRepuestosOrdenCol2";
-        dgvRepuestosOrdenCol2.HeaderText = "Precio (C$)";
+        // 
+        // dgvRepuestosOrdenCol2
+        // 
+        dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleRight;
+        dataGridViewCellStyle6.Format = "N2";
+        dgvRepuestosOrdenCol2.DefaultCellStyle = dataGridViewCellStyle6;
         dgvRepuestosOrdenCol2.FillWeight = 20F;
+        dgvRepuestosOrdenCol2.HeaderText = "Precio (C$)";
+        dgvRepuestosOrdenCol2.MinimumWidth = 6;
+        dgvRepuestosOrdenCol2.Name = "dgvRepuestosOrdenCol2";
         dgvRepuestosOrdenCol2.ReadOnly = true;
         dgvRepuestosOrdenCol2.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvRepuestosOrdenCol2.DefaultCellStyle.Format = "N2";
-        dgvRepuestosOrdenCol2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        dgvRepuestosOrdenCol3.Name = "dgvRepuestosOrdenCol3";
-        dgvRepuestosOrdenCol3.HeaderText = "Subtotal (C$)";
+        // 
+        // dgvRepuestosOrdenCol3
+        // 
+        dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleRight;
+        dataGridViewCellStyle7.Format = "N2";
+        dgvRepuestosOrdenCol3.DefaultCellStyle = dataGridViewCellStyle7;
         dgvRepuestosOrdenCol3.FillWeight = 24F;
+        dgvRepuestosOrdenCol3.HeaderText = "Subtotal (C$)";
+        dgvRepuestosOrdenCol3.MinimumWidth = 6;
+        dgvRepuestosOrdenCol3.Name = "dgvRepuestosOrdenCol3";
         dgvRepuestosOrdenCol3.ReadOnly = true;
         dgvRepuestosOrdenCol3.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvRepuestosOrdenCol3.DefaultCellStyle.Format = "N2";
-        dgvRepuestosOrdenCol3.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        dgvRepuestosOrden.Columns.AddRange(new DataGridViewColumn[] { dgvRepuestosOrdenCol0, dgvRepuestosOrdenCol1, dgvRepuestosOrdenCol2, dgvRepuestosOrdenCol3 });
-        tabTrabajos.Controls.Add(dgvRepuestosOrden);
-        lblRepuestosVacios.Name = "lblRepuestosVacios";
-        lblRepuestosVacios.Text = "Aún no hay repuestos agregados a la orden.";
-        lblRepuestosVacios.Location = new Point(18, 442);
-        lblRepuestosVacios.Size = new Size(906, 24);
+        // 
+        // lblRepuestosVacios
+        // 
+        lblRepuestosVacios.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblRepuestosVacios.Font = new Font("Segoe UI", 9F);
         lblRepuestosVacios.ForeColor = Color.FromArgb(103, 116, 137);
-        lblRepuestosVacios.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblRepuestosVacios.TabStop = false;
-        tabTrabajos.Controls.Add(lblRepuestosVacios);
-        paneltxtTotalTrabajos.Name = "paneltxtTotalTrabajos";
-        paneltxtTotalTrabajos.Location = new Point(18, 480);
-        paneltxtTotalTrabajos.Size = new Size(442, 80);
+        lblRepuestosVacios.Location = new Point(18, 442);
+        lblRepuestosVacios.Name = "lblRepuestosVacios";
+        lblRepuestosVacios.Size = new Size(772, 24);
+        lblRepuestosVacios.TabIndex = 4;
+        lblRepuestosVacios.Text = "Aún no hay repuestos agregados a la orden.";
+        // 
+        // paneltxtTotalTrabajos
+        // 
         paneltxtTotalTrabajos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtTotalTrabajos.TabIndex = 4;
-        lbltxtTotalTrabajos.Name = "lbltxtTotalTrabajos";
-        lbltxtTotalTrabajos.Text = "Total de servicios y repuestos (C$)";
-        lbltxtTotalTrabajos.Location = new Point(0, 4);
-        lbltxtTotalTrabajos.Size = new Size(442, 22);
-        lbltxtTotalTrabajos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtTotalTrabajos.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtTotalTrabajos.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtTotalTrabajos.Name = "txtTotalTrabajos";
-        txtTotalTrabajos.Location = new Point(0, 32);
-        txtTotalTrabajos.Size = new Size(442, 29);
-        txtTotalTrabajos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtTotalTrabajos.Font = new Font("Segoe UI", 10F);
-        txtTotalTrabajos.ForeColor = Color.FromArgb(20, 43, 78);
-        txtTotalTrabajos.BackColor = Color.FromArgb(246, 248, 251);
-        txtTotalTrabajos.TabIndex = 0;
-        txtTotalTrabajos.BorderStyle = BorderStyle.FixedSingle;
-        txtTotalTrabajos.MaxLength = 100;
-        txtTotalTrabajos.PlaceholderText = "—";
-        txtTotalTrabajos.ReadOnly = true;
-        txtTotalTrabajos.TabStop = false;
         paneltxtTotalTrabajos.Controls.Add(lbltxtTotalTrabajos);
         paneltxtTotalTrabajos.Controls.Add(txtTotalTrabajos);
-        tabTrabajos.Controls.Add(paneltxtTotalTrabajos);
-        panelcboResultadoReparacion.Name = "panelcboResultadoReparacion";
-        panelcboResultadoReparacion.Location = new Point(482, 480);
-        panelcboResultadoReparacion.Size = new Size(442, 80);
+        paneltxtTotalTrabajos.Location = new Point(18, 480);
+        paneltxtTotalTrabajos.Name = "paneltxtTotalTrabajos";
+        paneltxtTotalTrabajos.Size = new Size(308, 80);
+        paneltxtTotalTrabajos.TabIndex = 4;
+        // 
+        // lbltxtTotalTrabajos
+        // 
+        lbltxtTotalTrabajos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtTotalTrabajos.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtTotalTrabajos.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtTotalTrabajos.Location = new Point(0, 4);
+        lbltxtTotalTrabajos.Name = "lbltxtTotalTrabajos";
+        lbltxtTotalTrabajos.Size = new Size(308, 22);
+        lbltxtTotalTrabajos.TabIndex = 0;
+        lbltxtTotalTrabajos.Text = "Total de servicios y repuestos (C$)";
+        // 
+        // txtTotalTrabajos
+        // 
+        txtTotalTrabajos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtTotalTrabajos.BackColor = Color.FromArgb(246, 248, 251);
+        txtTotalTrabajos.BorderStyle = BorderStyle.FixedSingle;
+        txtTotalTrabajos.Font = new Font("Segoe UI", 10F);
+        txtTotalTrabajos.ForeColor = Color.FromArgb(20, 43, 78);
+        txtTotalTrabajos.Location = new Point(0, 32);
+        txtTotalTrabajos.MaxLength = 100;
+        txtTotalTrabajos.Name = "txtTotalTrabajos";
+        txtTotalTrabajos.PlaceholderText = "—";
+        txtTotalTrabajos.ReadOnly = true;
+        txtTotalTrabajos.Size = new Size(308, 30);
+        txtTotalTrabajos.TabIndex = 0;
+        txtTotalTrabajos.TabStop = false;
+        // 
+        // panelcboResultadoReparacion
+        // 
         panelcboResultadoReparacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        panelcboResultadoReparacion.TabIndex = 5;
-        lblcboResultadoReparacion.Name = "lblcboResultadoReparacion";
-        lblcboResultadoReparacion.Text = "Resultado de la reparación";
-        lblcboResultadoReparacion.Location = new Point(0, 4);
-        lblcboResultadoReparacion.Size = new Size(442, 22);
-        lblcboResultadoReparacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblcboResultadoReparacion.ForeColor = Color.FromArgb(20, 43, 78);
-        lblcboResultadoReparacion.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        cboResultadoReparacion.Name = "cboResultadoReparacion";
-        cboResultadoReparacion.Location = new Point(0, 32);
-        cboResultadoReparacion.Size = new Size(442, 29);
-        cboResultadoReparacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        cboResultadoReparacion.Font = new Font("Segoe UI", 10F);
-        cboResultadoReparacion.ForeColor = Color.FromArgb(20, 43, 78);
-        cboResultadoReparacion.BackColor = Color.White;
-        cboResultadoReparacion.TabIndex = 0;
-        cboResultadoReparacion.DropDownStyle = ComboBoxStyle.DropDownList;
-        cboResultadoReparacion.FlatStyle = FlatStyle.Flat;
-        cboResultadoReparacion.Items.AddRange(new object[] { "Selecciona el resultado", "Reparada", "No Reparada" });
-        cboResultadoReparacion.SelectedIndex = 0;
         panelcboResultadoReparacion.Controls.Add(lblcboResultadoReparacion);
         panelcboResultadoReparacion.Controls.Add(cboResultadoReparacion);
-        tabTrabajos.Controls.Add(panelcboResultadoReparacion);
-        paneltxtObservacionesTrabajo.Name = "paneltxtObservacionesTrabajo";
-        paneltxtObservacionesTrabajo.Location = new Point(18, 566);
-        paneltxtObservacionesTrabajo.Size = new Size(906, 112);
+        panelcboResultadoReparacion.Location = new Point(482, 480);
+        panelcboResultadoReparacion.Name = "panelcboResultadoReparacion";
+        panelcboResultadoReparacion.Size = new Size(308, 80);
+        panelcboResultadoReparacion.TabIndex = 5;
+        // 
+        // lblcboResultadoReparacion
+        // 
+        lblcboResultadoReparacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblcboResultadoReparacion.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lblcboResultadoReparacion.ForeColor = Color.FromArgb(20, 43, 78);
+        lblcboResultadoReparacion.Location = new Point(0, 4);
+        lblcboResultadoReparacion.Name = "lblcboResultadoReparacion";
+        lblcboResultadoReparacion.Size = new Size(308, 22);
+        lblcboResultadoReparacion.TabIndex = 0;
+        lblcboResultadoReparacion.Text = "Resultado de la reparación";
+        // 
+        // cboResultadoReparacion
+        // 
+        cboResultadoReparacion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        cboResultadoReparacion.BackColor = Color.White;
+        cboResultadoReparacion.DropDownStyle = ComboBoxStyle.DropDownList;
+        cboResultadoReparacion.FlatStyle = FlatStyle.Flat;
+        cboResultadoReparacion.Font = new Font("Segoe UI", 10F);
+        cboResultadoReparacion.ForeColor = Color.FromArgb(20, 43, 78);
+        cboResultadoReparacion.Items.AddRange(new object[] { "Selecciona el resultado", "Reparada", "No Reparada" });
+        cboResultadoReparacion.Location = new Point(0, 32);
+        cboResultadoReparacion.Name = "cboResultadoReparacion";
+        cboResultadoReparacion.Size = new Size(308, 31);
+        cboResultadoReparacion.TabIndex = 0;
+        // 
+        // paneltxtObservacionesTrabajo
+        // 
         paneltxtObservacionesTrabajo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtObservacionesTrabajo.TabIndex = 6;
-        lbltxtObservacionesTrabajo.Name = "lbltxtObservacionesTrabajo";
-        lbltxtObservacionesTrabajo.Text = "Observaciones del trabajo";
-        lbltxtObservacionesTrabajo.Location = new Point(0, 4);
-        lbltxtObservacionesTrabajo.Size = new Size(906, 22);
-        lbltxtObservacionesTrabajo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtObservacionesTrabajo.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtObservacionesTrabajo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtObservacionesTrabajo.Name = "txtObservacionesTrabajo";
-        txtObservacionesTrabajo.Location = new Point(0, 32);
-        txtObservacionesTrabajo.Size = new Size(906, 72);
-        txtObservacionesTrabajo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtObservacionesTrabajo.Font = new Font("Segoe UI", 10F);
-        txtObservacionesTrabajo.ForeColor = Color.FromArgb(20, 43, 78);
-        txtObservacionesTrabajo.BackColor = Color.White;
-        txtObservacionesTrabajo.TabIndex = 0;
-        txtObservacionesTrabajo.BorderStyle = BorderStyle.FixedSingle;
-        txtObservacionesTrabajo.MaxLength = 500;
-        txtObservacionesTrabajo.PlaceholderText = "Detalla el trabajo realizado y el estado final del equipo.";
-        txtObservacionesTrabajo.Multiline = true;
-        txtObservacionesTrabajo.ScrollBars = ScrollBars.Vertical;
         paneltxtObservacionesTrabajo.Controls.Add(lbltxtObservacionesTrabajo);
         paneltxtObservacionesTrabajo.Controls.Add(txtObservacionesTrabajo);
-        tabTrabajos.Controls.Add(paneltxtObservacionesTrabajo);
-        lblCobrosOrden.Name = "lblCobrosOrden";
-        lblCobrosOrden.Text = "Pagos de la orden";
-        lblCobrosOrden.Location = new Point(18, 22);
-        lblCobrosOrden.Size = new Size(700, 26);
+        paneltxtObservacionesTrabajo.Location = new Point(18, 566);
+        paneltxtObservacionesTrabajo.Name = "paneltxtObservacionesTrabajo";
+        paneltxtObservacionesTrabajo.Size = new Size(772, 112);
+        paneltxtObservacionesTrabajo.TabIndex = 6;
+        // 
+        // lbltxtObservacionesTrabajo
+        // 
+        lbltxtObservacionesTrabajo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtObservacionesTrabajo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtObservacionesTrabajo.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtObservacionesTrabajo.Location = new Point(0, 4);
+        lbltxtObservacionesTrabajo.Name = "lbltxtObservacionesTrabajo";
+        lbltxtObservacionesTrabajo.Size = new Size(772, 22);
+        lbltxtObservacionesTrabajo.TabIndex = 0;
+        lbltxtObservacionesTrabajo.Text = "Observaciones del trabajo";
+        // 
+        // txtObservacionesTrabajo
+        // 
+        txtObservacionesTrabajo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtObservacionesTrabajo.BackColor = Color.White;
+        txtObservacionesTrabajo.BorderStyle = BorderStyle.FixedSingle;
+        txtObservacionesTrabajo.Font = new Font("Segoe UI", 10F);
+        txtObservacionesTrabajo.ForeColor = Color.FromArgb(20, 43, 78);
+        txtObservacionesTrabajo.Location = new Point(0, 32);
+        txtObservacionesTrabajo.MaxLength = 500;
+        txtObservacionesTrabajo.Multiline = true;
+        txtObservacionesTrabajo.Name = "txtObservacionesTrabajo";
+        txtObservacionesTrabajo.PlaceholderText = "Detalla el trabajo realizado y el estado final del equipo.";
+        txtObservacionesTrabajo.ScrollBars = ScrollBars.Vertical;
+        txtObservacionesTrabajo.Size = new Size(772, 72);
+        txtObservacionesTrabajo.TabIndex = 0;
+        // 
+        // tabPagos
+        // 
+        tabPagos.AutoScroll = true;
+        tabPagos.BackColor = Color.White;
+        tabPagos.Controls.Add(lblCobrosOrden);
+        tabPagos.Controls.Add(btnRegistrarPagoOrden);
+        tabPagos.Controls.Add(dgvPagosOrden);
+        tabPagos.Controls.Add(lblPagosVacios);
+        tabPagos.Controls.Add(paneltxtTotalPagos);
+        tabPagos.Controls.Add(paneltxtPagadoOrden);
+        tabPagos.Controls.Add(paneltxtSaldoPagos);
+        tabPagos.Location = new Point(4, 40);
+        tabPagos.Name = "tabPagos";
+        tabPagos.Padding = new Padding(18);
+        tabPagos.Size = new Size(947, 458);
+        tabPagos.TabIndex = 3;
+        tabPagos.Text = "Pagos";
+        // 
+        // lblCobrosOrden
+        // 
+        lblCobrosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblCobrosOrden.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         lblCobrosOrden.ForeColor = Color.FromArgb(20, 43, 78);
-        lblCobrosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblCobrosOrden.TabStop = false;
-        tabPagos.Controls.Add(lblCobrosOrden);
-        btnRegistrarPagoOrden.Name = "btnRegistrarPagoOrden";
-        btnRegistrarPagoOrden.Text = "Registrar pago";
-        btnRegistrarPagoOrden.Location = new Point(746, 16);
-        btnRegistrarPagoOrden.Size = new Size(178, 34);
+        lblCobrosOrden.Location = new Point(18, 22);
+        lblCobrosOrden.Name = "lblCobrosOrden";
+        lblCobrosOrden.Size = new Size(671, 26);
+        lblCobrosOrden.TabIndex = 0;
+        lblCobrosOrden.Text = "Pagos de la orden";
+        // 
+        // btnRegistrarPagoOrden
+        // 
         btnRegistrarPagoOrden.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        btnRegistrarPagoOrden.IconChar = FontAwesome.Sharp.IconChar.Plus;
-        btnRegistrarPagoOrden.IconColor = Color.FromArgb(37, 99, 235);
-        btnRegistrarPagoOrden.IconSize = 16;
+        btnRegistrarPagoOrden.BackColor = Color.FromArgb(239, 246, 255);
+        btnRegistrarPagoOrden.FlatAppearance.BorderSize = 0;
+        btnRegistrarPagoOrden.FlatStyle = FlatStyle.Flat;
         btnRegistrarPagoOrden.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
         btnRegistrarPagoOrden.ForeColor = Color.FromArgb(37, 99, 235);
-        btnRegistrarPagoOrden.BackColor = Color.FromArgb(239, 246, 255);
-        btnRegistrarPagoOrden.FlatStyle = FlatStyle.Flat;
-        btnRegistrarPagoOrden.FlatAppearance.BorderSize = 0;
-        btnRegistrarPagoOrden.TextImageRelation = TextImageRelation.ImageBeforeText;
+        btnRegistrarPagoOrden.IconChar = FontAwesome.Sharp.IconChar.Add;
+        btnRegistrarPagoOrden.IconColor = Color.FromArgb(37, 99, 235);
+        btnRegistrarPagoOrden.IconFont = FontAwesome.Sharp.IconFont.Auto;
+        btnRegistrarPagoOrden.IconSize = 16;
+        btnRegistrarPagoOrden.Location = new Point(717, 16);
+        btnRegistrarPagoOrden.Name = "btnRegistrarPagoOrden";
+        btnRegistrarPagoOrden.Size = new Size(178, 34);
         btnRegistrarPagoOrden.TabIndex = 0;
-        tabPagos.Controls.Add(btnRegistrarPagoOrden);
-        dgvPagosOrden.Name = "dgvPagosOrden";
-        dgvPagosOrden.Location = new Point(18, 60);
-        dgvPagosOrden.Size = new Size(906, 238);
-        dgvPagosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        btnRegistrarPagoOrden.Text = "Registrar pago";
+        btnRegistrarPagoOrden.TextImageRelation = TextImageRelation.ImageBeforeText;
+        btnRegistrarPagoOrden.UseVisualStyleBackColor = false;
+        // 
+        // dgvPagosOrden
+        // 
         dgvPagosOrden.AllowUserToAddRows = false;
         dgvPagosOrden.AllowUserToDeleteRows = false;
-        dgvPagosOrden.ReadOnly = true;
-        dgvPagosOrden.RowHeadersVisible = false;
-        dgvPagosOrden.MultiSelect = false;
-        dgvPagosOrden.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvPagosOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         dgvPagosOrden.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgvPagosOrden.BackgroundColor = Color.White;
-        dgvPagosOrden.BorderStyle = BorderStyle.FixedSingle;
-        dgvPagosOrden.GridColor = Color.FromArgb(235, 240, 246);
+        dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle9.BackColor = Color.FromArgb(246, 248, 251);
+        dataGridViewCellStyle9.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        dataGridViewCellStyle9.ForeColor = Color.FromArgb(103, 116, 137);
+        dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+        dgvPagosOrden.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
         dgvPagosOrden.ColumnHeadersHeight = 40;
         dgvPagosOrden.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+        dgvPagosOrden.Columns.AddRange(new DataGridViewColumn[] { dgvPagosOrdenCol0, dgvPagosOrdenCol1, dgvPagosOrdenCol2, dgvPagosOrdenCol3, dgvPagosOrdenCol4 });
+        dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle11.BackColor = SystemColors.Window;
+        dataGridViewCellStyle11.Font = new Font("Segoe UI", 10F);
+        dataGridViewCellStyle11.ForeColor = Color.FromArgb(20, 43, 78);
+        dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(234, 240, 252);
+        dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(20, 43, 78);
+        dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+        dgvPagosOrden.DefaultCellStyle = dataGridViewCellStyle11;
         dgvPagosOrden.EnableHeadersVisualStyles = false;
-        dgvPagosOrden.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(246, 248, 251);
-        dgvPagosOrden.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(103, 116, 137);
-        dgvPagosOrden.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        dgvPagosOrden.DefaultCellStyle.ForeColor = Color.FromArgb(20, 43, 78);
-        dgvPagosOrden.DefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 240, 252);
-        dgvPagosOrden.DefaultCellStyle.SelectionForeColor = Color.FromArgb(20, 43, 78);
+        dgvPagosOrden.GridColor = Color.FromArgb(235, 240, 246);
+        dgvPagosOrden.Location = new Point(18, 60);
+        dgvPagosOrden.MultiSelect = false;
+        dgvPagosOrden.Name = "dgvPagosOrden";
+        dgvPagosOrden.ReadOnly = true;
+        dgvPagosOrden.RowHeadersVisible = false;
+        dgvPagosOrden.RowHeadersWidth = 51;
         dgvPagosOrden.RowTemplate.Height = 40;
+        dgvPagosOrden.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvPagosOrden.Size = new Size(877, 238);
         dgvPagosOrden.TabIndex = 1;
-        dgvPagosOrdenCol0.Name = "dgvPagosOrdenCol0";
-        dgvPagosOrdenCol0.HeaderText = "Fecha";
+        // 
+        // dgvPagosOrdenCol0
+        // 
         dgvPagosOrdenCol0.FillWeight = 22F;
+        dgvPagosOrdenCol0.HeaderText = "Fecha";
+        dgvPagosOrdenCol0.MinimumWidth = 6;
+        dgvPagosOrdenCol0.Name = "dgvPagosOrdenCol0";
         dgvPagosOrdenCol0.ReadOnly = true;
         dgvPagosOrdenCol0.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvPagosOrdenCol1.Name = "dgvPagosOrdenCol1";
-        dgvPagosOrdenCol1.HeaderText = "Monto (C$)";
+        // 
+        // dgvPagosOrdenCol1
+        // 
+        dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleRight;
+        dataGridViewCellStyle10.Format = "N2";
+        dgvPagosOrdenCol1.DefaultCellStyle = dataGridViewCellStyle10;
         dgvPagosOrdenCol1.FillWeight = 20F;
+        dgvPagosOrdenCol1.HeaderText = "Monto (C$)";
+        dgvPagosOrdenCol1.MinimumWidth = 6;
+        dgvPagosOrdenCol1.Name = "dgvPagosOrdenCol1";
         dgvPagosOrdenCol1.ReadOnly = true;
         dgvPagosOrdenCol1.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvPagosOrdenCol1.DefaultCellStyle.Format = "N2";
-        dgvPagosOrdenCol1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-        dgvPagosOrdenCol2.Name = "dgvPagosOrdenCol2";
-        dgvPagosOrdenCol2.HeaderText = "Método";
+        // 
+        // dgvPagosOrdenCol2
+        // 
         dgvPagosOrdenCol2.FillWeight = 18F;
+        dgvPagosOrdenCol2.HeaderText = "Método";
+        dgvPagosOrdenCol2.MinimumWidth = 6;
+        dgvPagosOrdenCol2.Name = "dgvPagosOrdenCol2";
         dgvPagosOrdenCol2.ReadOnly = true;
         dgvPagosOrdenCol2.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvPagosOrdenCol3.Name = "dgvPagosOrdenCol3";
-        dgvPagosOrdenCol3.HeaderText = "Registrado por";
+        // 
+        // dgvPagosOrdenCol3
+        // 
         dgvPagosOrdenCol3.FillWeight = 24F;
+        dgvPagosOrdenCol3.HeaderText = "Registrado por";
+        dgvPagosOrdenCol3.MinimumWidth = 6;
+        dgvPagosOrdenCol3.Name = "dgvPagosOrdenCol3";
         dgvPagosOrdenCol3.ReadOnly = true;
         dgvPagosOrdenCol3.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvPagosOrdenCol4.Name = "dgvPagosOrdenCol4";
-        dgvPagosOrdenCol4.HeaderText = "Estado";
+        // 
+        // dgvPagosOrdenCol4
+        // 
         dgvPagosOrdenCol4.FillWeight = 16F;
+        dgvPagosOrdenCol4.HeaderText = "Estado";
+        dgvPagosOrdenCol4.MinimumWidth = 6;
+        dgvPagosOrdenCol4.Name = "dgvPagosOrdenCol4";
         dgvPagosOrdenCol4.ReadOnly = true;
         dgvPagosOrdenCol4.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvPagosOrden.Columns.AddRange(new DataGridViewColumn[] { dgvPagosOrdenCol0, dgvPagosOrdenCol1, dgvPagosOrdenCol2, dgvPagosOrdenCol3, dgvPagosOrdenCol4 });
-        tabPagos.Controls.Add(dgvPagosOrden);
-        lblPagosVacios.Name = "lblPagosVacios";
-        lblPagosVacios.Text = "Aún no hay pagos registrados en esta orden.";
-        lblPagosVacios.Location = new Point(18, 304);
-        lblPagosVacios.Size = new Size(906, 26);
+        // 
+        // lblPagosVacios
+        // 
+        lblPagosVacios.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblPagosVacios.Font = new Font("Segoe UI", 9F);
         lblPagosVacios.ForeColor = Color.FromArgb(103, 116, 137);
-        lblPagosVacios.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblPagosVacios.TabStop = false;
-        tabPagos.Controls.Add(lblPagosVacios);
-        paneltxtTotalPagos.Name = "paneltxtTotalPagos";
-        paneltxtTotalPagos.Location = new Point(18, 350);
-        paneltxtTotalPagos.Size = new Size(286, 80);
+        lblPagosVacios.Location = new Point(18, 304);
+        lblPagosVacios.Name = "lblPagosVacios";
+        lblPagosVacios.Size = new Size(877, 26);
+        lblPagosVacios.TabIndex = 2;
+        lblPagosVacios.Text = "Aún no hay pagos registrados en esta orden.";
+        // 
+        // paneltxtTotalPagos
+        // 
         paneltxtTotalPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtTotalPagos.TabIndex = 2;
-        lbltxtTotalPagos.Name = "lbltxtTotalPagos";
-        lbltxtTotalPagos.Text = "Total de la orden (C$)";
-        lbltxtTotalPagos.Location = new Point(0, 4);
-        lbltxtTotalPagos.Size = new Size(286, 22);
-        lbltxtTotalPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtTotalPagos.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtTotalPagos.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtTotalPagos.Name = "txtTotalPagos";
-        txtTotalPagos.Location = new Point(0, 32);
-        txtTotalPagos.Size = new Size(286, 29);
-        txtTotalPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtTotalPagos.Font = new Font("Segoe UI", 10F);
-        txtTotalPagos.ForeColor = Color.FromArgb(20, 43, 78);
-        txtTotalPagos.BackColor = Color.FromArgb(246, 248, 251);
-        txtTotalPagos.TabIndex = 0;
-        txtTotalPagos.BorderStyle = BorderStyle.FixedSingle;
-        txtTotalPagos.MaxLength = 100;
-        txtTotalPagos.PlaceholderText = "—";
-        txtTotalPagos.ReadOnly = true;
-        txtTotalPagos.TabStop = false;
         paneltxtTotalPagos.Controls.Add(lbltxtTotalPagos);
         paneltxtTotalPagos.Controls.Add(txtTotalPagos);
-        tabPagos.Controls.Add(paneltxtTotalPagos);
-        paneltxtPagadoOrden.Name = "paneltxtPagadoOrden";
-        paneltxtPagadoOrden.Location = new Point(328, 350);
-        paneltxtPagadoOrden.Size = new Size(286, 80);
+        paneltxtTotalPagos.Location = new Point(18, 350);
+        paneltxtTotalPagos.Name = "paneltxtTotalPagos";
+        paneltxtTotalPagos.Size = new Size(257, 80);
+        paneltxtTotalPagos.TabIndex = 2;
+        // 
+        // lbltxtTotalPagos
+        // 
+        lbltxtTotalPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtTotalPagos.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtTotalPagos.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtTotalPagos.Location = new Point(0, 4);
+        lbltxtTotalPagos.Name = "lbltxtTotalPagos";
+        lbltxtTotalPagos.Size = new Size(257, 22);
+        lbltxtTotalPagos.TabIndex = 0;
+        lbltxtTotalPagos.Text = "Total de la orden (C$)";
+        // 
+        // txtTotalPagos
+        // 
+        txtTotalPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtTotalPagos.BackColor = Color.FromArgb(246, 248, 251);
+        txtTotalPagos.BorderStyle = BorderStyle.FixedSingle;
+        txtTotalPagos.Font = new Font("Segoe UI", 10F);
+        txtTotalPagos.ForeColor = Color.FromArgb(20, 43, 78);
+        txtTotalPagos.Location = new Point(0, 32);
+        txtTotalPagos.MaxLength = 100;
+        txtTotalPagos.Name = "txtTotalPagos";
+        txtTotalPagos.PlaceholderText = "—";
+        txtTotalPagos.ReadOnly = true;
+        txtTotalPagos.Size = new Size(257, 30);
+        txtTotalPagos.TabIndex = 0;
+        txtTotalPagos.TabStop = false;
+        // 
+        // paneltxtPagadoOrden
+        // 
         paneltxtPagadoOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtPagadoOrden.TabIndex = 3;
-        lbltxtPagadoOrden.Name = "lbltxtPagadoOrden";
-        lbltxtPagadoOrden.Text = "Pagado (C$)";
-        lbltxtPagadoOrden.Location = new Point(0, 4);
-        lbltxtPagadoOrden.Size = new Size(286, 22);
-        lbltxtPagadoOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtPagadoOrden.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtPagadoOrden.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtPagadoOrden.Name = "txtPagadoOrden";
-        txtPagadoOrden.Location = new Point(0, 32);
-        txtPagadoOrden.Size = new Size(286, 29);
-        txtPagadoOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtPagadoOrden.Font = new Font("Segoe UI", 10F);
-        txtPagadoOrden.ForeColor = Color.FromArgb(20, 43, 78);
-        txtPagadoOrden.BackColor = Color.FromArgb(246, 248, 251);
-        txtPagadoOrden.TabIndex = 0;
-        txtPagadoOrden.BorderStyle = BorderStyle.FixedSingle;
-        txtPagadoOrden.MaxLength = 100;
-        txtPagadoOrden.PlaceholderText = "—";
-        txtPagadoOrden.ReadOnly = true;
-        txtPagadoOrden.TabStop = false;
         paneltxtPagadoOrden.Controls.Add(lbltxtPagadoOrden);
         paneltxtPagadoOrden.Controls.Add(txtPagadoOrden);
-        tabPagos.Controls.Add(paneltxtPagadoOrden);
-        paneltxtSaldoPagos.Name = "paneltxtSaldoPagos";
-        paneltxtSaldoPagos.Location = new Point(638, 350);
-        paneltxtSaldoPagos.Size = new Size(286, 80);
+        paneltxtPagadoOrden.Location = new Point(328, 350);
+        paneltxtPagadoOrden.Name = "paneltxtPagadoOrden";
+        paneltxtPagadoOrden.Size = new Size(257, 80);
+        paneltxtPagadoOrden.TabIndex = 3;
+        // 
+        // lbltxtPagadoOrden
+        // 
+        lbltxtPagadoOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtPagadoOrden.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtPagadoOrden.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtPagadoOrden.Location = new Point(0, 4);
+        lbltxtPagadoOrden.Name = "lbltxtPagadoOrden";
+        lbltxtPagadoOrden.Size = new Size(257, 22);
+        lbltxtPagadoOrden.TabIndex = 0;
+        lbltxtPagadoOrden.Text = "Pagado (C$)";
+        // 
+        // txtPagadoOrden
+        // 
+        txtPagadoOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtPagadoOrden.BackColor = Color.FromArgb(246, 248, 251);
+        txtPagadoOrden.BorderStyle = BorderStyle.FixedSingle;
+        txtPagadoOrden.Font = new Font("Segoe UI", 10F);
+        txtPagadoOrden.ForeColor = Color.FromArgb(20, 43, 78);
+        txtPagadoOrden.Location = new Point(0, 32);
+        txtPagadoOrden.MaxLength = 100;
+        txtPagadoOrden.Name = "txtPagadoOrden";
+        txtPagadoOrden.PlaceholderText = "—";
+        txtPagadoOrden.ReadOnly = true;
+        txtPagadoOrden.Size = new Size(257, 30);
+        txtPagadoOrden.TabIndex = 0;
+        txtPagadoOrden.TabStop = false;
+        // 
+        // paneltxtSaldoPagos
+        // 
         paneltxtSaldoPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        paneltxtSaldoPagos.TabIndex = 4;
-        lbltxtSaldoPagos.Name = "lbltxtSaldoPagos";
-        lbltxtSaldoPagos.Text = "Saldo pendiente (C$)";
-        lbltxtSaldoPagos.Location = new Point(0, 4);
-        lbltxtSaldoPagos.Size = new Size(286, 22);
-        lbltxtSaldoPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lbltxtSaldoPagos.ForeColor = Color.FromArgb(20, 43, 78);
-        lbltxtSaldoPagos.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        txtSaldoPagos.Name = "txtSaldoPagos";
-        txtSaldoPagos.Location = new Point(0, 32);
-        txtSaldoPagos.Size = new Size(286, 29);
-        txtSaldoPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        txtSaldoPagos.Font = new Font("Segoe UI", 10F);
-        txtSaldoPagos.ForeColor = Color.FromArgb(20, 43, 78);
-        txtSaldoPagos.BackColor = Color.FromArgb(246, 248, 251);
-        txtSaldoPagos.TabIndex = 0;
-        txtSaldoPagos.BorderStyle = BorderStyle.FixedSingle;
-        txtSaldoPagos.MaxLength = 100;
-        txtSaldoPagos.PlaceholderText = "—";
-        txtSaldoPagos.ReadOnly = true;
-        txtSaldoPagos.TabStop = false;
         paneltxtSaldoPagos.Controls.Add(lbltxtSaldoPagos);
         paneltxtSaldoPagos.Controls.Add(txtSaldoPagos);
-        tabPagos.Controls.Add(paneltxtSaldoPagos);
-        lblHistorialTitulo.Name = "lblHistorialTitulo";
-        lblHistorialTitulo.Text = "Historial de estados";
-        lblHistorialTitulo.Location = new Point(18, 22);
-        lblHistorialTitulo.Size = new Size(906, 26);
+        paneltxtSaldoPagos.Location = new Point(638, 350);
+        paneltxtSaldoPagos.Name = "paneltxtSaldoPagos";
+        paneltxtSaldoPagos.Size = new Size(257, 80);
+        paneltxtSaldoPagos.TabIndex = 4;
+        // 
+        // lbltxtSaldoPagos
+        // 
+        lbltxtSaldoPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lbltxtSaldoPagos.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        lbltxtSaldoPagos.ForeColor = Color.FromArgb(20, 43, 78);
+        lbltxtSaldoPagos.Location = new Point(0, 4);
+        lbltxtSaldoPagos.Name = "lbltxtSaldoPagos";
+        lbltxtSaldoPagos.Size = new Size(257, 22);
+        lbltxtSaldoPagos.TabIndex = 0;
+        lbltxtSaldoPagos.Text = "Saldo pendiente (C$)";
+        // 
+        // txtSaldoPagos
+        // 
+        txtSaldoPagos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        txtSaldoPagos.BackColor = Color.FromArgb(246, 248, 251);
+        txtSaldoPagos.BorderStyle = BorderStyle.FixedSingle;
+        txtSaldoPagos.Font = new Font("Segoe UI", 10F);
+        txtSaldoPagos.ForeColor = Color.FromArgb(20, 43, 78);
+        txtSaldoPagos.Location = new Point(0, 32);
+        txtSaldoPagos.MaxLength = 100;
+        txtSaldoPagos.Name = "txtSaldoPagos";
+        txtSaldoPagos.PlaceholderText = "—";
+        txtSaldoPagos.ReadOnly = true;
+        txtSaldoPagos.Size = new Size(257, 30);
+        txtSaldoPagos.TabIndex = 0;
+        txtSaldoPagos.TabStop = false;
+        // 
+        // tabHistorial
+        // 
+        tabHistorial.AutoScroll = true;
+        tabHistorial.BackColor = Color.White;
+        tabHistorial.Controls.Add(lblHistorialTitulo);
+        tabHistorial.Controls.Add(lblHistorialDescripcion);
+        tabHistorial.Controls.Add(dgvHistorialOrden);
+        tabHistorial.Controls.Add(lblHistorialVacio);
+        tabHistorial.Location = new Point(4, 40);
+        tabHistorial.Name = "tabHistorial";
+        tabHistorial.Padding = new Padding(18);
+        tabHistorial.Size = new Size(947, 458);
+        tabHistorial.TabIndex = 4;
+        tabHistorial.Text = "Historial";
+        // 
+        // lblHistorialTitulo
+        // 
+        lblHistorialTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblHistorialTitulo.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
         lblHistorialTitulo.ForeColor = Color.FromArgb(20, 43, 78);
-        lblHistorialTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblHistorialTitulo.TabStop = false;
-        tabHistorial.Controls.Add(lblHistorialTitulo);
-        lblHistorialDescripcion.Name = "lblHistorialDescripcion";
-        lblHistorialDescripcion.Text = "Fecha, responsable y observaciones de cada cambio de estado de la orden.";
-        lblHistorialDescripcion.Location = new Point(18, 52);
-        lblHistorialDescripcion.Size = new Size(906, 30);
+        lblHistorialTitulo.Location = new Point(18, 22);
+        lblHistorialTitulo.Name = "lblHistorialTitulo";
+        lblHistorialTitulo.Size = new Size(877, 26);
+        lblHistorialTitulo.TabIndex = 0;
+        lblHistorialTitulo.Text = "Historial de estados";
+        // 
+        // lblHistorialDescripcion
+        // 
+        lblHistorialDescripcion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblHistorialDescripcion.Font = new Font("Segoe UI", 9F);
         lblHistorialDescripcion.ForeColor = Color.FromArgb(103, 116, 137);
-        lblHistorialDescripcion.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblHistorialDescripcion.TabStop = false;
-        tabHistorial.Controls.Add(lblHistorialDescripcion);
-        dgvHistorialOrden.Name = "dgvHistorialOrden";
-        dgvHistorialOrden.Location = new Point(18, 96);
-        dgvHistorialOrden.Size = new Size(906, 306);
-        dgvHistorialOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        lblHistorialDescripcion.Location = new Point(18, 52);
+        lblHistorialDescripcion.Name = "lblHistorialDescripcion";
+        lblHistorialDescripcion.Size = new Size(877, 30);
+        lblHistorialDescripcion.TabIndex = 1;
+        lblHistorialDescripcion.Text = "Fecha, responsable y observaciones de cada cambio de estado de la orden.";
+        // 
+        // dgvHistorialOrden
+        // 
         dgvHistorialOrden.AllowUserToAddRows = false;
         dgvHistorialOrden.AllowUserToDeleteRows = false;
-        dgvHistorialOrden.ReadOnly = true;
-        dgvHistorialOrden.RowHeadersVisible = false;
-        dgvHistorialOrden.MultiSelect = false;
-        dgvHistorialOrden.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvHistorialOrden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         dgvHistorialOrden.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgvHistorialOrden.BackgroundColor = Color.White;
-        dgvHistorialOrden.BorderStyle = BorderStyle.FixedSingle;
-        dgvHistorialOrden.GridColor = Color.FromArgb(235, 240, 246);
+        dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle12.BackColor = Color.FromArgb(246, 248, 251);
+        dataGridViewCellStyle12.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        dataGridViewCellStyle12.ForeColor = Color.FromArgb(103, 116, 137);
+        dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+        dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+        dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+        dgvHistorialOrden.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
         dgvHistorialOrden.ColumnHeadersHeight = 40;
         dgvHistorialOrden.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+        dgvHistorialOrden.Columns.AddRange(new DataGridViewColumn[] { dgvHistorialOrdenCol0, dgvHistorialOrdenCol1, dgvHistorialOrdenCol2, dgvHistorialOrdenCol3, dgvHistorialOrdenCol4 });
+        dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+        dataGridViewCellStyle13.BackColor = SystemColors.Window;
+        dataGridViewCellStyle13.Font = new Font("Segoe UI", 10F);
+        dataGridViewCellStyle13.ForeColor = Color.FromArgb(20, 43, 78);
+        dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(234, 240, 252);
+        dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(20, 43, 78);
+        dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
+        dgvHistorialOrden.DefaultCellStyle = dataGridViewCellStyle13;
         dgvHistorialOrden.EnableHeadersVisualStyles = false;
-        dgvHistorialOrden.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(246, 248, 251);
-        dgvHistorialOrden.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(103, 116, 137);
-        dgvHistorialOrden.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        dgvHistorialOrden.DefaultCellStyle.ForeColor = Color.FromArgb(20, 43, 78);
-        dgvHistorialOrden.DefaultCellStyle.SelectionBackColor = Color.FromArgb(234, 240, 252);
-        dgvHistorialOrden.DefaultCellStyle.SelectionForeColor = Color.FromArgb(20, 43, 78);
+        dgvHistorialOrden.GridColor = Color.FromArgb(235, 240, 246);
+        dgvHistorialOrden.Location = new Point(18, 96);
+        dgvHistorialOrden.MultiSelect = false;
+        dgvHistorialOrden.Name = "dgvHistorialOrden";
+        dgvHistorialOrden.ReadOnly = true;
+        dgvHistorialOrden.RowHeadersVisible = false;
+        dgvHistorialOrden.RowHeadersWidth = 51;
         dgvHistorialOrden.RowTemplate.Height = 40;
+        dgvHistorialOrden.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvHistorialOrden.Size = new Size(877, 306);
         dgvHistorialOrden.TabIndex = 0;
-        dgvHistorialOrdenCol0.Name = "dgvHistorialOrdenCol0";
-        dgvHistorialOrdenCol0.HeaderText = "Fecha y hora";
+        // 
+        // dgvHistorialOrdenCol0
+        // 
         dgvHistorialOrdenCol0.FillWeight = 20F;
+        dgvHistorialOrdenCol0.HeaderText = "Fecha y hora";
+        dgvHistorialOrdenCol0.MinimumWidth = 6;
+        dgvHistorialOrdenCol0.Name = "dgvHistorialOrdenCol0";
         dgvHistorialOrdenCol0.ReadOnly = true;
         dgvHistorialOrdenCol0.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvHistorialOrdenCol1.Name = "dgvHistorialOrdenCol1";
-        dgvHistorialOrdenCol1.HeaderText = "Estado anterior";
+        // 
+        // dgvHistorialOrdenCol1
+        // 
         dgvHistorialOrdenCol1.FillWeight = 18F;
+        dgvHistorialOrdenCol1.HeaderText = "Estado anterior";
+        dgvHistorialOrdenCol1.MinimumWidth = 6;
+        dgvHistorialOrdenCol1.Name = "dgvHistorialOrdenCol1";
         dgvHistorialOrdenCol1.ReadOnly = true;
         dgvHistorialOrdenCol1.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvHistorialOrdenCol2.Name = "dgvHistorialOrdenCol2";
-        dgvHistorialOrdenCol2.HeaderText = "Nuevo estado";
+        // 
+        // dgvHistorialOrdenCol2
+        // 
         dgvHistorialOrdenCol2.FillWeight = 18F;
+        dgvHistorialOrdenCol2.HeaderText = "Nuevo estado";
+        dgvHistorialOrdenCol2.MinimumWidth = 6;
+        dgvHistorialOrdenCol2.Name = "dgvHistorialOrdenCol2";
         dgvHistorialOrdenCol2.ReadOnly = true;
         dgvHistorialOrdenCol2.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvHistorialOrdenCol3.Name = "dgvHistorialOrdenCol3";
-        dgvHistorialOrdenCol3.HeaderText = "Usuario";
+        // 
+        // dgvHistorialOrdenCol3
+        // 
         dgvHistorialOrdenCol3.FillWeight = 18F;
+        dgvHistorialOrdenCol3.HeaderText = "Usuario";
+        dgvHistorialOrdenCol3.MinimumWidth = 6;
+        dgvHistorialOrdenCol3.Name = "dgvHistorialOrdenCol3";
         dgvHistorialOrdenCol3.ReadOnly = true;
         dgvHistorialOrdenCol3.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvHistorialOrdenCol4.Name = "dgvHistorialOrdenCol4";
-        dgvHistorialOrdenCol4.HeaderText = "Observación";
+        // 
+        // dgvHistorialOrdenCol4
+        // 
         dgvHistorialOrdenCol4.FillWeight = 26F;
+        dgvHistorialOrdenCol4.HeaderText = "Observación";
+        dgvHistorialOrdenCol4.MinimumWidth = 6;
+        dgvHistorialOrdenCol4.Name = "dgvHistorialOrdenCol4";
         dgvHistorialOrdenCol4.ReadOnly = true;
         dgvHistorialOrdenCol4.SortMode = DataGridViewColumnSortMode.NotSortable;
-        dgvHistorialOrden.Columns.AddRange(new DataGridViewColumn[] { dgvHistorialOrdenCol0, dgvHistorialOrdenCol1, dgvHistorialOrdenCol2, dgvHistorialOrdenCol3, dgvHistorialOrdenCol4 });
-        tabHistorial.Controls.Add(dgvHistorialOrden);
-        lblHistorialVacio.Name = "lblHistorialVacio";
-        lblHistorialVacio.Text = "El historial de la orden aparecerá en esta sección.";
-        lblHistorialVacio.Location = new Point(18, 408);
-        lblHistorialVacio.Size = new Size(906, 28);
+        // 
+        // lblHistorialVacio
+        // 
+        lblHistorialVacio.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         lblHistorialVacio.Font = new Font("Segoe UI", 9F);
         lblHistorialVacio.ForeColor = Color.FromArgb(103, 116, 137);
-        lblHistorialVacio.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        lblHistorialVacio.TabStop = false;
-        tabHistorial.Controls.Add(lblHistorialVacio);
-        tablaExpediente.Controls.Add(tablaResumen, 0, 0);
-        tablaExpediente.Controls.Add(tabsExpediente, 0, 1);
-        panelCuerpo.Controls.Add(tablaExpediente);
+        lblHistorialVacio.Location = new Point(18, 408);
+        lblHistorialVacio.Name = "lblHistorialVacio";
+        lblHistorialVacio.Size = new Size(877, 28);
+        lblHistorialVacio.TabIndex = 2;
+        lblHistorialVacio.Text = "El historial de la orden aparecerá en esta sección.";
+        // 
+        // FrmDetalleOrdenServicio
+        // 
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        ClientSize = new Size(1040, 860);
         Name = "FrmDetalleOrdenServicio";
         Text = "Expediente de la orden de servicio";
-
-        tabHistorial.ResumeLayout(false);
-        tabPagos.ResumeLayout(false);
-        tabTrabajos.ResumeLayout(false);
-        tabDiagnostico.ResumeLayout(false);
-        tabRecepcion.ResumeLayout(false);
-        tabsExpediente.ResumeLayout(false);
-        tablaResumen.ResumeLayout(false);
-        tablaExpediente.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)errorIcon).EndInit();
+        panelContenido.ResumeLayout(false);
+        panelCabecera.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)iconModulo).EndInit();
         panelCuerpo.ResumeLayout(false);
+        panelPie.ResumeLayout(false);
+        tablaExpediente.ResumeLayout(false);
+        tablaResumen.ResumeLayout(false);
+        paneltxtOrdenResumen.ResumeLayout(false);
+        paneltxtOrdenResumen.PerformLayout();
+        paneltxtClienteResumen.ResumeLayout(false);
+        paneltxtClienteResumen.PerformLayout();
+        paneltxtEquipoResumen.ResumeLayout(false);
+        paneltxtEquipoResumen.PerformLayout();
+        paneltxtEstadoResumen.ResumeLayout(false);
+        paneltxtEstadoResumen.PerformLayout();
+        paneltxtTecnicoResumen.ResumeLayout(false);
+        paneltxtTecnicoResumen.PerformLayout();
+        paneltxtSaldoResumen.ResumeLayout(false);
+        paneltxtSaldoResumen.PerformLayout();
+        tabsExpediente.ResumeLayout(false);
+        tabRecepcion.ResumeLayout(false);
+        paneltxtFechaRecepcionDetalle.ResumeLayout(false);
+        paneltxtFechaRecepcionDetalle.PerformLayout();
+        paneltxtRecepcionistaDetalle.ResumeLayout(false);
+        paneltxtRecepcionistaDetalle.PerformLayout();
+        paneltxtProblemaRecepcionDetalle.ResumeLayout(false);
+        paneltxtProblemaRecepcionDetalle.PerformLayout();
+        paneltxtAccesoriosDetalle.ResumeLayout(false);
+        paneltxtAccesoriosDetalle.PerformLayout();
+        paneltxtObservacionesDetalle.ResumeLayout(false);
+        paneltxtObservacionesDetalle.PerformLayout();
+        tabDiagnostico.ResumeLayout(false);
+        panelcboTecnicoDiagnostico.ResumeLayout(false);
+        paneltxtFechaDiagnostico.ResumeLayout(false);
+        paneltxtFechaDiagnostico.PerformLayout();
+        paneltxtProblemaEncontrado.ResumeLayout(false);
+        paneltxtProblemaEncontrado.PerformLayout();
+        paneltxtReparacionPropuesta.ResumeLayout(false);
+        paneltxtReparacionPropuesta.PerformLayout();
+        panelnumCostoEstimado.ResumeLayout(false);
+        panelnumCostoEstimado.PerformLayout();
+        panelcboDecisionCliente.ResumeLayout(false);
+        panelnumCostoAprobado.ResumeLayout(false);
+        panelnumCostoAprobado.PerformLayout();
+        paneltxtFechaConfirmacion.ResumeLayout(false);
+        paneltxtFechaConfirmacion.PerformLayout();
+        paneltxtObservacionesDiagnostico.ResumeLayout(false);
+        paneltxtObservacionesDiagnostico.PerformLayout();
+        tabTrabajos.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)dgvServiciosOrden).EndInit();
+        ((System.ComponentModel.ISupportInitialize)dgvRepuestosOrden).EndInit();
+        paneltxtTotalTrabajos.ResumeLayout(false);
+        paneltxtTotalTrabajos.PerformLayout();
+        panelcboResultadoReparacion.ResumeLayout(false);
+        paneltxtObservacionesTrabajo.ResumeLayout(false);
+        paneltxtObservacionesTrabajo.PerformLayout();
+        tabPagos.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)dgvPagosOrden).EndInit();
+        paneltxtTotalPagos.ResumeLayout(false);
+        paneltxtTotalPagos.PerformLayout();
+        paneltxtPagadoOrden.ResumeLayout(false);
+        paneltxtPagadoOrden.PerformLayout();
+        paneltxtSaldoPagos.ResumeLayout(false);
+        paneltxtSaldoPagos.PerformLayout();
+        tabHistorial.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)dgvHistorialOrden).EndInit();
         ResumeLayout(false);
     }
 
@@ -1377,13 +1993,13 @@ partial class FrmDetalleOrdenServicio
     private TextBox txtReparacionPropuesta = null!;
     private Panel panelnumCostoEstimado = null!;
     private Label lblnumCostoEstimado = null!;
-    private NumericUpDown numCostoEstimado = null!;
+    private TextBox numCostoEstimado = null!;
     private Panel panelcboDecisionCliente = null!;
     private Label lblcboDecisionCliente = null!;
     private ComboBox cboDecisionCliente = null!;
     private Panel panelnumCostoAprobado = null!;
     private Label lblnumCostoAprobado = null!;
-    private NumericUpDown numCostoAprobado = null!;
+    private TextBox numCostoAprobado = null!;
     private Panel paneltxtFechaConfirmacion = null!;
     private Label lbltxtFechaConfirmacion = null!;
     private TextBox txtFechaConfirmacion = null!;

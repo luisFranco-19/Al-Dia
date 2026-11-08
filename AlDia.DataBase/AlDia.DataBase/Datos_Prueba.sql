@@ -335,14 +335,12 @@ BEGIN TRY
                 @IdEquipo = @IdEquipo, @ProblemaReportado = @Problema,
                 @ObservacionesRecepcion = 'Recepcion ficticia para pruebas.',
                 @AccesoriosRecepcion = 'Sin accesorios adicionales.',
+                @IdTecnicoResponsable = @IdTecnico,
                 @IdOrden = @IdOrden OUTPUT;
 
             IF @Destino = 'ANULADA'
                 EXEC dbo.usp_AnularOrden @IdUsuarioActor = @Recepcionista,
                     @IdOrden = @IdOrden, @Motivo = 'Ejemplo de recepcion duplicada.';
-
-            IF @UsuarioTecnico IS NOT NULL
-                EXEC dbo.usp_TomarOrden @IdUsuarioActor = @IdTecnico, @IdOrden = @IdOrden;
 
             IF @UsuarioTecnico IS NOT NULL AND @Destino <> N'En Revisión'
             BEGIN

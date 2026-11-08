@@ -107,6 +107,13 @@ public sealed class UsuarioBll
             ConsultaListado.Validar(pagina, tamPagina, buscar), soloActivos, ct);
     public async Task<UsuarioEntity?> ObtenerPorIdAsync(int id, CancellationToken ct = default) =>
         (await ConsultarAsync(Validacion.Id(id, "IdUsuario"), false, ct)).SingleOrDefault();
+
+    public Task<IReadOnlyList<UsuarioEntity>> ConsultarTecnicosActivosAsync(CancellationToken ct = default)
+    {
+        int actor = _sesion.Exigir(RolUsuario.Administrador, RolUsuario.Recepcionista);
+        return _datos.ConsultarTecnicosActivosAsync(actor, ct);
+    }
+
     public async Task CambiarEstadoAsync(int id, bool estado, CancellationToken ct = default)
     {
         _sesion.Exigir(RolUsuario.Administrador);

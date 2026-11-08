@@ -9,6 +9,7 @@ using AlDia.Entity.Seguridad;
 using AlDia.Entity.Reparaciones;
 using AlDia.Entity.Pagos;
 using AlDia.UI.Formularios.Base;
+using AlDia.UI.Formularios;
 using AlDia.UI.Formularios.Hijos.Catalogos;
 using AlDia.UI.Formularios.Hijos.Usuarios;
 using AlDia.UI.Formularios.Hijos.Clientes;
@@ -16,6 +17,7 @@ using AlDia.UI.Formularios.Hijos.Equipos;
 using AlDia.UI.Formularios.Hijos.Inventario;
 using AlDia.UI.Formularios.Hijos.OrdenesServicio;
 using AlDia.UI.Formularios.Hijos.Pagos;
+using AlDia.UI.Formularios.Hijos.Reportes;
 using Microsoft.Data.SqlClient;
 using System.Text.RegularExpressions;
 
@@ -448,6 +450,9 @@ internal static class Program
                 await usuarios.RecargarAsync();
                 Comprobar(Buscar<DataGridView>(usuarios, "dgvListado").Rows.Count == 3, "Listado de usuarios mediante BLL");
                 await VerificarRegistroAsync();
+                await VerificarDashboardAsync();
+                await VerificarRegistroUsuarioAsync();
+                await VerificarReportesAsync();
                 await VerificarOtrosListadosAsync();
                 await VerificarPaginacionAsync();
                 await VerificarBusquedaConcurrenteAsync();
@@ -495,6 +500,97 @@ internal static class Program
                 Comprobar(registro.DialogResult == DialogResult.Cancel, "Cancelar usa el comportamiento del base");
             }
             Comprobar((await _app.Roles.MostrarAsync(buscar: "Registro cancelado")).TotalRegistros == 0, "Cancelar no guarda en SQL");
+        }
+
+        private async Task VerificarDashboardAsync()
+        {
+            using var dashboard = new FrmDashsbor(_app) { Opacity = 0, ShowInTaskbar = false };
+            dashboard.Show(this);
+            await EsperarAsync(() => Buscar<Label>(dashboard, "lblPie").Text.Contains("Datos actualizados")
+                || Buscar<Label>(dashboard, "lblPie").Text.Contains("No se pudieron cargar"));
+
+            var indicadores = Buscar<TableLayoutPanel>(dashboard, "tablaIndicadores");
+            Comprobar(indicadores.ColumnCount == 3 && indicadores.Controls.Count == 3,
+                "El dashboard muestra tres tarjetas y no reserva espacio para saldo pendiente");
+            var filas = Buscar<TableLayoutPanel>(dashboard, "tablaFilasOrdenes");
+            Comprobar(filas.RowCount > 0 && filas.Height == filas.RowCount * 52
+                && filas.Dock == DockStyle.Top, "Las órdenes recientes conservan filas uniformes sin estirar la última");
+        }
+
+        private async Task VerificarRegistroUsuarioAsync()
+        {
+            using var nuevo = new FrmRegistroUsuario(_app) { Opacity = 0, ShowInTaskbar = false };
+            nuevo.Show(this);
+            await EsperarAsync(() => Buscar<Button>(nuevo, "btnGuardar").Enabled
+                && Buscar<ComboBox>(nuevo, "cboRol").Items.Count >= 3);
+            Comprobar(Buscar<Label>(nuevo, "lblTitulo").Text == "Nuevo usuario",
+                "El formulario de alta muestra su modo nuevo");
+            Comprobar(ContenidoCabeEnFormulario(nuevo), "El formulario de usuario nuevo cabe en la ventana a resolución normal");
+            nuevo.Close();
+
+            var usuario = (await _app.Usuarios.ConsultarAsync(soloActivos: false))
+                .Single(x => x.Usuario == "admin-prueba");
+            using var editar = new FrmRegistroUsuario(_app, usuario.IdUsuario) { Opacity = 0, ShowInTaskbar = false };
+            editar.Show(this);
+            await EsperarAsync(() => Buscar<Button>(editar, "btnGuardar").Enabled
+                && Buscar<TextBox>(editar, "txtUsuario").Text == usuario.Usuario);
+            Comprobar(Buscar<Label>(editar, "lblTitulo").Text == "Editar usuario"
+                && Buscar<Label>(editar, "lblContrasena").Text.Contains("opcional"),
+                "El formulario de edición mantiene el modo y contraseña opcional");
+            Comprobar(ContenidoCabeEnFormulario(editar), "El formulario de edición cabe en la ventana a resolución normal");
+        }
+
+        private static bool ContenidoCabeEnFormulario(FrmRegistroUsuario formulario)
+        {
+            var cuerpo = Buscar<Panel>(formulario, "panelCuerpo");
+            var contenido = Buscar<TableLayoutPanel>(formulario, "tablaSecciones");
+            return contenido.Right <= cuerpo.ClientSize.Width - cuerpo.Padding.Right
+                && contenido.Bottom <= cuerpo.ClientSize.Height - cuerpo.Padding.Bottom;
+        }
+
+        private async Task VerificarReportesAsync()
+        {
+            using var reportes = new FrmReportes();
+            reportes.ConfigurarServicios(_app);
+            Alojar(reportes);
+            await reportes.RecargarAsync();
+            var accion = Buscar<Button>(reportes, "btnNuevo");
+            Comprobar(accion.Visible && accion.Enabled, "El reporte de órdenes habilita abrir la vista previa");
+
+            var tipoReportes = typeof(FrmReportes).Assembly.GetType(
+                "AlDia.UI.Formularios.Hijos.Reportes.FrmVistaReporte", throwOnError: true)!;
+            var datos = typeof(FrmReportes).GetField("_reporteActual",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.GetValue(reportes)!;
+            using var vista = (Form)Activator.CreateInstance(tipoReportes,
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic,
+                binder: null, args: [datos, _app], culture: null)!;
+            vista.Show(this);
+            await EsperarAsync(() => Buscar<Label>(vista, "lblTipoReporte").Text == "Órdenes de servicio");
+
+            var botonPdf = (Button)tipoReportes.GetField("_btnExportarPdf",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.GetValue(vista)!;
+            var botonImprimir = (Button)tipoReportes.GetField("_btnImprimir",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.GetValue(vista)!;
+            await EsperarAsync(() => botonPdf.Visible && botonImprimir.Visible);
+            Comprobar(botonPdf.Visible && botonPdf.Enabled && botonImprimir.Visible && botonImprimir.Enabled,
+                $"La vista previa ofrece exportación PDF e impresión (PDF visible={botonPdf.Visible}, habilitado={botonPdf.Enabled}; impresión visible={botonImprimir.Visible}, habilitado={botonImprimir.Enabled})");
+
+            var generador = tipoReportes.Assembly.GetType(
+                "AlDia.UI.Formularios.Hijos.Reportes.GeneradorPdfReporte", throwOnError: true)!;
+            var guardar = generador.GetMethod("Guardar", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)!;
+            string ruta = Path.Combine(Path.GetTempPath(), $"AlDia_reporte_{Guid.NewGuid():N}.pdf");
+            try
+            {
+                guardar.Invoke(null, [datos, ruta]);
+                byte[] pdf = await File.ReadAllBytesAsync(ruta);
+                Comprobar(pdf.Length > 100 && System.Text.Encoding.ASCII.GetString(pdf, 0, 5) == "%PDF-"
+                    && System.Text.Encoding.ASCII.GetString(pdf).EndsWith("%%EOF", StringComparison.Ordinal),
+                    "La exportación produce un archivo PDF completo");
+            }
+            finally
+            {
+                if (File.Exists(ruta)) File.Delete(ruta);
+            }
         }
 
         private static async Task GuardarYCerrarAsync(Form formulario)

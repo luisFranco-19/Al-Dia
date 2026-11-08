@@ -166,6 +166,28 @@ public sealed class UsuarioDal : IUsuarioDal
             throw await _sql.TraducirErrorAsync(ex, idActor);
         }
     }
+
+    public async Task<IReadOnlyList<UsuarioEntity>> ConsultarTecnicosActivosAsync(int idActor, CancellationToken ct = default)
+    {
+        try
+        {
+            using SqlConnection cn = _sql.ObtenerConexion();
+            using SqlCommand cmd = new("dbo.usp_ConsultarTecnicosActivos", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(ParametrosSql.Entero("@IdUsuarioActor", idActor));
+
+            await cn.OpenAsync(ct);
+            List<UsuarioEntity> registros = [];
+            using SqlDataReader dr = await cmd.ExecuteReaderAsync(ct);
+            while (await dr.ReadAsync(ct)) registros.Add(Mapear(dr));
+            return registros.AsReadOnly();
+        }
+        catch (SqlException ex) when (!ct.IsCancellationRequested)
+        {
+            throw await _sql.TraducirErrorAsync(ex, idActor);
+        }
+    }
+
     public Task<int> GuardarPorRolAsync(int idActor, UsuarioRolSolicitud s, string? hash, CancellationToken ct = default)
     {
         ArgumentNullException.ThrowIfNull(s);

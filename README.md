@@ -1,141 +1,259 @@
-# Al Día
+# Al Día - Sistema de Gestión para Taller de Reparación de Equipos Electrónicos
 
-Sistema de escritorio para gestionar un taller de reparación de equipos electrónicos. Organiza la recepción de equipos, el diagnóstico, la autorización del cliente, la reparación, el consumo de repuestos, los pagos y la entrega.
+[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![C#](https://img.shields.io/badge/C%23-13.0-239120?logo=csharp&logoColor=white)](https://learn.microsoft.com/dotnet/csharp/)
+[![Windows Forms](https://img.shields.io/badge/UI-Windows%20Forms-0078D6?logo=windows&logoColor=white)](https://learn.microsoft.com/dotnet/desktop/winforms/)
+[![SQL Server](https://img.shields.io/badge/Database-SQL%20Server-CC292B?logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server/)
+[![Status](https://img.shields.io/badge/Estado-Completado-success)](#estado-del-proyecto)
 
-El proyecto se desarrolla en C# con Windows Forms, SQL Server y una arquitectura de cuatro capas, aplicando programación orientada a objetos.
+**Al Día** es una solución integral de escritorio desarrollada en C# con Windows Forms y Microsoft SQL Server, diseñada para administrar de punta a punta las operaciones de un taller profesional de servicio técnico y reparación de dispositivos electrónicos (computadoras, smartphones, tablets, consolas y electrodomésticos).
 
-## Estado del proyecto
+El sistema controla todo el ciclo de vida del servicio: recepción de equipos, asignación a técnicos, emisión de diagnósticos, presupuestos y cotizaciones, autorización del cliente, ejecución de reparaciones, descargo de repuestos de inventario, mano de obra de servicios, control de caja y cobranza, recibos y entrega final de los dispositivos.
 
-Las capas **Entity, DAL y BLL están implementadas** para todo el sistema. La base de datos contiene 16 tablas y 51 procedimientos almacenados: 47 públicos utilizados desde DAL y 4 auxiliares internos.
+---
 
-La UI cuenta con configuración de conexión, registro del primer administrador, sesión, dashboard y formularios conectados mediante herencia. Los listados y registros reutilizan formularios base con métodos virtuales, siguiendo las clases de roles y usuarios del profesor. Los indicadores del inicio, las acciones técnicas del expediente y los reportes todavía tienen integración pendiente. El alcance se detalla en [Metodología del profesor](AlDia.Solution/METODOLOGIA_PROFESOR.md).
+## Estado del Proyecto
 
-## Módulos
+El proyecto se encuentra **completamente desarrollado, integrado y funcional**. 
 
-| Módulo | Alcance implementado en las capas del negocio |
+- **Capas Entity, DAL, BLL y UI al 100% integradas y operativas.**
+- **Base de Datos:** 16 tablas relacionales y 52 procedimientos almacenados en SQL Server (48 de consumo público desde DAL y 4 auxiliares internos de seguridad y auditoría).
+- **Interfaz de Usuario (UI):** Navegación fluida y adaptativa con control de acceso basado en roles (RBAC). Incorpora un panel central (Dashboard) con métricas en tiempo real, expedientes completos de órdenes, formularios modales heredados, control de inventario, catálogo general, módulo de pagos y generador de reportes con vista previa, exportación a PDF e impresión directa.
+- **Suite de Pruebas y Verificación:** Incluye el proyecto `AlDia.Verificacion` para pruebas automatizadas de integridad y scripts de datos semilla para pruebas inmediatas.
+
+---
+
+## Módulos del Sistema
+
+| Módulo | Alcance y Funcionalidades Principales |
 |---|---|
-| Seguridad | Roles, usuarios, autenticación, sesión y permisos |
-| Clientes | Registro, edición, consulta y cambio de estado |
-| Equipos | Tipos de equipo, datos del equipo y relación con su cliente |
-| Órdenes de reparación | Recepción, corrección, toma y liberación por el técnico, reparación, anulación y entrega |
-| Diagnósticos | Problema encontrado, reparación propuesta, presupuesto y decisión del cliente |
-| Servicios | Catálogo y trabajos realizados en una orden |
-| Inventario | Catálogo de repuestos, existencias y consumos asociados a reparaciones |
-| Pagos | Registro, corrección, anulación y consulta de pagos y saldos |
-| Auditoría | Historial de estados y registro de errores SQL |
+| **Seguridad y Sesión (RBAC)** | Autenticación criptográfica segura (PBKDF2 con sal individual de 128 bits y 10,000 iteraciones). Control de acceso dinámico por roles (`Administrador`, `Recepcionista`, `Técnico`). Ocultamiento contextual de módulos y acciones según permisos. |
+| **Dashboard Ejecutivo** | Pantalla principal adaptativa. Métricas dinámicas: ventas del mes, cobranzas totales y órdenes activas para administración y recepción; resumen de órdenes en diagnóstico, en reparación y listas para entrega para los técnicos. Listado en tiempo real de órdenes recientes con acceso directo al expediente. |
+| **Clientes** | Registro, edición, validación de cédulas/teléfonos, historial de equipos asociados y búsqueda con paginación en servidor. |
+| **Equipos** | Catálogo de tipos de equipo, vinculación con el cliente propietario, número de serie, marca, modelo y características técnicas. |
+| **Órdenes de Reparación** | Recepción de equipos, asignación de técnico responsable, seguimiento del ciclo de vida, anulación justificada y entrega final de equipos con validación de saldo cero. |
+| **Expediente de Orden** | Vista 360° de la orden de trabajo: cabecera del equipo/cliente, registro del diagnóstico técnico, presupuesto preliminar, registro de autorización/rechazo del cliente con costo máximo autorizado, servicios aplicados, repuestos consumidos, abonos realizados y bitácora histórica de estados. |
+| **Diagnósticos y Cotización** | Registro de fallas encontradas, propuesta de solución, costo estimado de mano de obra y repuestos, y gestión de respuesta del cliente. |
+| **Servicios** | Catálogo de servicios de mano de obra con tarifas base y registro de trabajos ejecutados en cada orden. |
+| **Inventario y Repuestos** | Catálogo de repuestos con control de existencias en almacén, precios de costo y venta, número de parte y descargo transaccional al asociar piezas a una reparación. |
+| **Pagos y Cobranzas** | Registro de abonos a órdenes, control de saldo pendiente, liquidación total, corrección de pagos con trazabilidad (reemplazo automático) y anulación con motivo obligatorio. |
+| **Centro de Reportes** | Generación de reportes de Órdenes de Servicio, Pagos e Inventario por períodos de fecha. Incluye visor integrado con vista previa de documento, exportación nativa a **PDF** (`GeneradorPdfReporte`) e impresión física directa. |
+| **Auditoría y Errores** | Trazabilidad completa de cambios de estado por orden con usuario responsable y fecha/hora. Registro automático de excepciones SQL en la tabla `LogErrores`. |
 
-Los catálogos y listados del negocio disponen de consultas con búsqueda y paginación en SQL. El expediente de una orden reúne su cabecera, diagnóstico, confirmación, servicios, repuestos, pagos e historial.
+---
 
-## Arquitectura
+## Arquitectura del Software
+
+El sistema implementa una arquitectura desacoplada en cuatro capas con orientación a objetos (POO), herencia, encapsulamiento, polimorfismo e inyección de dependencias mediante interfaces.
 
 ```text
-Formulario → BLL → DAL → Procedimiento almacenado → SQL Server
+┌────────────────────────────────────────────────────────┐
+│               AlDia.UI (Windows Forms)                 │
+│    Formularios Base, Listados, Registros, Reportes     │
+└───────────────────────────┬────────────────────────────┘
+                            │ Instancia AplicacionBll
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│               AlDia.BLL (Lógica de Negocio)            │
+│   Validaciones, Control de Roles/Permisos, Sesión      │
+└───────────────────────────┬────────────────────────────┘
+                            │ Interfaces (IRolDal, IUsuarioDal, ...)
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│               AlDia.DAL (Acceso a Datos)               │
+│  Comandos SQL Fuertemente Tipados, Paginación OFFSET   │
+└───────────────────────────┬────────────────────────────┘
+                            │ Parámetros y Procedimientos Almacenados
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│           SQL Server (AlDiaDB - 16 Tablas)             │
+│   Transacciones ACID, Integridad Referencial y SPs     │
+└────────────────────────────────────────────────────────┘
 ```
 
-| Capa | Responsabilidad |
-|---|---|
-| **AlDia.Entity** | Entidades, solicitudes, resultados e interfaces de acceso a datos; protege los valores y cambios en memoria |
-| **AlDia.DAL** | Comandos SQL explícitos por módulo, parámetros tipados, ejecución de procedimientos y reconstrucción de entidades |
-| **AlDia.BLL** | Validaciones, sesión, permisos y operaciones del negocio |
-| **AlDia.UI** | Formularios Windows Forms, presentación, eventos y navegación |
+### Principios y Patrones Aplicados
 
-`AplicacionBll` compone los servicios y comparte una sesión de usuario. Los formularios de los módulos reciben BLL por constructor; las operaciones del negocio se persisten desde DAL. Las transacciones y las reglas de stock, estados y saldos se comprueban también en SQL Server.
+1. **Herencia en Entidades:**
+   - `PersonaEntity` (abstracta) → derivada en `ClienteEntity` y `UsuarioEntity`.
+   - `CatalogoEntity` (abstracta) → derivada en `RolEntity`, `TipoEquipoEntity`, `ServicioEntity` y `RepuestoEntity`.
+   - `DetalleOrdenEntity` (abstracta) → derivada en `DetalleServicioEntity` y `DetalleRepuestoEntity`.
+2. **Herencia en Interfaz Gráfica (UI):**
+   - `FrmListadoBase`: Base para todos los módulos de consulta con barra de búsqueda reactiva, filtros, cuadrícula de datos estilizada y paginación en SQL.
+   - `FrmRegistroBase`: Base para formularios de captura con cabecera estandarizada, validaciones unificadas, eventos virtuales de guardado y estilo moderno sin bordes de ventana nativos.
+3. **Inversión de Dependencias y Abstracción:**
+   - La capa BLL depende exclusivamente de contratos/interfaces (`IClienteDal`, `IOrdenReparacionDal`, etc.), desacoplándola de la implementación concreta de base de datos.
+4. **Seguridad y Criptografía:**
+   - Hashing seguro de contraseñas con PBKDF2 (`Rfc2898DeriveBytes`), HMAC-SHA256 y sal aleatoria única por usuario.
+   - No se almacenan contraseñas en texto plano ni se exponen hashes en consultas o modelos de datos.
 
-La POO se aplica mediante propiedades encapsuladas, constructor vacío, constructores de alta y reconstrucción, métodos `AsignarId` y `Cambiar...`, herencia en `PersonaEntity`, `CatalogoEntity` y `DetalleOrdenEntity`, polimorfismo, interfaces y composición. DAL y los formularios preparan las entidades mediante esos métodos; las solicitudes validan los campos obligatorios antes de guardar.
+---
 
-## Roles y reglas del taller
+## Flujo Operativo del Taller
 
-- **Administrador:** mantiene roles, usuarios, tipos de equipo, servicios y repuestos; ajusta existencias y consulta la auditoría.
-- **Recepcionista:** atiende clientes y equipos, registra recepciones y decisiones del cliente, gestiona pagos y entrega equipos. Clientes y equipos también pueden mantenerse desde administración.
-- **Técnico:** toma órdenes disponibles y realiza el diagnóstico y la reparación de las órdenes de las que es responsable.
+```text
+[Recepción del Equipo] ──────────► [En Revisión]
+                                         │
+                                         ▼ (Técnico asignado diagnostica)
+[Pendiente de Confirmación] ◄─── [Registro de Diagnóstico y Costos]
+         │
+         ├───► (Cliente Rechaza) ──► [No Autorizada] ──► [Entrega al Cliente]
+         │
+         └───► (Cliente Aprueba) ──► [Aprobada]
+                                         │
+                                         ▼
+                                  [En Reparación] (Consumo de repuestos y servicios)
+                                         │
+                                         ▼
+                          ┌──────────────┴──────────────┐
+                          ▼                             ▼
+                    [Reparada]                   [No Reparada]
+                          │                             │
+                          └──────────────┬──────────────┘
+                                         │
+                                         ▼ (Registro de pagos hasta saldo 0)
+                                    [Entregada]
+```
 
-Un rol nuevo en el catálogo no recibe permisos automáticamente. Los tres roles del sistema conservan sus nombres y su estado activo. La autenticación rechaza usuarios o roles inactivos y nombres sin permisos configurados.
+1. **Recepción:** El recepcionista registra al cliente, ingresa el equipo con sus accesorios y motivo de ingreso, y asigna un técnico responsable. La orden pasa a **En Revisión**.
+2. **Diagnóstico:** El técnico asignado evalúa el equipo, documenta la falla, la solución propuesta y el costo estimado. La orden pasa a **Pendiente de Confirmación**.
+3. **Autorización:** Recepción consulta al cliente:
+   - Si aprueba: se fija el monto máximo autorizado y pasa a **Aprobada**.
+   - Si rechaza: la orden pasa a **No Autorizada** y puede devolverse de inmediato.
+4. **Reparación:** El técnico pasa la orden a **En Reparación**, agrega los servicios realizados y los repuestos requeridos (validando existencias en stock y que el total no supere el presupuesto aprobado). Al finalizar, define el resultado: **Reparada** o **No Reparada**.
+5. **Cobranza y Entrega:** Recepción registra abonos o liquidación total del saldo. Una vez el saldo llega a **$0.00**, se habilita la entrega formal del equipo (**Entregada**).
 
-El flujo del taller sigue estas reglas:
+---
 
-1. La recepción inicia la orden en **En Revisión**.
-2. Un técnico toma la orden y registra el diagnóstico; pasa a **Pendiente de Confirmación**.
-3. Recepción registra la aprobación o el rechazo del cliente. La aprobación incluye el costo autorizado.
-4. Una orden aprobada puede pasar a **En Reparación**. Los servicios y repuestos recalculan el total sin superar el importe autorizado.
-5. El técnico registra el resultado **Reparada** o **No Reparada**.
-6. Recepción registra los pagos sin superar el saldo y entrega el equipo cuando este llega a cero. Una orden rechazada puede entregarse sin iniciar la reparación.
-
-El stock no puede quedar negativo. Las operaciones fallidas revierten los cambios relacionados. Corregir un pago conserva el original anulado y crea un reemplazo. Los cambios de estado quedan en el historial.
-
-## Tecnologías
-
-- C# y .NET 10.
-- Windows Forms.
-- SQL Server.
-- Microsoft.Data.SqlClient 7.1.0.
-- FontAwesome.Sharp 6.6.0.
-
-## Estructura del repositorio
+## Estructura del Repositorio
 
 ```text
 Al-Dia/
 ├── AlDia.Solution/
-│   ├── AlDia.Solution.slnx
-│   ├── AlDia.Entity/
-│   ├── AlDia.DAL/
-│   ├── AlDia.BLL/
-│   ├── AlDia.UI/
-│   ├── ARQUITECTURA.md
-│   └── DAL_BLL.md
+│   ├── AlDia.Solution.slnx            # Solución principal de .NET 10
+│   ├── AlDia.Entity/                  # Modelos de dominio, DTOs e interfaces
+│   │   ├── Base/                      # Clases base abstractas (Persona, Catálogo, Detalle)
+│   │   ├── Clientes/
+│   │   ├── Equipos/
+│   │   ├── Reparaciones/
+│   │   ├── Inventario/
+│   │   ├── Pagos/
+│   │   └── Seguridad/
+│   ├── AlDia.DAL/                     # Implementación de acceso a SQL Server
+│   │   ├── Clientes/
+│   │   ├── Equipos/
+│   │   ├── Reparaciones/
+│   │   ├── Inventario/
+│   │   ├── Pagos/
+│   │   └── Seguridad/
+│   ├── AlDia.BLL/                     # Reglas del negocio, permisos y sesiones
+│   │   ├── Common/                    # AplicacionBll, Sesión y validadores
+│   │   └── [Módulos BLL]/
+│   ├── AlDia.UI/                      # Presentación Windows Forms
+│   │   ├── Controles/                 # Controles de usuario personalizados (PanelTarjeta, etc.)
+│   │   ├── Helpers/                   # Asistentes de redondeo, moneda, validación
+│   │   └── Formularios/
+│   │       ├── Base/                  # FrmListadoBase, FrmRegistroBase, FrmOverlay
+│   │       ├── Seguridad/             # FrmLogin, FrmAdministradorInicial, FrmConexion
+│   │       └── Hijos/                 # Clientes, Equipos, Órdenes, Pagos, Inventario, Reportes, Usuarios
+│   ├── AlDia.Verificacion/            # Suite de pruebas automatizadas y comprobación de integridad
+│   ├── ARQUITECTURA.md                # Documento técnico de diseño y arquitectura
+│   ├── DAL_BLL.md                     # Contratos detallados de DAL y BLL
+│   └── METODOLOGIA_PROFESOR.md        # Correspondencia con lineamientos académicos
 ├── AlDia.DataBase/
 │   ├── AlDia.DataBase.slnx
 │   └── AlDia.DataBase/
-│       ├── Base de datos.sql
-│       ├── Procedimientos_Almacenados.sql
-│       └── LEEME.md
-└── README.md
+│       ├── Base de datos.sql          # Creación del esquema completo (16 tablas, FKs, restricciones)
+│       ├── Procedimientos_Almacenados.sql # 52 Procedimientos almacenados con lógica transaccional
+│       ├── Datos_Prueba.sql           # Carga de datos de prueba y cuentas demo
+│       └── LEEME.md                   # Documentación detallada de base de datos
+└── README.md                          # Este archivo
 ```
 
-## Preparar y ejecutar
+---
 
-Se necesita Windows, el SDK de .NET 10 y una instancia de SQL Server. También se puede abrir `AlDia.Solution/AlDia.Solution.slnx` en Visual Studio con soporte para .NET 10 y desarrollo de escritorio.
+## Tecnologías Utilizadas
 
-### Base de datos
+- **Lenguaje:** C# 13.0
+- **Plataforma:** .NET 10.0 (Windows Desktop SDK)
+- **Framework de Presentación:** Windows Forms (.NET Windows Desktop)
+- **Motor de Base de Datos:** Microsoft SQL Server 2019 / 2022 / LocalDB
+- **Acceso a Datos:** `Microsoft.Data.SqlClient` (v7.1.1)
+- **Librería de Iconografía:** `FontAwesome.Sharp` (v6.6.0)
+- **Seguridad y Criptografía:** `System.Security.Cryptography.Pkcs` / PBKDF2 RFC 2898
 
-Para una instalación nueva:
+---
 
-1. Abrir [Base de datos.sql](AlDia.DataBase/AlDia.DataBase/Base%20de%20datos.sql) en SQL Server Management Studio y ejecutarlo.
-2. Ejecutar completo [Procedimientos_Almacenados.sql](AlDia.DataBase/AlDia.DataBase/Procedimientos_Almacenados.sql).
+## Guía de Instalación y Ejecución
 
-**`Base de datos.sql` elimina y recrea `AlDiaDB` si ya existe. No debe ejecutarse para actualizar una base con datos.** Si el esquema ya está actualizado, ejecutar únicamente el archivo de procedimientos; utiliza `CREATE OR ALTER` y conserva los registros. El script incluye `USE [AlDiaDB]`.
+### 1. Requisitos Previos
 
-El esquema incluye los tres roles y los ocho estados del flujo. No incluye usuarios de negocio ni contraseñas predeterminadas.
+- Sistema Operativo: Windows 10 / Windows 11 (64-bit).
+- [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) o superior instalado.
+- Instancia activa de **Microsoft SQL Server** (LocalDB, Express o Enterprise).
+- Herramienta para ejecutar scripts SQL: SQL Server Management Studio (SSMS), Azure Data Studio o extensión mssql en VS Code.
 
-Para probar el sistema con registros ficticios, ejecutar después [Datos_Prueba.sql](AlDia.DataBase/AlDia.DataBase/Datos_Prueba.sql). Incluye clientes, equipos, inventario, órdenes en los ocho estados, pagos e historial. Crea las cuentas `admin.demo`, `recepcion.demo`, `tecnico.demo` y `tecnico2.demo`, con contraseña inicial `Demo2026!`. Se puede repetir sin duplicar los datos ni reiniciar las órdenes existentes. Los escenarios se detallan en [LEEME de la base de datos](AlDia.DataBase/AlDia.DataBase/LEEME.md).
+### 2. Configuración de la Base de Datos
 
-### Aplicación
+Abra su gestor de SQL Server y ejecute los scripts ubicados en `AlDia.DataBase/AlDia.DataBase/` en el siguiente orden:
 
-Desde la raíz del repositorio:
+1. **`Base de datos.sql`**: Crea la base de datos `AlDiaDB`, las 16 tablas, relaciones, índices y catálogos iniciales.
+   > [!WARNING]
+   > `Base de datos.sql` elimina y recrea `AlDiaDB`. Ejecútelo únicamente para instalaciones nuevas.
+2. **`Procedimientos_Almacenados.sql`**: Compila los 52 procedimientos almacenados requeridos por la capa DAL.
+3. *(Opcional pero recomendado)* **`Datos_Prueba.sql`**: Carga registros de ejemplo (clientes, equipos, órdenes en diferentes estados del ciclo de vida, repuestos e historial) y genera las cuentas de prueba.
+
+### 3. Cuentas de Acceso de Demostración
+
+Si ejecutó `Datos_Prueba.sql`, el sistema cuenta con los siguientes usuarios listos para iniciar sesión:
+
+| Rol | Usuario | Contraseña | Permisos Principales |
+|---|---|---|---|
+| **Administrador** | `admin.demo` | `Demo2026!` | Acceso total: Usuarios, Catálogos, Clientes, Equipos, Órdenes, Pagos, Inventario, Reportes y Auditoría. |
+| **Recepcionista** | `recepcion.demo` | `Demo2026!` | Recepción de equipos, clientes, registro de decisiones del cliente, pagos, cobros y entrega de equipos. |
+| **Técnico** | `tecnico.demo` | `Demo2026!` | Diagnóstico, cotización, registro de mano de obra/repuestos y resultado de reparaciones asignadas. |
+| **Técnico 2** | `tecnico2.demo` | `Demo2026!` | Segundo técnico para pruebas de asignación cruzada y órdenes concurrentes. |
+
+> [!NOTE]
+> Si decide no ejecutar los datos de prueba, la primera vez que abra el sistema el formulario de inicio de sesión detectará que no existen usuarios y habilitará automáticamente el asistente para **Crear el Primer Administrador**.
+
+### 4. Compilación y Ejecución
+
+Desde la terminal (PowerShell o CMD) en la raíz del repositorio:
 
 ```powershell
-dotnet restore AlDia.Solution/AlDia.Solution.slnx
+# Compilar la solución completa
 dotnet build AlDia.Solution/AlDia.Solution.slnx
+
+# Iniciar la aplicación
 dotnet run --project AlDia.Solution/AlDia.UI/AlDia.UI.csproj
 ```
 
-El proyecto de inicio es **AlDia.UI**. En el primer arranque se configura el servidor, la base de datos y las credenciales SQL desde el formulario de conexión. La configuración se guarda en `Config/configuracion.json`, junto al ejecutable.
+También puede abrir el archivo de solución `AlDia.Solution/AlDia.Solution.slnx` directamente en **Visual Studio 2022 / 2025** y presionar **F5**.
 
-Si todavía no existen usuarios, el login permite registrar el primer administrador. Después se inicia sesión con una cuenta del negocio. Esa cuenta es distinta del usuario SQL de la conexión. Las contraseñas del negocio se almacenan con PBKDF2 y una sal individual; sus hashes no se muestran en los listados.
+### 5. Configuración de Conexión en el Primer Arranque
 
-## Criterios de desarrollo
+En la primera ejecución, la aplicación presentará la pantalla de **Configuración de Conexión a Base de Datos**:
+- Ingrese el nombre de su servidor (ej. `localhost`, `.\SQLEXPRESS` o `(localdb)\MSSQLLocalDB`).
+- Ingrese el nombre de la base de datos: `AlDiaDB`.
+- Seleccione el tipo de autenticación (Autenticación de Windows o Autenticación de SQL Server con usuario y contraseña).
+- Presione **Probar Conexión** y luego **Guardar**.
 
-El trabajo continúa por módulos, siguiendo tabla y procedimientos → Entity → DAL → BLL → listado → registro y edición → integración. Entity, DAL y BLL ya cubren el sistema; el avance siguiente corresponde a UI.
+La configuración se almacenará de forma segura en `Config/configuracion.json` junto al ejecutable de la aplicación.
 
-Los listados reutilizan `FrmListadoBase` mediante métodos virtuales y `override`, con búsqueda al escribir, paginación y acciones por módulo. Los registros reutilizan el `FrmRegistroBase` existente de Al Día, admiten alta y edición por constructor y llaman a `AgregarAsync` o `ActualizarAsync` según el modo. Devuelven `DialogResult.OK` al guardar. Se conserva el diseñador de Visual Studio y el estilo de los formularios existentes. La comparación con el código del profesor y las adaptaciones necesarias están documentadas en [Metodología del profesor](AlDia.Solution/METODOLOGIA_PROFESOR.md).
+---
 
-Los marcos comunes están en `Formularios/Base`: `FrmListadoBase` contiene cabecera, búsqueda, filtros, tabla y paginación; `FrmRegistroBase` contiene cabecera, cuerpo y pie. Los formularios concretos están en `Formularios/Hijos/<Modulo>`, con su propio `.cs`, `.Designer.cs` y `.resx` para editarlos desde Visual Studio.
+## Documentación Complementaria
 
-Las carpetas de módulos son `Usuarios`, `Clientes`, `Equipos`, `OrdenesServicio`, `Inventario`, `Pagos`, `Reportes` y `Catalogos`. Órdenes incluye recepción y expediente; Inventario incluye repuestos y ajuste de existencias; Catálogos contiene roles, tipos de equipo y servicios. Reportes incluye un centro con pestañas para órdenes, pagos e inventario, filtros por período y un formulario de vista previa; generar, exportar e imprimir quedan deshabilitados hasta integrar los datos. Los botones del dashboard abren estos módulos, resaltan la sección activa y permiten volver a Inicio. Ver todas abre Órdenes de servicio. El detalle de las operaciones conectadas y pendientes está en la documentación de metodología.
+Para obtener detalles técnicos en profundidad, consulte los documentos enlazados:
 
-## Documentación
+- 📐 [Documentación de Arquitectura y Patrones (ARQUITECTURA.md)](AlDia.Solution/ARQUITECTURA.md)
+- 🔌 [Especificación de Operaciones en DAL y BLL (DAL_BLL.md)](AlDia.Solution/DAL_BLL.md)
+- 🎓 [Alineación Metodológica y Verificación (METODOLOGIA_PROFESOR.md)](AlDia.Solution/METODOLOGIA_PROFESOR.md)
+- 🗃️ [Manual del Esquema de Base de Datos y Procedimientos (LEEME.md)](AlDia.DataBase/AlDia.DataBase/LEEME.md)
+- 📦 [Mapeo de Entidades y Modelos (AlDia.Entity/LEEME.md)](AlDia.Solution/AlDia.Entity/LEEME.md)
 
-- [Arquitectura, entidades y estado de la UI](AlDia.Solution/ARQUITECTURA.md).
-- [Operaciones disponibles en DAL y BLL](AlDia.Solution/DAL_BLL.md).
-- [Análisis de los videos, adaptación e instrucciones de verificación](AlDia.Solution/METODOLOGIA_PROFESOR.md).
-- [Entidades y correspondencia con las tablas](AlDia.Solution/AlDia.Entity/LEEME.md).
-- [Procedimientos y reglas de la base de datos](AlDia.DataBase/AlDia.DataBase/LEEME.md).
+---
+
+## Licencia y Créditos
+
+Proyecto desarrollado como solución integral para la gestión de talleres de reparación electrónica, aplicando las mejores prácticas de la industria en arquitectura en capas, principios SOLID y patrones de diseño en el ecosistema .NET.

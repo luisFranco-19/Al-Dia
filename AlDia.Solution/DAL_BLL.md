@@ -67,9 +67,9 @@ Las consultas antiguas continúan disponibles: `@Pagina = NULL` devuelve el conj
 
 ## Procedimientos e instalación
 
-`AlDia.DataBase/AlDia.DataBase/Procedimientos_Almacenados.sql` contiene 51 procedimientos: 47 públicos con llamada desde DAL y 4 auxiliares internos. Se agregaron guardar/consultar roles, consultar pagos y consultar errores; se adaptaron usuarios a IdRol y se incorporó paginación a las consultas.
+`AlDia.DataBase/AlDia.DataBase/Procedimientos_Almacenados.sql` contiene 52 procedimientos: 48 públicos con llamada desde DAL y 4 auxiliares internos. Se agregaron guardar/consultar roles, consultar pagos y errores, y consultar técnicos activos para que recepción asigne la orden; se adaptaron usuarios a IdRol y se incorporó paginación a las consultas.
 
-Esta etapa actualizó el archivo SQL y probó su instalación en bases temporales. La instalación inicial en AlDiaDB quedó pendiente. Posteriormente el usuario ejecutó el archivo completo; se comprobó mediante consultas de solo lectura en LAPTOP-1FRB462E/AlDiaDB que los 51 procedimientos instalados coinciden con las definiciones del archivo actual, incluidos los parámetros de paginación, IdRol, IdPago y el login con rol activo. **La instalación de procedimientos ya está verificada.** Para utilizar las capas con una base existente, esta debe tener el esquema actualizado del usuario y los procedimientos de ese archivo. El script de procedimientos utiliza `CREATE OR ALTER` y conserva los datos. `Base de datos.sql` recrea la base; se reserva para instalaciones nuevas.
+La versión anterior de los 51 procedimientos se verificó en AlDiaDB. Este cambio agrega `usp_ConsultarTecnicosActivos` y modifica los parámetros de `usp_RegistrarRecepcion`; para usar la asignación desde recepción, ejecutar el archivo actualizado de procedimientos sobre la base existente. El script utiliza `CREATE OR ALTER` y conserva los datos. `Base de datos.sql` recrea la base y se reserva para instalaciones nuevas.
 
 ## Compilación
 

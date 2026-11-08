@@ -33,7 +33,7 @@ public sealed class OrdenReparacionBll
     {
         int actor = _sesion.Exigir(RolUsuario.Recepcionista);
         ArgumentNullException.ThrowIfNull(s);
-        var validada = s with { NumeroOrden = Validacion.Texto(s.NumeroOrden, "NumeroOrden", 20), IdEquipo = Validacion.Id(s.IdEquipo, "IdEquipo"), ProblemaReportado = Validacion.Texto(s.ProblemaReportado, "ProblemaReportado", 500), ObservacionesRecepcion = Validacion.Opcional(s.ObservacionesRecepcion, "ObservacionesRecepcion", 500), AccesoriosRecepcion = Validacion.Opcional(s.AccesoriosRecepcion, "AccesoriosRecepcion", 300) };
+        var validada = s with { NumeroOrden = Validacion.Texto(s.NumeroOrden, "NumeroOrden", 20), IdEquipo = Validacion.Id(s.IdEquipo, "IdEquipo"), ProblemaReportado = Validacion.Texto(s.ProblemaReportado, "ProblemaReportado", 500), ObservacionesRecepcion = Validacion.Opcional(s.ObservacionesRecepcion, "ObservacionesRecepcion", 500), AccesoriosRecepcion = Validacion.Opcional(s.AccesoriosRecepcion, "AccesoriosRecepcion", 300), IdTecnicoResponsable = s.IdTecnicoResponsable.HasValue ? Validacion.Id(s.IdTecnicoResponsable.Value, "IdTecnicoResponsable") : null };
         return _datos.RegistrarRecepcionAsync(actor, validada, ct);
     }
     public Task CorregirRecepcionAsync(CorreccionRecepcionSolicitud s, CancellationToken ct = default)

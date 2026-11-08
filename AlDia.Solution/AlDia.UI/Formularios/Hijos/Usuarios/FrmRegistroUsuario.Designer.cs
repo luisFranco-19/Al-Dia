@@ -76,54 +76,54 @@ partial class FrmRegistroUsuario
         // panelContenido
         // 
         panelContenido.Margin = new Padding(3, 5, 3, 5);
-        panelContenido.Size = new Size(937, 660);
+        panelContenido.Size = new Size(937, 980);
         // 
         // panelCabecera
         // 
         panelCabecera.Margin = new Padding(3, 5, 3, 5);
-        panelCabecera.Size = new Size(937, 185);
+        panelCabecera.Size = new Size(937, 139);
         // 
         // iconModulo
         // 
         iconModulo.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
-        iconModulo.IconSize = 72;
-        iconModulo.Location = new Point(37, 43);
+        iconModulo.IconSize = 63;
+        iconModulo.Location = new Point(32, 32);
         iconModulo.Margin = new Padding(3, 5, 3, 5);
-        iconModulo.Size = new Size(72, 87);
+        iconModulo.Size = new Size(63, 65);
         // 
         // lblTitulo
         // 
-        lblTitulo.Location = new Point(135, 32);
-        lblTitulo.Size = new Size(744, 71);
+        lblTitulo.Location = new Point(118, 24);
+        lblTitulo.Size = new Size(651, 53);
         lblTitulo.Text = "Nuevo usuario";
         // 
         // lblDescripcion
         // 
-        lblDescripcion.Location = new Point(137, 108);
-        lblDescripcion.Size = new Size(810, 47);
+        lblDescripcion.Location = new Point(120, 81);
+        lblDescripcion.Size = new Size(709, 35);
         lblDescripcion.Text = "Complete la información para registrar una cuenta de usuario.";
         // 
         // btnCerrar
         // 
         btnCerrar.FlatAppearance.BorderSize = 0;
         btnCerrar.FlatAppearance.MouseOverBackColor = Color.FromArgb(244, 246, 250);
-        btnCerrar.Location = new Point(848, 39);
+        btnCerrar.Location = new Point(859, 29);
         btnCerrar.Margin = new Padding(3, 5, 3, 5);
-        btnCerrar.Size = new Size(47, 64);
+        btnCerrar.Size = new Size(41, 48);
         // 
         // panelCuerpo
         // 
         panelCuerpo.Controls.Add(tablaSecciones);
-        panelCuerpo.Location = new Point(0, 185);
+        panelCuerpo.Location = new Point(0, 139);
         panelCuerpo.Margin = new Padding(3, 5, 3, 5);
-        panelCuerpo.Padding = new Padding(37, 43, 37, 36);
-        panelCuerpo.Size = new Size(937, 332);
+        panelCuerpo.Padding = new Padding(32, 24, 32, 24);
+        panelCuerpo.Size = new Size(937, 734);
         // 
         // panelPie
         // 
-        panelPie.Location = new Point(0, 517);
+        panelPie.Location = new Point(0, 873);
         panelPie.Margin = new Padding(3, 5, 3, 5);
-        panelPie.Size = new Size(937, 143);
+        panelPie.Size = new Size(937, 107);
         // 
         // lineaPie
         // 
@@ -131,17 +131,17 @@ partial class FrmRegistroUsuario
         // 
         // lblObligatorios
         // 
-        lblObligatorios.Location = new Point(37, 49);
-        lblObligatorios.Size = new Size(392, 43);
+        lblObligatorios.Location = new Point(32, 37);
+        lblObligatorios.Size = new Size(343, 32);
         // 
         // btnCancelar
         // 
         btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(211, 221, 232);
         btnCancelar.FlatAppearance.MouseDownBackColor = Color.FromArgb(230, 236, 243);
         btnCancelar.FlatAppearance.MouseOverBackColor = Color.FromArgb(244, 246, 250);
-        btnCancelar.Location = new Point(514, 36);
+        btnCancelar.Location = new Point(567, 27);
         btnCancelar.Margin = new Padding(3, 5, 3, 5);
-        btnCancelar.Size = new Size(173, 75);
+        btnCancelar.Size = new Size(151, 56);
         // 
         // btnGuardar
         // 
@@ -149,9 +149,9 @@ partial class FrmRegistroUsuario
         btnGuardar.FlatAppearance.BorderSize = 0;
         btnGuardar.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 64, 175);
         btnGuardar.FlatAppearance.MouseOverBackColor = Color.FromArgb(29, 78, 216);
-        btnGuardar.Location = new Point(701, 36);
+        btnGuardar.Location = new Point(731, 27);
         btnGuardar.Margin = new Padding(3, 5, 3, 5);
-        btnGuardar.Size = new Size(199, 75);
+        btnGuardar.Size = new Size(174, 56);
         btnGuardar.Text = "Guardar usuario";
         // 
         // tablaSecciones
@@ -167,7 +167,7 @@ partial class FrmRegistroUsuario
         tablaSecciones.Name = "tablaSecciones";
         tablaSecciones.RowCount = 1;
         tablaSecciones.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        tablaSecciones.Size = new Size(842, 653);
+        tablaSecciones.Size = new Size(873, 653);
         tablaSecciones.TabIndex = 0;
         // 
         // panelDatos
@@ -670,7 +670,7 @@ partial class FrmRegistroUsuario
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(230, 236, 243);
-        ClientSize = new Size(937, 660);
+        ClientSize = new Size(937, 980);
         Margin = new Padding(3, 5, 3, 5);
         Name = "FrmRegistroUsuario";
         Text = "Al Día · Usuarios";

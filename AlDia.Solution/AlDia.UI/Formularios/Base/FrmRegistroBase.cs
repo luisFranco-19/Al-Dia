@@ -22,6 +22,7 @@ public partial class FrmRegistroBase : Form // Base común para los formularios 
         btnGuardar.Click += async (_, _) => await GuardarFormularioAsync(); // Guardar inicia la operación asíncrona.
         btnCancelar.Click += (_, _) => Cancelar(); // Cancelar cierra el formulario.
         btnCerrar.Click += (_, _) => Cancelar(); // Cerrar usa la misma acción que Cancelar.
+        panelPie.SizeChanged += (_, _) => AlinearAccionesPie();
         AcceptButton = btnGuardar; // Enter activa Guardar.
         CancelButton = btnCancelar; // Escape activa Cancelar.
     }
@@ -41,7 +42,12 @@ public partial class FrmRegistroBase : Form // Base común para los formularios 
         _ocupado = true;
         panelCuerpo.Enabled = false; // Bloquea los campos durante la carga.
         btnGuardar.Enabled = false;
-        try { await CargarDatosAsync(); } // Espera a que el formulario hijo cargue los datos.
+        try
+        {
+            await CargarDatosAsync(); // Espera a que el formulario hijo cargue los datos.
+            AplicarEstiloCampos(panelCuerpo);
+            AlinearAccionesPie();
+        }
         catch (OperationCanceledException) when (_vida.IsCancellationRequested) { } // Ignora la cancelación solicitada al cerrar.
         catch (Exception ex) // Muestra otros errores ocurridos durante la operación.
         {
@@ -98,8 +104,76 @@ public partial class FrmRegistroBase : Form // Base común para los formularios 
     protected override void OnShown(EventArgs e) // Ajusta la apariencia después de mostrar la ventana.
     {
         base.OnShown(e);
+        AjustarAlAreaDisponible();
         Helpers.RedondearControlHelper.RedondearControl(this, 25);
         Helpers.RedondearControlHelper.RedondearControl(panelContenido, 25);
+    }
+
+    private void AjustarAlAreaDisponible()
+    {
+        var area = Screen.FromControl(this).WorkingArea;
+        int anchoMaximo = Math.Max(320, area.Width - 24);
+        int altoMaximo = Math.Max(320, area.Height - 24);
+        if (Width > anchoMaximo) Width = anchoMaximo;
+        if (Height > altoMaximo) Height = altoMaximo;
+
+        // El contenido permanece accesible si la ventana debe reducirse por la resolución.
+        panelCuerpo.AutoScroll = true;
+        panelCuerpo.PerformLayout();
+
+        Rectangle referencia = Owner?.Bounds ?? area;
+        int x = referencia.Left + (referencia.Width - Width) / 2;
+        int y = referencia.Top + (referencia.Height - Height) / 2;
+        x = Math.Clamp(x, area.Left, area.Right - Width);
+        y = Math.Clamp(y, area.Top, area.Bottom - Height);
+        Location = new Point(x, y);
+    }
+
+    private void AplicarEstiloCampos(Control contenedor)
+    {
+        foreach (Control control in contenedor.Controls)
+        {
+            if (control is TextBoxBase or ComboBox or DateTimePicker or NumericUpDown or MaskedTextBox)
+                control.BackColor = Color.White;
+            AplicarEstiloCampos(control);
+        }
+    }
+
+    private void AlinearAccionesPie()
+    {
+        if (panelPie.IsDisposed || panelPie.ClientSize.Width <= 0) return;
+
+        var acciones = panelPie.Controls.OfType<Button>()
+            .Where(b => b.Visible && b != btnGuardar && b != btnCancelar)
+            .OrderBy(b => b.TabIndex)
+            .ToList();
+        if (btnGuardar.Visible) acciones.Insert(0, btnGuardar);
+        if (btnCancelar.Visible) acciones.Add(btnCancelar);
+
+        const int margen = 32;
+        const int espacio = 12;
+        int anchoAcciones = acciones.Sum(a => a.Width) + Math.Max(0, acciones.Count - 1) * espacio;
+        int x = Math.Max(margen, panelPie.ClientSize.Width - margen - anchoAcciones);
+        foreach (Button accion in acciones)
+        {
+            accion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            accion.Location = new Point(x, Math.Max(8, (panelPie.ClientSize.Height - accion.Height) / 2));
+            x += accion.Width + espacio;
+        }
+
+        int inicioEtiqueta = margen;
+        int anchoEtiqueta = Math.Max(0, panelPie.ClientSize.Width - anchoAcciones - margen * 2 - espacio);
+        if (anchoEtiqueta >= 80)
+        {
+            lblObligatorios.Visible = true;
+            lblObligatorios.TextAlign = ContentAlignment.MiddleLeft;
+            lblObligatorios.Location = new Point(inicioEtiqueta, Math.Max(8, (panelPie.ClientSize.Height - lblObligatorios.Height) / 2));
+            lblObligatorios.Size = new Size(anchoEtiqueta, lblObligatorios.Height);
+        }
+        else
+        {
+            lblObligatorios.Visible = false;
+        }
     }
 
     protected override void OnFormClosing(FormClosingEventArgs e) // Revisa si se puede cerrar la ventana.

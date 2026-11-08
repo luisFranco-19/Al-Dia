@@ -2,6 +2,7 @@ using AlDia.BLL.Common;
 using AlDia.Entity.Common;
 using AlDia.Entity.Equipos;
 using AlDia.Entity.Reparaciones;
+using AlDia.Entity.Seguridad;
 using AlDia.UI.Formularios.Base;
 using AlDia.UI.Helpers;
 
@@ -10,6 +11,7 @@ namespace AlDia.UI.Formularios.Hijos.OrdenesServicio;
 public partial class FrmRegistroOrdenServicio : FrmRegistroBase
 {
     private List<EquipoEntity> _equipos = [];
+    private List<UsuarioEntity> _tecnicos = [];
     private EstadoReparacionEntity? _estado;
     protected override bool PermitirGuardar => true;
     public FrmRegistroOrdenServicio()
@@ -25,9 +27,14 @@ public partial class FrmRegistroOrdenServicio : FrmRegistroBase
     {
         var clientes = await Aplicacion.Clientes.ConsultarAsync(ct: TokenFormulario);
         _equipos = (await Aplicacion.Equipos.ConsultarAsync(ct: TokenFormulario)).ToList();
+        _tecnicos = (await Aplicacion.Usuarios.ConsultarTecnicosActivosAsync(TokenFormulario)).ToList();
         _estado = (await Aplicacion.Ordenes.ConsultarEstadosAsync(TokenFormulario)).Single(x => x.Nombre == "En Revisión");
         cboCliente.DataSource = clientes.Select(x => new OpcionCombo(x.IdCliente, x.NombreCompleto)).ToList();
         cboCliente.SelectedIndex = -1;
+        cboTecnicoAsignado.DataSource = _tecnicos
+            .Select(x => new OpcionCombo(x.IdUsuario, $"{x.NombreCompleto} · {x.Usuario}"))
+            .ToList();
+        cboTecnicoAsignado.SelectedIndex = -1;
         var actor = Aplicacion.Sesion.UsuarioActual!;
         cboRecepcionista.DataSource = new[] { new OpcionCombo(actor.IdUsuario, actor.NombreCompleto) };
         txtEstadoInicial.Text = _estado.Nombre;
@@ -46,6 +53,8 @@ public partial class FrmRegistroOrdenServicio : FrmRegistroBase
         bool valido = Requerido(txtNumeroOrden, "Ingrese el número de orden.") & Requerido(txtProblemaReportado, "Describa el problema.");
         if (cboEquipo.SelectedItem is not OpcionCombo { Id: not null })
         { errorIcon.SetError(cboEquipo, "Seleccione el equipo del cliente."); valido = false; }
+        if (cboTecnicoAsignado.SelectedItem is not OpcionCombo { Id: not null })
+        { errorIcon.SetError(cboTecnicoAsignado, "Seleccione el técnico responsable."); valido = false; }
         return valido;
     }
     protected override async Task GuardarAsync()
@@ -56,6 +65,7 @@ public partial class FrmRegistroOrdenServicio : FrmRegistroBase
         orden.CambiarRecepcionista(Aplicacion.Sesion.UsuarioActual!.IdUsuario);
         orden.CambiarEstadoInicial(_estado!);
         orden.CambiarRecepcion(txtProblemaReportado.Text, txtObservacionesRecepcion.Text, txtAccesoriosRecepcion.Text);
+        orden.AsignarTecnicoResponsable(((OpcionCombo)cboTecnicoAsignado.SelectedItem!).Id);
         await Aplicacion.Ordenes.RegistrarEntidadAsync(orden, TokenFormulario);
     }
 }

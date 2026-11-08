@@ -19,6 +19,14 @@ public partial class FrmOrdenesServicio : FrmListadoBase
         cboFiltroAsignacion.SelectedIndexChanged += async (_, _) => await RecargarAsync(1);
     }
     public FrmOrdenesServicio(AplicacionBll aplicacion) : this() => ConfigurarServicios(aplicacion);
+    public override void ConfigurarServicios(AplicacionBll aplicacion)
+    {
+        base.ConfigurarServicios(aplicacion);
+        bool esTecnico = aplicacion.Sesion.UsuarioActual?.PermisoRol == RolUsuario.Tecnico;
+        panelFiltroAsignacion.Visible = !esTecnico;
+        tablaFiltrosModulo.ColumnStyles[0].Width = esTecnico ? 100F : 50F;
+        tablaFiltrosModulo.ColumnStyles[1].Width = esTecnico ? 0F : 50F;
+    }
     protected override bool MostrarBotonPrincipal => PuedeMantener(RolUsuario.Recepcionista);
     protected override bool MostrarBotonSecundario => true;
     protected override bool MostrarBotonTerciario => PuedeMantener(RolUsuario.Recepcionista);

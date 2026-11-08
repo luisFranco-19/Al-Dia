@@ -3,6 +3,7 @@ using AlDia.Entity.Common;
 using AlDia.Entity.Seguridad;
 using AlDia.UI.Formularios.Base;
 using AlDia.UI.Helpers;
+using FontAwesome.Sharp;
 
 namespace AlDia.UI.Formularios.Hijos.Usuarios;
 
@@ -12,6 +13,8 @@ public partial class FrmUsuarios : FrmListadoBase
     public FrmUsuarios()
     {
         InitializeComponent();
+        btnCambiarEstado.IconChar = IconChar.Trash;
+        btnCambiarEstado.Text = "Eliminar usuario";
         VincularColumna("colNombre", nameof(UsuarioEntity.NombreCompleto));
         VincularColumna("colUsuario", nameof(UsuarioEntity.Usuario));
         VincularColumna("colCorreo", nameof(UsuarioEntity.Correo));
@@ -27,6 +30,8 @@ public partial class FrmUsuarios : FrmListadoBase
     protected override bool MostrarBotonPrincipal => PuedeMantener(RolUsuario.Administrador);
     protected override bool MostrarBotonSecundario => PuedeMantener(RolUsuario.Administrador);
     protected override bool MostrarBotonTerciario => PuedeMantener(RolUsuario.Administrador);
+    protected override string TextoBotonTerciario => ObtenerSeleccionado<UsuarioEntity>()?.Estado == false
+        ? "Reactivar usuario" : "Eliminar usuario";
 
     protected override async Task MostrarDatosAsync(int pagina, int tamPagina, string? buscar = null)
     {
@@ -54,9 +59,15 @@ public partial class FrmUsuarios : FrmListadoBase
 
     protected override async Task DesactivarAsync()
     {
-        var entidad = ObtenerSeleccionado<UsuarioEntity>();
-        if (entidad is null || !ConfirmarCambioEstado(entidad.Estado)) return;
-        await Aplicacion.Usuarios.CambiarEstadoAsync(entidad.IdUsuario, !entidad.Estado);
+        var usuario = ObtenerSeleccionado<UsuarioEntity>();
+        if (usuario is null) return;
+        bool activar = !usuario.Estado;
+        string detalle = activar
+            ? $"¿Desea reactivar la cuenta de {usuario.NombreCompleto}?"
+            : $"¿Desea eliminar el acceso de {usuario.NombreCompleto}? La cuenta quedará inactiva y se conservará el historial de sus órdenes y acciones.";
+        if (MessageBox.Show(TopLevelControl as Form ?? this, detalle, "Confirmar acción",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+        await Aplicacion.Usuarios.CambiarEstadoAsync(usuario.IdUsuario, activar);
         await RecargarAsync();
     }
 

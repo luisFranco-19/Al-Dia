@@ -22,7 +22,7 @@ partial class FrmRegistroServicio
         campoPrecioBase = new Panel();
         lblPrecioBase = new Label();
         bordePrecioBase = new AlDia.UI.Controles.PanelTarjeta();
-        nudPrecioBase = new NumericUpDown();
+        nudPrecioBase = new TextBox();
         campoDescripcion = new Panel();
         lblCampoDescripcion = new Label();
         bordeDescripcion = new AlDia.UI.Controles.PanelTarjeta();
@@ -113,9 +113,6 @@ partial class FrmRegistroServicio
         bordePrecioBase.RadioBorde = 8;
         bordePrecioBase.TabIndex = 0;
         campoPrecioBase.Controls.Add(bordePrecioBase);
-        nudPrecioBase.DecimalPlaces = 2;
-        nudPrecioBase.Maximum = 999999999M;
-        nudPrecioBase.ThousandsSeparator = true;
         nudPrecioBase.BorderStyle = BorderStyle.None;
         nudPrecioBase.Name = "nudPrecioBase";
         nudPrecioBase.Location = new Point(12, 11);
@@ -124,6 +121,10 @@ partial class FrmRegistroServicio
         nudPrecioBase.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
         nudPrecioBase.ForeColor = Color.FromArgb(20, 43, 78);
         nudPrecioBase.TabIndex = 0;
+        nudPrecioBase.Text = "0.00";
+        nudPrecioBase.TextAlign = HorizontalAlignment.Right;
+        nudPrecioBase.BorderStyle = BorderStyle.None;
+        nudPrecioBase.PlaceholderText = "0.00";
         bordePrecioBase.Controls.Add(nudPrecioBase);
         tablaCampos.Controls.Add(campoPrecioBase, 1, 0);
         campoDescripcion.Name = "campoDescripcion";
@@ -216,7 +217,7 @@ partial class FrmRegistroServicio
     private Panel campoPrecioBase;
     private Label lblPrecioBase;
     private AlDia.UI.Controles.PanelTarjeta bordePrecioBase;
-    private NumericUpDown nudPrecioBase;
+    private TextBox nudPrecioBase;
     private Panel campoDescripcion;
     private Label lblCampoDescripcion;
     private AlDia.UI.Controles.PanelTarjeta bordeDescripcion;

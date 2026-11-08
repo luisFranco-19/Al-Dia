@@ -26,6 +26,7 @@ public sealed class OrdenReparacionDal : IOrdenReparacionDal
             cmd.Parameters.Add(ParametrosSql.Texto("@ProblemaReportado", s.ProblemaReportado, 500));
             cmd.Parameters.Add(ParametrosSql.Texto("@ObservacionesRecepcion", s.ObservacionesRecepcion, 500));
             cmd.Parameters.Add(ParametrosSql.Texto("@AccesoriosRecepcion", s.AccesoriosRecepcion, 300));
+            cmd.Parameters.Add(ParametrosSql.Entero("@IdTecnicoResponsable", s.IdTecnicoResponsable));
             cmd.Parameters.Add(ParametrosSql.Salida("@IdOrden"));
 
             await cn.OpenAsync(ct);

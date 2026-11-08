@@ -1,6 +1,6 @@
 # Lógica del negocio de Al Día
 
-Los procedimientos representan operaciones del taller: recibir equipos, diagnosticar, registrar la decisión del cliente, reparar, consumir repuestos, cobrar y entregar. `Procedimientos_Almacenados.sql` contiene **51 procedimientos consolidados**: 24 operaciones del flujo, 4 auxiliares internos y 23 de soporte para las capas Entity, DAL y BLL. Los 47 públicos tienen llamadas desde DAL.
+Los procedimientos representan operaciones del taller: recibir equipos, diagnosticar, registrar la decisión del cliente, reparar, consumir repuestos, cobrar y entregar. `Procedimientos_Almacenados.sql` contiene **52 procedimientos consolidados**: 24 operaciones del flujo, 4 auxiliares internos y 24 de soporte para las capas Entity, DAL y BLL. Los 48 públicos tienen llamadas desde DAL.
 
 ## Archivos y orden de ejecución
 
@@ -45,7 +45,7 @@ Se puede ejecutar de nuevo: agrega únicamente registros ausentes y omite las ó
 
 La solución AlDia.DataBase.slnx está en la carpeta superior. Los procedimientos se editan en el archivo consolidado; también se puede seleccionar y ejecutar un bloque completo con su GO en SSMS. El script incluye USE AlDiaDB. Una base con el esquema anterior requiere su migración antes de instalar estos contratos.
 
-La etapa DAL/BLL actualizó este archivo y verificó los 51 procedimientos en una base temporal, eliminada al finalizar. Posteriormente el usuario ejecutó el archivo completo en AlDiaDB y se verificó mediante consultas de solo lectura que los 51 procedimientos coinciden con la versión actual del proyecto. **La instalación ya está verificada.** No se recreó la base real ni se agregaron datos de prueba en ella.
+La etapa DAL/BLL verificó la versión anterior de los procedimientos en una base temporal y posteriormente en AlDiaDB. La versión actual agrega `usp_ConsultarTecnicosActivos` y modifica `usp_RegistrarRecepcion` para guardar la asignación del técnico. Ejecutar el archivo actualizado en la base existente antes de usar esta función; `CREATE OR ALTER` conserva los datos. No se debe ejecutar `Base de datos.sql` para actualizar una instalación con datos.
 
 ## Operaciones públicas
 
@@ -76,7 +76,7 @@ Los permisos del usuario SQL de la aplicación se definirán cuando se integre c
 
 ## Reglas de esta versión
 
-- El técnico que toma la orden queda como responsable; el administrador no asigna órdenes.
+- Recepción asigna un técnico activo al registrar una orden; las órdenes antiguas sin responsable pueden seguir siendo tomadas por un técnico.
 - Los cambios de estado, la toma, la liberación y la anulación quedan en HistorialEstados. Los eventos sin transición pueden conservar el mismo estado anterior y nuevo.
 - El total suma cantidad por precio de los servicios y repuestos; no puede superar el costo autorizado. Los cambios fallidos revierten tanto detalles como stock y total.
 - Los pagos se registran después de finalizar el trabajo. Se permiten varios pagos sin superar el saldo.

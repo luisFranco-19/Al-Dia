@@ -34,7 +34,7 @@ partial class FrmRegistroPago
         lblSeccionPago = new Label();
         panelnumMonto = new Panel();
         lblnumMonto = new Label();
-        numMonto = new NumericUpDown();
+        numMonto = new TextBox();
         panelcboMetodoPago = new Panel();
         lblcboMetodoPago = new Label();
         cboMetodoPago = new ComboBox();
@@ -251,11 +251,10 @@ partial class FrmRegistroPago
         numMonto.ForeColor = Color.FromArgb(20, 43, 78);
         numMonto.BackColor = Color.White;
         numMonto.TabIndex = 0;
-        numMonto.DecimalPlaces = 2;
-        numMonto.Maximum = 10000000M;
-        numMonto.ThousandsSeparator = true;
+        numMonto.Text = "0.00";
         numMonto.TextAlign = HorizontalAlignment.Right;
         numMonto.BorderStyle = BorderStyle.FixedSingle;
+        numMonto.PlaceholderText = "0.00";
         panelnumMonto.Controls.Add(lblnumMonto);
         panelnumMonto.Controls.Add(numMonto);
         tablaFormulario.Controls.Add(panelnumMonto, 0, 5);
@@ -412,7 +411,7 @@ partial class FrmRegistroPago
     private Label lblSeccionPago = null!;
     private Panel panelnumMonto = null!;
     private Label lblnumMonto = null!;
-    private NumericUpDown numMonto = null!;
+    private TextBox numMonto = null!;
     private Panel panelcboMetodoPago = null!;
     private Label lblcboMetodoPago = null!;
     private ComboBox cboMetodoPago = null!;

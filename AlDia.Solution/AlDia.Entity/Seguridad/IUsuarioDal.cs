@@ -9,4 +9,5 @@ public interface IUsuarioDal : IConsultaPaginadaDal<UsuarioEntity>
     Task<int> GuardarAsync(int idActor, UsuarioSolicitud solicitud, string? hash, CancellationToken ct = default);
     Task<int> GuardarPorRolAsync(int idActor, UsuarioRolSolicitud solicitud, string? hash, CancellationToken ct = default);
     Task<IReadOnlyList<UsuarioEntity>> ConsultarAsync(int idActor, int? idUsuario = null, bool soloActivos = true, CancellationToken ct = default);
+    Task<IReadOnlyList<UsuarioEntity>> ConsultarTecnicosActivosAsync(int idActor, CancellationToken ct = default);
 }

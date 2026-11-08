@@ -1,6 +1,6 @@
 namespace AlDia.Entity.Reparaciones;
 public enum DecisionCliente { Aprobada, Rechazada }
-public sealed record RecepcionSolicitud(string NumeroOrden, int IdEquipo, string ProblemaReportado, string? ObservacionesRecepcion = null, string? AccesoriosRecepcion = null);
+public sealed record RecepcionSolicitud(string NumeroOrden, int IdEquipo, string ProblemaReportado, string? ObservacionesRecepcion = null, string? AccesoriosRecepcion = null, int? IdTecnicoResponsable = null);
 public sealed record CorreccionRecepcionSolicitud(int IdOrden, string ProblemaReportado, string? ObservacionesRecepcion = null, string? AccesoriosRecepcion = null);
 public sealed record DiagnosticoSolicitud(int IdOrden, string ProblemaEncontrado, string ReparacionPropuesta, decimal CostoEstimado, string? Observaciones = null);
 public sealed record CorreccionDiagnosticoSolicitud(int IdDiagnostico, string ProblemaEncontrado, string ReparacionPropuesta, decimal CostoEstimado, string? Observaciones = null);

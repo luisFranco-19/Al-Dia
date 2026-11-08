@@ -8,7 +8,7 @@ GO
 
 
 /* =========================================================================
-   [01/51] PROCEDIMIENTO: usp_RegistrarError
+   [01/52] PROCEDIMIENTO: usp_RegistrarError
    MÓDULO: SISTEMA Y AUDITORÍA DE ERRORES
    AUTORIZACIÓN / ROLES: Cualquier usuario o llamado interno desde bloques CATCH
    DESCRIPCIÓN:
@@ -28,7 +28,7 @@ GO
 
 
 /* =========================================================================
-   [02/51] PROCEDIMIENTO: usp_Interno_ValidarUsuario
+   [02/52] PROCEDIMIENTO: usp_Interno_ValidarUsuario
    MÓDULO: SEGURIDAD / AUXILIAR INTERNO
    AUTORIZACIÓN / ROLES: Uso interno por los procedimientos del sistema
    DESCRIPCIÓN:
@@ -51,7 +51,7 @@ GO
 
 
 /* =========================================================================
-   [03/51] PROCEDIMIENTO: usp_Interno_BloquearOrden
+   [03/52] PROCEDIMIENTO: usp_Interno_BloquearOrden
    MÓDULO: FLUJO DE TRABAJO / AUXILIAR INTERNO
    AUTORIZACIÓN / ROLES: Uso interno en operaciones transaccionales de órdenes
    DESCRIPCIÓN:
@@ -75,7 +75,7 @@ GO
 
 
 /* =========================================================================
-   [04/51] PROCEDIMIENTO: usp_Interno_Estado
+   [04/52] PROCEDIMIENTO: usp_Interno_Estado
    MÓDULO: FLUJO DE TRABAJO / AUXILIAR INTERNO
    AUTORIZACIÓN / ROLES: Uso interno en transiciones de flujo
    DESCRIPCIÓN:
@@ -100,7 +100,7 @@ GO
 
 
 /* =========================================================================
-   [05/51] PROCEDIMIENTO: usp_Interno_RecalcularTotal
+   [05/52] PROCEDIMIENTO: usp_Interno_RecalcularTotal
    MÓDULO: FINANZAS / AUXILIAR INTERNO
    AUTORIZACIÓN / ROLES: Uso interno tras agregar/modificar/retirar servicios o repuestos
    DESCRIPCIÓN:
@@ -127,7 +127,7 @@ GO
 
 
 /* =========================================================================
-   [06/51] PROCEDIMIENTO: usp_ConsultarInicializacion
+   [06/52] PROCEDIMIENTO: usp_ConsultarInicializacion
    MÓDULO: SEGURIDAD / ARRANQUE
    AUTORIZACIÓN / ROLES: Público / Llamado por UI al iniciar la aplicación
    DESCRIPCIÓN:
@@ -150,7 +150,7 @@ GO
 
 
 /* =========================================================================
-   [07/51] PROCEDIMIENTO: usp_CrearAdministradorInicial
+   [07/52] PROCEDIMIENTO: usp_CrearAdministradorInicial
    MÓDULO: SEGURIDAD / CONFIGURACIÓN INICIAL
    AUTORIZACIÓN / ROLES: Público (exclusivo para la creación del primer usuario)
    DESCRIPCIÓN:
@@ -184,7 +184,7 @@ GO
 
 
 /* =========================================================================
-   [08/51] PROCEDIMIENTO: usp_BuscarCredencialUsuario
+   [08/52] PROCEDIMIENTO: usp_BuscarCredencialUsuario
    MÓDULO: SEGURIDAD / AUTENTICACIÓN
    AUTORIZACIÓN / ROLES: Público (proceso de login)
    DESCRIPCIÓN:
@@ -204,7 +204,7 @@ GO
 
 
 /* =========================================================================
-   [09/51] PROCEDIMIENTO: usp_ConsultarUsuarios
+   [09/52] PROCEDIMIENTO: usp_ConsultarUsuarios
    MÓDULO: SEGURIDAD / GESTIÓN DE USUARIOS
    AUTORIZACIÓN / ROLES: Administrador
    DESCRIPCIÓN:
@@ -229,7 +229,7 @@ GO
 
 
 /* =========================================================================
-   [10/51] PROCEDIMIENTO: usp_GuardarUsuario
+   [10/52] PROCEDIMIENTO: usp_GuardarUsuario
    MÓDULO: SEGURIDAD / GESTIÓN DE USUARIOS
    AUTORIZACIÓN / ROLES: Administrador
    DESCRIPCIÓN:
@@ -284,7 +284,7 @@ GO
 
 
 /* =========================================================================
-   [11/51] PROCEDIMIENTO: usp_GuardarCliente
+   [11/52] PROCEDIMIENTO: usp_GuardarCliente
    MÓDULO: CATÁLOGOS / CLIENTES
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista
    DESCRIPCIÓN:
@@ -329,7 +329,7 @@ GO
 
 
 /* =========================================================================
-   [12/51] PROCEDIMIENTO: usp_ConsultarClientes
+   [12/52] PROCEDIMIENTO: usp_ConsultarClientes
    MÓDULO: CATÁLOGOS / CLIENTES
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista, Tecnico
    DESCRIPCIÓN:
@@ -354,7 +354,7 @@ GO
 
 
 /* =========================================================================
-   [13/51] PROCEDIMIENTO: usp_GuardarTipoEquipo
+   [13/52] PROCEDIMIENTO: usp_GuardarTipoEquipo
    MÓDULO: CATÁLOGOS / TIPOS DE EQUIPO
    AUTORIZACIÓN / ROLES: Administrador
    DESCRIPCIÓN:
@@ -393,7 +393,7 @@ GO
 
 
 /* =========================================================================
-   [14/51] PROCEDIMIENTO: usp_ConsultarTiposEquipo
+   [14/52] PROCEDIMIENTO: usp_ConsultarTiposEquipo
    MÓDULO: CATÁLOGOS / TIPOS DE EQUIPO
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista, Tecnico
    DESCRIPCIÓN:
@@ -418,7 +418,7 @@ GO
 
 
 /* =========================================================================
-   [15/51] PROCEDIMIENTO: usp_GuardarEquipo
+   [15/52] PROCEDIMIENTO: usp_GuardarEquipo
    MÓDULO: CATÁLOGOS / EQUIPOS
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista
    DESCRIPCIÓN:
@@ -459,7 +459,7 @@ GO
 
 
 /* =========================================================================
-   [16/51] PROCEDIMIENTO: usp_ConsultarEquipos
+   [16/52] PROCEDIMIENTO: usp_ConsultarEquipos
    MÓDULO: CATÁLOGOS / EQUIPOS
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista, Tecnico
    DESCRIPCIÓN:
@@ -484,7 +484,7 @@ GO
 
 
 /* =========================================================================
-   [17/51] PROCEDIMIENTO: usp_ConsultarEstadosReparacion
+   [17/52] PROCEDIMIENTO: usp_ConsultarEstadosReparacion
    MÓDULO: CATÁLOGOS / ESTADOS DE REPARACIÓN
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista, Tecnico
    DESCRIPCIÓN:
@@ -502,7 +502,7 @@ GO
 
 
 /* =========================================================================
-   [18/51] PROCEDIMIENTO: usp_GuardarServicio
+   [18/52] PROCEDIMIENTO: usp_GuardarServicio
    MÓDULO: CATÁLOGOS / SERVICIOS DE MANO DE OBRA
    AUTORIZACIÓN / ROLES: Administrador
    DESCRIPCIÓN:
@@ -541,7 +541,7 @@ GO
 
 
 /* =========================================================================
-   [19/51] PROCEDIMIENTO: usp_ConsultarServicios
+   [19/52] PROCEDIMIENTO: usp_ConsultarServicios
    MÓDULO: CATÁLOGOS / SERVICIOS DE MANO DE OBRA
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista, Tecnico
    DESCRIPCIÓN:
@@ -566,7 +566,7 @@ GO
 
 
 /* =========================================================================
-   [20/51] PROCEDIMIENTO: usp_GuardarRepuesto
+   [20/52] PROCEDIMIENTO: usp_GuardarRepuesto
    MÓDULO: INVENTARIO / CATÁLOGO DE REPUESTOS
    AUTORIZACIÓN / ROLES: Administrador
    DESCRIPCIÓN:
@@ -605,7 +605,7 @@ GO
 
 
 /* =========================================================================
-   [21/51] PROCEDIMIENTO: usp_ConsultarRepuestos
+   [21/52] PROCEDIMIENTO: usp_ConsultarRepuestos
    MÓDULO: INVENTARIO / CATÁLOGO DE REPUESTOS
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista, Tecnico
    DESCRIPCIÓN:
@@ -630,7 +630,7 @@ GO
 
 
 /* =========================================================================
-   [22/51] PROCEDIMIENTO: usp_AjustarExistencias
+   [22/52] PROCEDIMIENTO: usp_AjustarExistencias
    MÓDULO: INVENTARIO / AJUSTES DE STOCK
    AUTORIZACIÓN / ROLES: Administrador
    DESCRIPCIÓN:
@@ -661,14 +661,14 @@ GO
 
 
 /* =========================================================================
-   [23/51] PROCEDIMIENTO: usp_RegistrarRecepcion
+   [23/52] PROCEDIMIENTO: usp_RegistrarRecepcion
    MÓDULO: FLUJO / RECEPCIÓN
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
    Registra el ingreso de un equipo al taller, genera la orden con código único en estado 'En Revisión' y crea el historial inicial.
    ========================================================================= */
 CREATE OR ALTER PROCEDURE dbo.usp_RegistrarRecepcion
-    @IdUsuarioActor INT, @NumeroOrden VARCHAR(20), @IdEquipo INT, @ProblemaReportado VARCHAR(500), @ObservacionesRecepcion VARCHAR(500), @AccesoriosRecepcion VARCHAR(300), @IdOrden INT OUTPUT
+    @IdUsuarioActor INT, @NumeroOrden VARCHAR(20), @IdEquipo INT, @ProblemaReportado VARCHAR(500), @ObservacionesRecepcion VARCHAR(500), @AccesoriosRecepcion VARCHAR(300), @IdTecnicoResponsable INT, @IdOrden INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -676,6 +676,8 @@ BEGIN
     BEGIN TRY
     BEGIN TRANSACTION;
     EXEC dbo.usp_Interno_ValidarUsuario @IdUsuarioActor, 'Recepcionista';
+    IF @IdTecnicoResponsable IS NOT NULL AND NOT EXISTS(SELECT 1 FROM dbo.Usuarios u JOIN dbo.Roles r ON r.IdRol=u.IdRol WHERE u.IdUsuario=@IdTecnicoResponsable AND u.Estado=1 AND r.Nombre='Tecnico')
+        THROW 51000, 'El tecnico asignado no existe, esta inactivo o no tiene el rol Tecnico.', 1;
     IF NULLIF(LTRIM(RTRIM(@NumeroOrden)), '') IS NULL THROW 51000, 'El campo NumeroOrden es obligatorio.', 1;
     SET @NumeroOrden=LTRIM(RTRIM(@NumeroOrden));
     IF NULLIF(LTRIM(RTRIM(@ProblemaReportado)), '') IS NULL THROW 51000, 'El campo ProblemaReportado es obligatorio.', 1;
@@ -683,11 +685,11 @@ BEGIN
 
     IF NOT EXISTS(SELECT 1 FROM dbo.Equipos e JOIN dbo.Clientes c ON c.IdCliente=e.IdCliente WHERE e.IdEquipo=@IdEquipo AND e.Estado=1 AND c.Estado=1) THROW 51000, 'Equipo o cliente inexistente o inactivo.', 1;
     DECLARE @Estado INT=(SELECT IdEstado FROM dbo.EstadosReparacion WHERE Nombre='En Revisión');
-    INSERT dbo.OrdenesReparacion(NumeroOrden,IdEquipo,IdRecepcionista,IdEstado,ProblemaReportado,ObservacionesRecepcion,AccesoriosRecepcion)
-    VALUES(@NumeroOrden,@IdEquipo,@IdUsuarioActor,@Estado,@ProblemaReportado,@ObservacionesRecepcion,@AccesoriosRecepcion);
+    INSERT dbo.OrdenesReparacion(NumeroOrden,IdEquipo,IdRecepcionista,IdEstado,IdTecnicoResponsable,ProblemaReportado,ObservacionesRecepcion,AccesoriosRecepcion)
+    VALUES(@NumeroOrden,@IdEquipo,@IdUsuarioActor,@Estado,@IdTecnicoResponsable,@ProblemaReportado,@ObservacionesRecepcion,@AccesoriosRecepcion);
     SET @IdOrden=CONVERT(INT,SCOPE_IDENTITY());
     INSERT dbo.HistorialEstados(IdOrden,IdEstadoAnterior,IdEstadoNuevo,IdUsuario,Observacion)
-    VALUES(@IdOrden,NULL,@Estado,@IdUsuarioActor,'Recepcion del equipo');
+    VALUES(@IdOrden,NULL,@Estado,@IdUsuarioActor,CASE WHEN @IdTecnicoResponsable IS NULL THEN 'Recepcion del equipo' ELSE CONCAT('Recepcion del equipo. Asignado al tecnico #',@IdTecnicoResponsable) END);
 
     COMMIT TRANSACTION;
     END TRY
@@ -700,7 +702,7 @@ GO
 
 
 /* =========================================================================
-   [24/51] PROCEDIMIENTO: usp_CorregirRecepcion
+   [24/52] PROCEDIMIENTO: usp_CorregirRecepcion
    MÓDULO: FLUJO / RECEPCIÓN
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -734,7 +736,7 @@ GO
 
 
 /* =========================================================================
-   [25/51] PROCEDIMIENTO: usp_AnularOrden
+   [25/52] PROCEDIMIENTO: usp_AnularOrden
    MÓDULO: FLUJO / RECEPCIÓN
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -770,7 +772,7 @@ GO
 
 
 /* =========================================================================
-   [26/51] PROCEDIMIENTO: usp_TomarOrden
+   [26/52] PROCEDIMIENTO: usp_TomarOrden
    MÓDULO: FLUJO / ASIGNACIÓN TÉCNICA
    AUTORIZACIÓN / ROLES: Tecnico
    DESCRIPCIÓN:
@@ -803,7 +805,7 @@ GO
 
 
 /* =========================================================================
-   [27/51] PROCEDIMIENTO: usp_LiberarOrden
+   [27/52] PROCEDIMIENTO: usp_LiberarOrden
    MÓDULO: FLUJO / ASIGNACIÓN TÉCNICA
    AUTORIZACIÓN / ROLES: Tecnico
    DESCRIPCIÓN:
@@ -837,7 +839,7 @@ GO
 
 
 /* =========================================================================
-   [28/51] PROCEDIMIENTO: usp_RegistrarDiagnostico
+   [28/52] PROCEDIMIENTO: usp_RegistrarDiagnostico
    MÓDULO: FLUJO / DIAGNÓSTICO
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -877,7 +879,7 @@ GO
 
 
 /* =========================================================================
-   [29/51] PROCEDIMIENTO: usp_CorregirDiagnostico
+   [29/52] PROCEDIMIENTO: usp_CorregirDiagnostico
    MÓDULO: FLUJO / DIAGNÓSTICO
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -914,7 +916,7 @@ GO
 
 
 /* =========================================================================
-   [30/51] PROCEDIMIENTO: usp_RetirarDiagnostico
+   [30/52] PROCEDIMIENTO: usp_RetirarDiagnostico
    MÓDULO: FLUJO / DIAGNÓSTICO
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -948,7 +950,7 @@ GO
 
 
 /* =========================================================================
-   [31/51] PROCEDIMIENTO: usp_RegistrarDecisionCliente
+   [31/52] PROCEDIMIENTO: usp_RegistrarDecisionCliente
    MÓDULO: FLUJO / DECISIÓN DEL CLIENTE
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -988,7 +990,7 @@ GO
 
 
 /* =========================================================================
-   [32/51] PROCEDIMIENTO: usp_CorregirDecisionCliente
+   [32/52] PROCEDIMIENTO: usp_CorregirDecisionCliente
    MÓDULO: FLUJO / DECISIÓN DEL CLIENTE
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -1026,7 +1028,7 @@ GO
 
 
 /* =========================================================================
-   [33/51] PROCEDIMIENTO: usp_RetirarDecisionCliente
+   [33/52] PROCEDIMIENTO: usp_RetirarDecisionCliente
    MÓDULO: FLUJO / DECISIÓN DEL CLIENTE
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -1059,7 +1061,7 @@ GO
 
 
 /* =========================================================================
-   [34/51] PROCEDIMIENTO: usp_IniciarReparacion
+   [34/52] PROCEDIMIENTO: usp_IniciarReparacion
    MÓDULO: FLUJO / REPARACIÓN
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -1092,7 +1094,7 @@ GO
 
 
 /* =========================================================================
-   [35/51] PROCEDIMIENTO: usp_RegistrarServicio
+   [35/52] PROCEDIMIENTO: usp_RegistrarServicio
    MÓDULO: FLUJO / REPARACIÓN (SERVICIOS)
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -1127,7 +1129,7 @@ GO
 
 
 /* =========================================================================
-   [36/51] PROCEDIMIENTO: usp_CorregirServicio
+   [36/52] PROCEDIMIENTO: usp_CorregirServicio
    MÓDULO: FLUJO / REPARACIÓN (SERVICIOS)
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -1165,7 +1167,7 @@ GO
 
 
 /* =========================================================================
-   [37/51] PROCEDIMIENTO: usp_RetirarServicio
+   [37/52] PROCEDIMIENTO: usp_RetirarServicio
    MÓDULO: FLUJO / REPARACIÓN (SERVICIOS)
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -1201,7 +1203,7 @@ GO
 
 
 /* =========================================================================
-   [38/51] PROCEDIMIENTO: usp_ConsumirRepuesto
+   [38/52] PROCEDIMIENTO: usp_ConsumirRepuesto
    MÓDULO: FLUJO / REPARACIÓN (INVENTARIO)
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -1238,7 +1240,7 @@ GO
 
 
 /* =========================================================================
-   [39/51] PROCEDIMIENTO: usp_CorregirConsumoRepuesto
+   [39/52] PROCEDIMIENTO: usp_CorregirConsumoRepuesto
    MÓDULO: FLUJO / REPARACIÓN (INVENTARIO)
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -1278,7 +1280,7 @@ GO
 
 
 /* =========================================================================
-   [40/51] PROCEDIMIENTO: usp_RetirarConsumoRepuesto
+   [40/52] PROCEDIMIENTO: usp_RetirarConsumoRepuesto
    MÓDULO: FLUJO / REPARACIÓN (INVENTARIO)
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -1315,7 +1317,7 @@ GO
 
 
 /* =========================================================================
-   [41/51] PROCEDIMIENTO: usp_FinalizarReparacion
+   [41/52] PROCEDIMIENTO: usp_FinalizarReparacion
    MÓDULO: FLUJO / REPARACIÓN
    AUTORIZACIÓN / ROLES: Tecnico responsable
    DESCRIPCIÓN:
@@ -1352,7 +1354,7 @@ GO
 
 
 /* =========================================================================
-   [42/51] PROCEDIMIENTO: usp_RegistrarPago
+   [42/52] PROCEDIMIENTO: usp_RegistrarPago
    MÓDULO: FACTURACIÓN / COBROS
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -1388,7 +1390,7 @@ GO
 
 
 /* =========================================================================
-   [43/51] PROCEDIMIENTO: usp_CorregirPago
+   [43/52] PROCEDIMIENTO: usp_CorregirPago
    MÓDULO: FACTURACIÓN / COBROS
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -1429,7 +1431,7 @@ GO
 
 
 /* =========================================================================
-   [44/51] PROCEDIMIENTO: usp_AnularPago
+   [44/52] PROCEDIMIENTO: usp_AnularPago
    MÓDULO: FACTURACIÓN / COBROS
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -1463,7 +1465,7 @@ GO
 
 
 /* =========================================================================
-   [45/51] PROCEDIMIENTO: usp_EntregarEquipo
+   [45/52] PROCEDIMIENTO: usp_EntregarEquipo
    MÓDULO: FLUJO / ENTREGA FINAL
    AUTORIZACIÓN / ROLES: Recepcionista
    DESCRIPCIÓN:
@@ -1497,7 +1499,7 @@ GO
 
 
 /* =========================================================================
-   [46/51] PROCEDIMIENTO: usp_ConsultarOrdenes
+   [46/52] PROCEDIMIENTO: usp_ConsultarOrdenes
    MÓDULO: REPORTES Y CONSULTAS
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista, Tecnico
    DESCRIPCIÓN:
@@ -1509,6 +1511,10 @@ AS
 BEGIN
  SET NOCOUNT ON;
  EXEC dbo.usp_Interno_ValidarUsuario @IdUsuarioActor,'Administrador,Recepcionista,Tecnico';
+ DECLARE @EsTecnico BIT = CASE WHEN EXISTS(
+  SELECT 1 FROM dbo.Usuarios u JOIN dbo.Roles r ON r.IdRol=u.IdRol
+  WHERE u.IdUsuario=@IdUsuarioActor AND r.Nombre='Tecnico'
+ ) THEN 1 ELSE 0 END;
  IF (@Pagina IS NOT NULL AND @Pagina<1) OR (@TamPagina IS NULL OR @TamPagina NOT BETWEEN 1 AND 200)
     THROW 51000,'Pagina o tamano de pagina invalido.',1;
  SET @Buscar=NULLIF(LTRIM(RTRIM(@Buscar)),N'');
@@ -1518,19 +1524,27 @@ BEGIN
  JOIN dbo.Equipos eq ON eq.IdEquipo=o.IdEquipo JOIN dbo.Clientes c ON c.IdCliente=eq.IdCliente
  OUTER APPLY(SELECT SUM(Monto) AS Pagado FROM dbo.Pagos WHERE IdOrden=o.IdOrden AND Anulado=0) p WHERE (@IdOrden IS NULL OR o.IdOrden=@IdOrden) AND (@IdEstado IS NULL OR o.IdEstado=@IdEstado)
  AND (@IdCliente IS NULL OR c.IdCliente=@IdCliente) AND (@IncluirAnuladas=1 OR o.Anulada=0)
- AND (@SoloDisponibles=0 OR (e.Nombre='En Revisión' AND o.IdTecnicoResponsable IS NULL AND o.Anulada=0)) AND (@Buscar IS NULL OR o.NumeroOrden LIKE N'%'+@Buscar+N'%' OR c.Nombre LIKE N'%'+@Buscar+N'%' OR c.Apellido LIKE N'%'+@Buscar+N'%' OR e.Nombre LIKE N'%'+@Buscar+N'%');
+ AND (@EsTecnico=0 OR o.IdTecnicoResponsable=@IdUsuarioActor)
+ AND (@SoloDisponibles=0 OR (e.Nombre='En Revisión' AND o.IdTecnicoResponsable IS NULL AND o.Anulada=0))
+ AND (@Buscar IS NULL OR o.NumeroOrden LIKE N'%'+@Buscar+N'%' OR c.Nombre LIKE N'%'+@Buscar+N'%'
+ OR c.Apellido LIKE N'%'+@Buscar+N'%' OR e.Nombre LIKE N'%'+@Buscar+N'%'
+ OR eq.Marca LIKE N'%'+@Buscar+N'%' OR eq.Modelo LIKE N'%'+@Buscar+N'%' OR eq.NumeroSerie LIKE N'%'+@Buscar+N'%');
  SELECT o.*,e.Nombre AS EstadoNombre,c.IdCliente,c.Nombre AS NombreCliente,c.Apellido AS ApellidoCliente,COALESCE(p.Pagado,0) AS Pagado,o.Total-COALESCE(p.Pagado,0) AS Saldo FROM dbo.OrdenesReparacion o JOIN dbo.EstadosReparacion e ON e.IdEstado=o.IdEstado
  JOIN dbo.Equipos eq ON eq.IdEquipo=o.IdEquipo JOIN dbo.Clientes c ON c.IdCliente=eq.IdCliente
  OUTER APPLY(SELECT SUM(Monto) AS Pagado FROM dbo.Pagos WHERE IdOrden=o.IdOrden AND Anulado=0) p WHERE (@IdOrden IS NULL OR o.IdOrden=@IdOrden) AND (@IdEstado IS NULL OR o.IdEstado=@IdEstado)
  AND (@IdCliente IS NULL OR c.IdCliente=@IdCliente) AND (@IncluirAnuladas=1 OR o.Anulada=0)
- AND (@SoloDisponibles=0 OR (e.Nombre='En Revisión' AND o.IdTecnicoResponsable IS NULL AND o.Anulada=0)) AND (@Buscar IS NULL OR o.NumeroOrden LIKE N'%'+@Buscar+N'%' OR c.Nombre LIKE N'%'+@Buscar+N'%' OR c.Apellido LIKE N'%'+@Buscar+N'%' OR e.Nombre LIKE N'%'+@Buscar+N'%')
+ AND (@EsTecnico=0 OR o.IdTecnicoResponsable=@IdUsuarioActor)
+ AND (@SoloDisponibles=0 OR (e.Nombre='En Revisión' AND o.IdTecnicoResponsable IS NULL AND o.Anulada=0))
+ AND (@Buscar IS NULL OR o.NumeroOrden LIKE N'%'+@Buscar+N'%' OR c.Nombre LIKE N'%'+@Buscar+N'%'
+ OR c.Apellido LIKE N'%'+@Buscar+N'%' OR e.Nombre LIKE N'%'+@Buscar+N'%'
+ OR eq.Marca LIKE N'%'+@Buscar+N'%' OR eq.Modelo LIKE N'%'+@Buscar+N'%' OR eq.NumeroSerie LIKE N'%'+@Buscar+N'%')
  ORDER BY o.IdOrden DESC OFFSET @Inicio ROWS FETCH NEXT @Limite ROWS ONLY;
 END;
 GO
 
 
 /* =========================================================================
-   [47/51] PROCEDIMIENTO: usp_ConsultarExpedienteOrden
+   [47/52] PROCEDIMIENTO: usp_ConsultarExpedienteOrden
    MÓDULO: REPORTES Y CONSULTAS
    AUTORIZACIÓN / ROLES: Administrador, Recepcionista, Tecnico
    DESCRIPCIÓN:
@@ -1542,6 +1556,13 @@ AS
 BEGIN
  SET NOCOUNT ON;
 EXEC dbo.usp_Interno_ValidarUsuario @IdUsuarioActor,'Administrador,Recepcionista,Tecnico';
+IF EXISTS (
+ SELECT 1 FROM dbo.Usuarios u JOIN dbo.Roles r ON r.IdRol=u.IdRol
+ WHERE u.IdUsuario=@IdUsuarioActor AND r.Nombre='Tecnico'
+) AND NOT EXISTS (
+ SELECT 1 FROM dbo.OrdenesReparacion WHERE IdOrden=@IdOrden AND IdTecnicoResponsable=@IdUsuarioActor
+)
+ THROW 51001, 'El tecnico solo puede consultar el expediente de sus ordenes asignadas.', 1;
 SELECT o.*, e.Nombre AS EstadoNombre, c.IdCliente, c.Nombre AS NombreCliente, c.Apellido AS ApellidoCliente,
  COALESCE(p.Pagado,0) AS Pagado, o.Total-COALESCE(p.Pagado,0) AS Saldo
 FROM dbo.OrdenesReparacion o JOIN dbo.EstadosReparacion e ON e.IdEstado=o.IdEstado
@@ -1567,7 +1588,7 @@ END;
 GO
 
 
-/* [48/51] usp_GuardarRol: soporte DAL/BLL, roles y listados con paginacion SQL. */
+/* [48/52] usp_GuardarRol: soporte DAL/BLL, roles y listados con paginacion SQL. */
 CREATE OR ALTER PROCEDURE dbo.usp_GuardarRol
  @IdUsuarioActor INT, @IdRol INT OUTPUT, @Nombre VARCHAR(50), @Descripcion VARCHAR(200), @Estado BIT
 AS
@@ -1605,7 +1626,7 @@ END;
 GO
 
 
-/* [49/51] usp_ConsultarRoles: soporte DAL/BLL, roles y listados con paginacion SQL. */
+/* [49/52] usp_ConsultarRoles: soporte DAL/BLL, roles y listados con paginacion SQL. */
 CREATE OR ALTER PROCEDURE dbo.usp_ConsultarRoles
  @IdUsuarioActor INT, @IdRol INT=NULL, @SoloActivos BIT=1, @Pagina INT=NULL, @TamPagina INT=10, @Buscar NVARCHAR(100)=NULL, @TotalRegistros INT=NULL OUTPUT
 AS
@@ -1624,7 +1645,7 @@ END;
 GO
 
 
-/* [50/51] usp_ConsultarPagos: soporte DAL/BLL, roles y listados con paginacion SQL. */
+/* [50/52] usp_ConsultarPagos: soporte DAL/BLL, roles y listados con paginacion SQL. */
 CREATE OR ALTER PROCEDURE dbo.usp_ConsultarPagos
  @IdUsuarioActor INT, @IdOrden INT=NULL, @IncluirAnulados BIT=0, @IdPago INT=NULL, @Pagina INT=NULL, @TamPagina INT=10, @Buscar NVARCHAR(100)=NULL, @TotalRegistros INT=NULL OUTPUT
 AS
@@ -1643,7 +1664,7 @@ END;
 GO
 
 
-/* [51/51] usp_ConsultarLogErrores: soporte DAL/BLL, roles y listados con paginacion SQL. */
+/* [51/52] usp_ConsultarLogErrores: soporte DAL/BLL, roles y listados con paginacion SQL. */
 CREATE OR ALTER PROCEDURE dbo.usp_ConsultarLogErrores
  @IdUsuarioActor INT, @Pagina INT=NULL, @TamPagina INT=10, @Buscar NVARCHAR(100)=NULL, @TotalRegistros INT=NULL OUTPUT
 AS
@@ -1658,5 +1679,26 @@ BEGIN
  SELECT @TotalRegistros=COUNT(*) FROM dbo.tblLogErrores WHERE 1=1 AND (@Buscar IS NULL OR mensajeError LIKE N'%'+@Buscar+N'%' OR procedimiento LIKE N'%'+@Buscar+N'%' OR usuarioApp LIKE N'%'+@Buscar+N'%');
  SELECT idLog,mensajeError,numeroError,procedimiento,lineaError,usuarioApp,fechaError FROM dbo.tblLogErrores WHERE 1=1 AND (@Buscar IS NULL OR mensajeError LIKE N'%'+@Buscar+N'%' OR procedimiento LIKE N'%'+@Buscar+N'%' OR usuarioApp LIKE N'%'+@Buscar+N'%')
  ORDER BY idLog DESC OFFSET @Inicio ROWS FETCH NEXT @Limite ROWS ONLY;
+END;
+GO
+
+
+/* =========================================================================
+   [52/52] PROCEDIMIENTO: usp_ConsultarTecnicosActivos
+   MÓDULO: SEGURIDAD / ASIGNACIÓN DE ÓRDENES
+   AUTORIZACIÓN / ROLES: Administrador, Recepcionista
+   DESCRIPCIÓN:
+   Devuelve únicamente las cuentas activas con rol Técnico para asignarlas a una orden.
+   ========================================================================= */
+CREATE OR ALTER PROCEDURE dbo.usp_ConsultarTecnicosActivos
+ @IdUsuarioActor INT
+AS
+BEGIN
+ SET NOCOUNT ON;
+ EXEC dbo.usp_Interno_ValidarUsuario @IdUsuarioActor,'Administrador,Recepcionista';
+ SELECT u.IdUsuario,u.IdRol,u.Nombre,u.Apellido,u.Cedula,u.Telefono,u.Correo,u.Usuario,r.Nombre AS Rol,u.Estado,u.FechaRegistro
+ FROM dbo.Usuarios u JOIN dbo.Roles r ON r.IdRol=u.IdRol
+ WHERE u.Estado=1 AND r.Nombre='Tecnico'
+ ORDER BY u.Nombre,u.Apellido,u.IdUsuario;
 END;
 GO

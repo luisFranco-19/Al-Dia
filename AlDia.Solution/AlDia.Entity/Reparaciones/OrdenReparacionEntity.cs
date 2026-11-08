@@ -11,7 +11,7 @@ public sealed class OrdenReparacionEntity
     public int IdRecepcionista { get; private set; }
     public int IdEstado { get; private set; }
     public string EstadoNombre { get; private set; } = string.Empty;
-    public int? IdTecnicoResponsable { get; }
+    public int? IdTecnicoResponsable { get; private set; }
     public DateTime FechaRecepcion { get; } = DateTime.Now;
     public string ProblemaReportado { get; private set; } = string.Empty;
     public string? ObservacionesRecepcion { get; private set; }
@@ -121,6 +121,12 @@ public sealed class OrdenReparacionEntity
         EstadoNombre = estadoInicial.Nombre;
     }
 
+    public void AsignarTecnicoResponsable(int? idTecnico)
+    {
+        ExigirOrdenNueva();
+        IdTecnicoResponsable = idTecnico.HasValue ? Validacion.Id(idTecnico.Value, "IdTecnicoResponsable") : null;
+    }
+
     public void CambiarRecepcion(string problemaReportado, string? observacionesRecepcion = null, string? accesoriosRecepcion = null)
     {
         if (Anulada || EstadoNombre != "En Revisión" || IdTecnicoResponsable.HasValue)
@@ -144,7 +150,7 @@ public sealed class OrdenReparacionEntity
             throw new ValidacionException("Una orden nueva debe comenzar en revision.");
         if (string.IsNullOrWhiteSpace(ProblemaReportado))
             throw new ValidacionException("Debe ingresar el problema reportado.");
-        return new(NumeroOrden, IdEquipo, ProblemaReportado, ObservacionesRecepcion, AccesoriosRecepcion);
+        return new(NumeroOrden, IdEquipo, ProblemaReportado, ObservacionesRecepcion, AccesoriosRecepcion, IdTecnicoResponsable);
     }
     public CorreccionRecepcionSolicitud CrearCorreccion()
     {

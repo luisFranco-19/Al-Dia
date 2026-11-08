@@ -137,11 +137,11 @@ Se retiraron los eventos duplicados de Usuarios y Reportes. En Catálogos se con
 | Catálogos | Listado conjunto y acciones según el catálogo de la fila; para crear se selecciona un catálogo |
 | Órdenes | Listado, filtros, recepción, anulación con motivo y consulta del expediente |
 | Pagos | Listado, filtros, registro, corrección con reemplazo y anulación con motivo |
-| Expediente | Consulta de recepción, diagnóstico, decisión, detalles, pagos e historial; las acciones técnicas de esta pantalla continúan pendientes |
-| Reportes | Vista previa visual mediante el evento heredado; generación, exportación e impresión continúan pendientes |
+| Expediente | Consulta de recepción, diagnóstico, decisión, detalles, pagos e historial; diagnóstico, respuesta del cliente, servicios, repuestos, pagos y entrega conectados a BLL |
+| Reportes | Consulta de órdenes, pagos e inventario con filtros; vista previa, exportación PDF e impresión |
 | Ajuste de existencias | BLL y DAL verificadas; su formulario sigue como diseño para una integración posterior |
 
-Los indicadores del inicio todavía conservan su diseño. Esta adaptación mantiene las operaciones completas de DAL/BLL y conecta la herencia de los formularios existentes; no añade procedimientos de reportes ni cambia las reglas del taller.
+El inicio muestra ventas del mes, cobros y órdenes activas para administración y recepción; el técnico ve únicamente el resumen y las órdenes que tiene asignadas, con órdenes en diagnóstico en el detalle de reparación. Los reportes se construyen con las consultas existentes y no requieren procedimientos nuevos. El formulario de ajuste de existencias continúa pendiente de integración en UI.
 
 ## Verificación reproducible
 

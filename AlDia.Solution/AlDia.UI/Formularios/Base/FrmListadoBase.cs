@@ -23,6 +23,7 @@ public partial class FrmListadoBase : Form, IModuloConServicios
     protected virtual bool MostrarBotonPrincipal => false;
     protected virtual bool MostrarBotonSecundario => false;
     protected virtual bool MostrarBotonTerciario => false;
+    protected virtual string TextoBotonTerciario => "Cambiar estado";
 
     public FrmListadoBase()
     {
@@ -40,6 +41,11 @@ public partial class FrmListadoBase : Form, IModuloConServicios
         dgvListado.AllowUserToAddRows = false;
         dgvListado.ReadOnly = true;
         dgvListado.AutoGenerateColumns = false;
+        dgvListado.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+        dgvListado.ColumnHeadersDefaultCellStyle.SelectionBackColor = dgvListado.ColumnHeadersDefaultCellStyle.BackColor;
+        dgvListado.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.Black;
+        dgvListado.DefaultCellStyle.ForeColor = Color.Black;
+        dgvListado.DefaultCellStyle.SelectionForeColor = Color.Black;
     }
 
     private async void BtnBuscar_Click(object? sender, EventArgs e) => await RecargarAsync(1);
@@ -235,6 +241,7 @@ public partial class FrmListadoBase : Form, IModuloConServicios
         btnNuevo.Visible = MostrarBotonPrincipal;
         btnEditar.Visible = MostrarBotonSecundario;
         btnCambiarEstado.Visible = MostrarBotonTerciario;
+        btnCambiarEstado.Text = TextoBotonTerciario;
         btnNuevo.Enabled = listo && MostrarBotonPrincipal;
         btnEditar.Enabled = listo && seleccionado && MostrarBotonSecundario;
         btnCambiarEstado.Enabled = listo && seleccionado && MostrarBotonTerciario;

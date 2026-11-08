@@ -205,7 +205,7 @@ partial class FrmListadoBase
         bordeBuscar.Location = new Point(0, 26);
         bordeBuscar.Size = new Size(528, 40);
         bordeBuscar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        bordeBuscar.BackColor = Color.FromArgb(248, 250, 253);
+        bordeBuscar.BackColor = Color.White;
         bordeBuscar.RadioBorde = 8;
         bordeBuscar.TabIndex = 0;
         // iconBuscar
@@ -216,7 +216,7 @@ partial class FrmListadoBase
         iconBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
         iconBuscar.IconSize = 20;
         iconBuscar.IconColor = Color.FromArgb(103, 116, 137);
-        iconBuscar.BackColor = Color.FromArgb(248, 250, 253);
+        iconBuscar.BackColor = Color.White;
         iconBuscar.TabStop = false;
         // txtBuscar
         txtBuscar.Name = "txtBuscar";
@@ -224,7 +224,7 @@ partial class FrmListadoBase
         txtBuscar.Size = new Size(470, 24);
         txtBuscar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         txtBuscar.BorderStyle = BorderStyle.None;
-        txtBuscar.BackColor = Color.FromArgb(248, 250, 253);
+        txtBuscar.BackColor = Color.White;
         txtBuscar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
         txtBuscar.ForeColor = Color.FromArgb(20, 43, 78);
         txtBuscar.PlaceholderText = "Nombre, código o referencia";

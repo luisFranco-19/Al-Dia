@@ -2,6 +2,7 @@ using AlDia.BLL.Common;
 using AlDia.Entity.Common;
 using AlDia.Entity.Reparaciones;
 using AlDia.UI.Formularios.Base;
+using AlDia.UI.Helpers;
 
 namespace AlDia.UI.Formularios.Hijos.Catalogos;
 
@@ -33,13 +34,16 @@ public partial class FrmRegistroServicio : FrmRegistroBase
         txtNombre.Text = _entidad.Nombre;
         chkActivo.Checked = _entidad.Estado;
         txtDescripcion.Text = _entidad.Descripcion;
-        nudPrecioBase.Value = _entidad.PrecioBase;
+        nudPrecioBase.Text = DineroTextBoxHelper.Formatear(_entidad.PrecioBase);
     }
 
     protected override bool ValidarControles()
     {
         errorIcon.Clear();
-        return Requerido(txtNombre, "Ingrese el nombre.");
+        bool valido = Requerido(txtNombre, "Ingrese el nombre.");
+        if (!DineroTextBoxHelper.TryLeer(nudPrecioBase, out _))
+        { errorIcon.SetError(nudPrecioBase, "Ingrese un precio válido, con máximo dos decimales."); valido = false; }
+        return valido;
     }
 
     protected override async Task GuardarAsync()
@@ -48,7 +52,8 @@ public partial class FrmRegistroServicio : FrmRegistroBase
         _entidad.CambiarNombre(txtNombre.Text);
         _entidad.CambiarEstado(chkActivo.Checked);
         _entidad.CambiarDescripcion(txtDescripcion.Text);
-        _entidad.CambiarPrecioBase(nudPrecioBase.Value);
+        DineroTextBoxHelper.TryLeer(nudPrecioBase, out decimal precioBase);
+        _entidad.CambiarPrecioBase(precioBase);
         if (EsEdicion)
             await Aplicacion.Servicios.ActualizarAsync(_entidad, TokenFormulario);
         else
